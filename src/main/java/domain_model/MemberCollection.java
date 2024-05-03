@@ -65,5 +65,15 @@ public class MemberCollection {
         return targetMember;
     }
 
+    public boolean deleteMember(String memberToDelete){
+        Member targetMember = findSpecificMember(memberToDelete);
+        if (targetMember != null){
+            memberList.remove(targetMember);
+            //fileHandler.saveMovieToFile(movieList);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
