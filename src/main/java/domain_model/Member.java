@@ -1,6 +1,7 @@
 package domain_model;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public abstract class Member {
     private String firstName;
@@ -8,7 +9,7 @@ public abstract class Member {
     private LocalDate dateOfBirth;
     private double debt;
     private boolean isActive;
-    //TODO: medlemsnummer?
+    //TODO: beslutte om medlemmer skal have et medlemsnummer
 
     public Member(String firstName, String lastName, LocalDate dateOfBirth, double debt, boolean isActive) {
         this.firstName = firstName;
@@ -59,4 +60,23 @@ public abstract class Member {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+    public double calculateMembershipFee() {
+        LocalDate currentDate = LocalDate.now();
+        int age = Period.between(dateOfBirth, currentDate).getYears();
+        double yearlyMembershipFee = 500;
+        //TODO: måske oprette junior/senior som en boolean
+
+        if (age < 18) {
+            yearlyMembershipFee = 1000;
+        } else if (age > 18) {
+            yearlyMembershipFee = 1600;
+        } else if (age > 60) {
+            yearlyMembershipFee = (1600*0.75);
+        }
+        return yearlyMembershipFee;
+
+    }
+    //TODO: tilføj pris for passiv
+
 }

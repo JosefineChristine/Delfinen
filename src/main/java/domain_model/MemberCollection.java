@@ -3,6 +3,7 @@ package domain_model;
 import domain_model.Member;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 public class MemberCollection {
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
@@ -64,6 +65,9 @@ public class MemberCollection {
         }
         return targetMember;
     }
+
+
+
 
 
 }
