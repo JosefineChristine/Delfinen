@@ -1,7 +1,10 @@
 package domain_model;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Member {
     private String firstName;
@@ -19,7 +22,7 @@ public abstract class Member {
         this.isActive = isActive;
 
     }
-//************Getters********-------------------------------------------------------------------------------------------
+    //************GETTERS********---------------------------------------------------------------------------------------
     public String getFirstName() {
         return firstName;
     }
@@ -40,7 +43,7 @@ public abstract class Member {
         return isActive;
     }
 
-//************Setters********-------------------------------------------------------------------------------------------
+//************SETTERS********-------------------------------------------------------------------------------------------
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -61,22 +64,23 @@ public abstract class Member {
         isActive = active;
     }
 
+    //************METHODS********---------------------------------------------------------------------------------------
+
     public double calculateMembershipFee() {
         LocalDate currentDate = LocalDate.now();
         int age = Period.between(dateOfBirth, currentDate).getYears();
         double yearlyMembershipFee = 500;
         //TODO: måske oprette junior/senior som en boolean
 
-        if (age < 18) {
+        if (age < 18 && isActive) {
             yearlyMembershipFee = 1000;
-        } else if (age > 18) {
+        } else if (age > 18 && isActive) {
             yearlyMembershipFee = 1600;
-        } else if (age > 60) {
+        } else if (age > 60 && isActive) { //check if it works, condition isActive always false??
             yearlyMembershipFee = (1600*0.75);
         }
         return yearlyMembershipFee;
-
     }
-    //TODO: tilføj pris for passiv
 
+    //------------------------------------------------------
 }

@@ -1,9 +1,6 @@
 package domain_model;
 
-import domain_model.Member;
-
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 public class MemberCollection {
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
@@ -77,7 +74,37 @@ public class MemberCollection {
         }
     }
 
+    public double calculateAnnualIncome(){
+        double annualIncome = 0;
+        for(Member members : memberList){
+            annualIncome += members.calculateMembershipFee();
+        }
+        return annualIncome;
+    }
 
+    public double calculateAnnualIncome(){
+        double annualIncome = 0;
+        for(Member members : memberList){
+            annualIncome += members.calculateMembershipFee();
+        }
+        return annualIncome;
+    }
 
+    public double calculateTotalDebt(){ //tjek om det er korrekt
+        double totalDebt = 0;
+        for(Member debt : memberList){
+            totalDebt += debt.getDebt();
+        }
+        return totalDebt;
+    }
 
+    public ArrayList<Member> searchMemberDebt(String membersSearchedDebt) {
+        var foundMembersDebt = new ArrayList<Member>(); //var kalder variablen, som er defineret efter new
+        for (Member items : memberList) {
+            if (items.getDebt() > 0) {
+                foundMembersDebt.add(items);
+            }
+        }
+        return foundMembersDebt;
+    }
 }
