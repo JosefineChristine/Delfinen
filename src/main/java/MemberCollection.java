@@ -9,16 +9,17 @@ public class MemberCollection {
         //fileHandler.saveMemberToFile(memberList);
     }
 
-/*
-    public ArrayList<Member> searchMember(String embers) {
-        var foundMovies = new ArrayList<Movie>(); //var kalder variablen, som er defineret efter new
-        for (Movie items : movieList) {
-            if (items.getTitle().toLowerCase().contains(movieName.toLowerCase())) {
-                foundMovies.add(items);
+
+    public ArrayList<Member> searchMember(String membersSearched) {
+        var foundMembers = new ArrayList<Member>(); //var kalder variablen, som er defineret efter new
+        for (Member items : memberList) {
+            if (items.)
+            //if (items.getTitle().toLowerCase().contains(movieName.toLowerCase())) {
+                foundMembers.add(items);
             }
         }
         return foundMovies;
     }
-*/
+
 
 }

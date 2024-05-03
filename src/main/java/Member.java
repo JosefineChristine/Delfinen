@@ -17,4 +17,23 @@ public abstract class Member {
 
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public double getDebt() {
+        return debt;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
 }
