@@ -1,3 +1,7 @@
+package domain_model;
+
+import domain_model.Member;
+
 import java.util.ArrayList;
 public class MemberCollection {
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
