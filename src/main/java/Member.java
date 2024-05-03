@@ -16,7 +16,7 @@ public abstract class Member {
         this.isActive = isActive;
 
     }
-
+//************Getters********-------------------------------------------------------------------------------------------
     public String getFirstName() {
         return firstName;
     }
@@ -35,5 +35,26 @@ public abstract class Member {
 
     public boolean isActive() {
         return isActive;
+    }
+
+//************Setters********-------------------------------------------------------------------------------------------
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setDebt(double debt) {
+        this.debt = debt;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
