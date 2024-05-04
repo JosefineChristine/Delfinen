@@ -2,16 +2,11 @@ package domain_model;
 
 import java.time.LocalDate;
 
-public class TrainingRecord {
+public class TrainingRecord extends Record {
 
-    private String discipline;
-    private double result;
-    private LocalDate date;
 
-    public TrainingRecord(String discipline, double result, LocalDate date) {
-        this.discipline = discipline;
-        this.result = result;
-        this.date = date;
+    public TrainingRecord(String title, String discipline ,double result, LocalDate date) {
+        super(title,discipline,result,date);
 
     }
 
