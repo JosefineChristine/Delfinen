@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+
         // these lines are just for test and must be removed from the main class
         FileLoader fileLoader = new FileLoader();
         System.out.println("Test ");
@@ -31,6 +32,7 @@ public class Main {
             System.out.println();
 
         }
+
 
     }
 }
