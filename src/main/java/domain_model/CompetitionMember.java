@@ -15,4 +15,11 @@ public class CompetitionMember extends Member {
 
     }
 
+    public ArrayList<Record> getMemberRecords() {
+        return memberRecords;
+    }
+
+    public void setMemberRecords(ArrayList<Record> memberRecords) {
+        this.memberRecords = memberRecords;
+    }
 }

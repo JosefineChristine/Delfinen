@@ -11,4 +11,12 @@ public class CompetitionRecord extends Record {
         super(title,discipline,result,date);
         this.placeAchieved = place;
     }
+
+    public String getPlaceAchieved() {
+        return placeAchieved;
+    }
+
+    public void setPlaceAchieved(String placeAchieved) {
+        this.placeAchieved = placeAchieved;
+    }
 }
