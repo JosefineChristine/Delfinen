@@ -82,13 +82,13 @@ public class MemberCollection {
         return annualIncome;
     }
 
-    public double calculateAnnualIncome(){
-        double annualIncome = 0;
-        for(Member members : memberList){
-            annualIncome += members.calculateMembershipFee();
-        }
-        return annualIncome;
-    }
+//    public double calculateAnnualIncome(){
+//        double annualIncome = 0;
+//        for(Member members : memberList){
+//            annualIncome += members.calculateMembershipFee();
+//        }
+//        return annualIncome;
+//    }
 
     public double calculateTotalDebt(){ //tjek om det er korrekt
         double totalDebt = 0;
