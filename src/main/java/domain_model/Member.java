@@ -14,12 +14,7 @@ public abstract class Member {
     private boolean isActive;
     private String memberShipType;
     //TODO: beslutte om medlemmer skal have et medlemsnummer
-    // I have added a membership type attribute in member class, to determine exercise or competitor member.
-    // John,Doe,10-11-1991,500, false, exerciser
-    // Jane,Doe,20-05-2000,0,true, Jutland-open, crawl, 2.35 , 20-10-2023,
-    // Training, crawl, 2.55, 20-01-2024, DM, crawl, 2.10 , 05-03-2024,
-    // Julia,Robert, 06-12-1985,0,true,
-    // crawl, backstroke, breaststroke, butterfly
+
     public Member(String firstName, String lastName, LocalDate dateOfBirth, double debt, boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;

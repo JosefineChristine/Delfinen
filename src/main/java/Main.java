@@ -1,18 +1,29 @@
 import data_handler.FileLoader;
-import domain_model.CompetitionMember;
-import domain_model.Member;
+import data_handler.SaveToFile;
+import domain_model.*;
 import domain_model.Record;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Main {
     public static void main(String[] args) {
+        //Setting the default locale to Locale.US, to ensure that the decimal separator will always be a dot,
+        // regardless of the system's default locale.
+        Locale.setDefault(Locale.US);
 
         // these lines are just for test and must be removed from the main class
         FileLoader fileLoader = new FileLoader();
-        System.out.println("Test ");
-        ArrayList<Member> members = new ArrayList<>();
+        SaveToFile saveToFile = new SaveToFile();
+
+//        String birthDate = "1991-09-11";
+//        LocalDate memberBirthDate = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        ArrayList<Member> members;
+
         members = fileLoader.getMembers();
+
+
         for (Member member : members) {
             System.out.println(member.getFirstName());
             System.out.println(member.getDateOfBirth());
@@ -32,6 +43,10 @@ public class Main {
             System.out.println();
 
         }
+
+       saveToFile.saveToFile(members);
+
+
 
 
     }

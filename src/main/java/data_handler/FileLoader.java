@@ -28,12 +28,12 @@ public class FileLoader {
             String firstName = data[0];
             String lastName = data[1];
             String birth = data[2];
-            LocalDate dateOfBirth = LocalDate.parse(birth, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalDate dateOfBirth = LocalDate.parse(birth, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             double debt = Double.parseDouble(data[3]);
             boolean isActive = Boolean.parseBoolean(data[4]);
             String memberShipType = data[5];
 
-            if (memberShipType.equalsIgnoreCase("competitor")) {
+            if (memberShipType.equalsIgnoreCase("competition")) {
                 String[] memberRecords = Arrays.copyOfRange(data, 6, data.length);
                 CompetitionMember member = new CompetitionMember(firstName, lastName, dateOfBirth, debt, isActive);
                 member.setMemberRecords(competitorHandler(memberRecords));
@@ -60,7 +60,7 @@ public class FileLoader {
             memberRecords.add(i, values[i]);
         }
 
-        int counterHelper = 0;
+
         Iterator<String> iterator = memberRecords.iterator();
 
         while (iterator.hasNext()) {
@@ -72,7 +72,7 @@ public class FileLoader {
                 iterator.remove();
                 double trainingResult = Double.parseDouble(iterator.next());
                 iterator.remove();
-                LocalDate traningDate = LocalDate.parse(iterator.next(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                LocalDate traningDate = LocalDate.parse(iterator.next(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 iterator.remove();
                 TrainingRecord trainingRecord = new TrainingRecord(title, discipline, trainingResult, traningDate);
                 memberRecordList.add(trainingRecord);
@@ -83,7 +83,7 @@ public class FileLoader {
                 iterator.remove();
                 double competitionResult = Double.parseDouble(iterator.next());
                 iterator.remove();
-                LocalDate Competitiondate  = LocalDate.parse(iterator.next(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                LocalDate Competitiondate  = LocalDate.parse(iterator.next(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 iterator.remove();
                 String place =iterator.next();
 
@@ -102,34 +102,3 @@ public class FileLoader {
 }
 
 
-/*
-        while (!memberRecords.isEmpty()){
-            if (memberRecords.get(counterHelper).equalsIgnoreCase("training")) {
-
-                counterHelper+=4;
-//                memberRecords.remove(title);
-//                memberRecords.remove(discipline);
-//                memberRecords.remove(trainingResult);
-//                memberRecords.remove(traningDate);//
-            } else {
-
-                String title = memberRecords.get(counterHelper);
-                String discipline = memberRecords.get(counterHelper+1);
-                double competitionResult = Double.parseDouble(memberRecords.get(counterHelper+2));
-                LocalDate Competitiondate = LocalDate.parse(memberRecords.get(counterHelper+3), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                String place = memberRecords.get( counterHelper+4);
-
-                CompetitionRecord record = new CompetitionRecord(title, discipline, competitionResult, Competitiondate, place);
-               memberRecordList.add(record);
-               counterHelper+=5;
-//               memberRecords.remove(title);
-//               memberRecords.remove(discipline);
-//               memberRecords.remove(competitionResult);
-//               memberRecords.remove(Competitiondate);
-//               memberRecords.remove(place);
-            }
-
-        }
-
-
-*/
