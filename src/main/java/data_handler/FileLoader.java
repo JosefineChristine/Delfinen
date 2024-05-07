@@ -7,10 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class FileLoader {
     File memberList = new File("Delfin-members.csv");
@@ -41,10 +38,7 @@ public class FileLoader {
             } else{
                 ExerciseMember member = new ExerciseMember(firstName, lastName, dateOfBirth, debt, isActive);
                 members.add(member);
-
             }
-
-
         }
         return members;
     }
@@ -60,6 +54,7 @@ public class FileLoader {
             memberRecords.add(i, values[i]);
         }
 
+        int helperNumber = 0;
 
         Iterator<String> iterator = memberRecords.iterator();
 
@@ -91,8 +86,6 @@ public class FileLoader {
                 memberRecordList.add(record);
             }
         }
-
-
 
         return memberRecordList;
 

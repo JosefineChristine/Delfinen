@@ -1,28 +1,31 @@
 package domain_model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public abstract class Record {
     // Title is either training or event name.
-    private String title;
+    private String eventName;
     private String discipline;
     private double result;
     private LocalDate date;
 
+    private ArrayList<Record> recordList = new ArrayList<>();
 
-    public Record(String title, String discipline, double result, LocalDate date) {
-        this.title = title;
+
+    public Record(String eventName, String discipline, double result, LocalDate date) {
+        this.eventName = eventName;
         this.discipline = discipline;
         this.result = result;
         this.date = date;
     }
 
-    public String getTitle() {
-        return title;
+    public String getEventName() {
+        return eventName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
 
     public String getDiscipline() {
@@ -48,4 +51,10 @@ public abstract class Record {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    public void addRecord(Record record){
+    recordList.add(record);
+    }
+
+
 }
