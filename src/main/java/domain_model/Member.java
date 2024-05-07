@@ -1,35 +1,33 @@
 package domain_model;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.List;
 
+//TODO - Hvordan håndterer vi member type? String metoden vs. enums?
 public abstract class Member {
-    private String firstName;
-    private String lastName;
+    private String memberFirstName;
+    private String memberLastName;
     private LocalDate dateOfBirth;
     private double debt;
     private boolean isActive;
-    private String memberShipType;
-    //TODO: beslutte om medlemmer skal have et medlemsnummer
+    private String memberShipType; //mangler i konstruktør
+    private double membershipFee;
 
-    public Member(String firstName, String lastName, LocalDate dateOfBirth, double debt, boolean isActive) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Member(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
+        this.memberFirstName = memberFirstName;
+        this.memberLastName = memberLastName;
         this.dateOfBirth = dateOfBirth;
         this.debt = debt;
         this.isActive = isActive;
 
     }
     //************GETTERS********---------------------------------------------------------------------------------------
-    public String getFirstName() {
-        return firstName;
+    public String getMemberFirstName() {
+        return memberFirstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getMemberLastName() {
+        return memberLastName;
     }
 
     public LocalDate getDateOfBirth() {
@@ -43,14 +41,21 @@ public abstract class Member {
     public boolean isActive() {
         return isActive;
     }
+    public String getMemberShipType() {
+        return memberShipType;
+    }
+
+    public double getMembershipFee(){
+        return membershipFee;
+    }
 
 //************SETTERS********-------------------------------------------------------------------------------------------
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.memberFirstName = firstName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.memberLastName = lastName;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
@@ -63,6 +68,9 @@ public abstract class Member {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+    public void setMemberShipType(String memberShipType) {
+        this.memberShipType = memberShipType;
     }
 
     //************METHODS********---------------------------------------------------------------------------------------
@@ -81,14 +89,6 @@ public abstract class Member {
             yearlyMembershipFee = (1600*0.75);
         }
         return yearlyMembershipFee;
-    }
-
-    public String getMemberShipType() {
-        return memberShipType;
-    }
-
-    public void setMemberShipType(String memberShipType) {
-        this.memberShipType = memberShipType;
     }
 
     //------------------------------------------------------

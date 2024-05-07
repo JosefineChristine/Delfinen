@@ -15,8 +15,8 @@ public class SaveToFile {
                 String csvLine = "";
                 if (member.getMemberShipType().equalsIgnoreCase("EXERCISER")) {
                     csvLine = String.format("%s,%s,%s,%.2f,%b,%s",
-                            member.getFirstName(),
-                            member.getLastName(),
+                            member.getMemberFirstName(),
+                            member.getMemberLastName(),
                             member.getDateOfBirth(),
                             member.getDebt(),
                             member.isActive(),
@@ -24,8 +24,8 @@ public class SaveToFile {
 
                 } else  {
                     csvLine = String.format("%s,%s,%s,%.2f,%b,%s",
-                            member.getFirstName(),
-                            member.getLastName(),
+                            member.getMemberFirstName(),
+                            member.getMemberLastName(),
                             member.getDateOfBirth(),
                             member.getDebt(),
                             member.isActive(),
@@ -49,14 +49,14 @@ public class SaveToFile {
             String recordLine = "";
             if (memberRecord instanceof TrainingRecord) {
                 recordLine = String.format("%s,%s,%.2f,%s",
-                        memberRecord.getTitle(),
+                        memberRecord.getEventName(),
                         memberRecord.getDiscipline(),
                         memberRecord.getResult(),
                         memberRecord.getDate());
 
             } else if (memberRecord instanceof CompetitionRecord) {
                 recordLine = String.format("%s,%s,%.2f,%s,%s",
-                        memberRecord.getTitle(),
+                        memberRecord.getEventName(),
                         memberRecord.getDiscipline(),
                         memberRecord.getResult(),
                         memberRecord.getDate(),

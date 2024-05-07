@@ -2,15 +2,34 @@ package domain_model;
 
 public class Coach {
 
+    //***QUESTIONS& MISSING CODE***-------------------------------------------------------------------------------------
+    //Coach is trainer for?
+
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
-    private String firstName;
-    private String lastName;
+    private String coachFirstName;
+    private String coachLastName;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public Coach(String firstName, String lastName){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Coach(String coachFirstName, String coachLastName){
+        this.coachFirstName = coachFirstName;
+        this.coachLastName = coachLastName;
     }
+
+    //***METHODS***-----------------------------------------------------------------------------------------------------
+    public String getCoachFirstName(){
+        return coachFirstName;
+    }
+
+    public String getCoachLastName(){
+        return coachLastName;
+    }
+
+    //***TO STRING METHOD***--------------------------------------------------------------------------------------------
+    @Override
+    public String toString(){
+        return "Coach name: " + getCoachFirstName() + " " + getCoachLastName();
+    }
+
 
     //------------------------------------------------------------------------------------------------------------------
 }
