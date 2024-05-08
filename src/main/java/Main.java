@@ -22,29 +22,29 @@ public class Main {
         ArrayList<Member> members;
 //
         members = fileLoader.getMembers();
-//
-//
-//        for (Member member : members) {
-//            System.out.println(member.getMemberFirstName());
-//            System.out.println(member.getDateOfBirth());
-//            System.out.println(member.calculateMembershipFee());
-//            System.out.println(member.getDebt());
-//            System.out.println(member.getMemberShipType());
-//            if (member.getMemberShipType().equalsIgnoreCase("competition")){
-//                CompetitionMember member1 = (CompetitionMember) member;
-//                ArrayList<Record> memberRecords = member1.getMemberRecords();
-//                for (Record memberRecord : memberRecords) {
-//                    System.out.println(memberRecord.getTitle());
-//                    System.out.println(memberRecord.getDiscipline());
-//                    System.out.println(memberRecord.getResult());
-//                    System.out.println();
-//                }
-//            }
-//            System.out.println();
-//
-//        }
-//
-//       saveToFile.saveToFile(members);
+
+
+        for (Member member : members) {
+            System.out.println(member.getMemberFirstName());
+            System.out.println(member.getDateOfBirth());
+            System.out.println(member.calculateMembershipFee());
+            System.out.println(member.getDebt());
+            System.out.println(member.getMemberShipType());
+            if (member.getMemberShipType().equalsIgnoreCase("competition")){
+                CompetitionMember member1 = (CompetitionMember) member;
+                ArrayList<Record> memberRecords = member1.getMemberRecords();
+                for (Record memberRecord : memberRecords) {
+                    System.out.println(memberRecord.getEventName());
+                    System.out.println(memberRecord.getDiscipline());
+                    System.out.println(memberRecord.getResult());
+                    System.out.println();
+                }
+            }
+            System.out.println();
+
+        }
+
+       saveToFile.saveToFile(members);
 
 
 //        for (Member member : members) {
@@ -56,14 +56,14 @@ public class Main {
 //            }
 //        }
 
-        for (Member member : members) {
-            if (member instanceof CompetitionMember){
-                ((CompetitionMember) member).findBestTrainingRecord();
-                System.out.println("Best training record: ");
-                System.out.println(member.getMemberFirstName() + " " + member.getMemberLastName());
-                System.out.println(((CompetitionMember) member).findBestTrainingRecord());
-            }
-        }
+//        for (Member member : members) {
+//            if (member instanceof CompetitionMember){
+//                ((CompetitionMember) member).findBestTrainingRecord();
+//                System.out.println("Best training record: ");
+//                System.out.println(member.getMemberFirstName() + " " + member.getMemberLastName());
+//                System.out.println(((CompetitionMember) member).findBestTrainingRecord());
+//            }
+//        }
 
     }
 }
