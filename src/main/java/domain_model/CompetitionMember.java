@@ -12,6 +12,7 @@ public class CompetitionMember extends Member {
     private ArrayList<Record> memberRecords = new ArrayList<>();
     private ArrayList<Team> teams;
     private Team team;
+    private ArrayList<String> activeDisciplines =new ArrayList<>() ;
 
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
     public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
@@ -26,11 +27,15 @@ public class CompetitionMember extends Member {
         return memberRecords;
     }
 
+    public ArrayList<String> getActiveDisciplines() {
+        return activeDisciplines;
+    }
+
     public String getTeamsForSpecificMember() {
         ArrayList<String> memberTeams = new ArrayList<>();
         for (Team team : teams) {
             if (team.getTeamMemberList().contains(this)) {
-                memberTeams.add(team.getTeamName());
+                memberTeams.add(team.getTeamDiscipline());
             }
         }
         return "Teams for " + getMemberFirstName() + " " + getMemberLastName() + ":\n" + memberTeams;
@@ -63,6 +68,15 @@ public class CompetitionMember extends Member {
 //                //itererer
 //            } return bestMembersRecord;
 //        }
+
+
+    public void findDisciplines(ArrayList<Record> records){
+        for(Record record : records){
+            if(!activeDisciplines.contains(record.getDiscipline())){
+                activeDisciplines.add(record.getDiscipline());
+            }
+        }
+    }
 
     public Record findBestTrainingRecord(){
         ArrayList<Record> trainingRecordList = new ArrayList<>();

@@ -2,6 +2,7 @@ package domain_model;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 
 //TODO - Hvordan håndterer vi member type? String metoden vs. enums?
 public abstract class Member {
@@ -13,14 +14,18 @@ public abstract class Member {
     private String memberShipType; //mangler i konstruktør
     private double membershipFee;
 
+
     public Member(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
         this.memberFirstName = memberFirstName;
         this.memberLastName = memberLastName;
         this.dateOfBirth = dateOfBirth;
         this.debt = debt;
         this.isActive = isActive;
+        this.membershipFee = calculateMembershipFee();
+        this.memberShipType = calculateMembershipType();
 
     }
+
     //************GETTERS********---------------------------------------------------------------------------------------
     public String getMemberFirstName() {
         return memberFirstName;
@@ -41,15 +46,16 @@ public abstract class Member {
     public boolean isActive() {
         return isActive;
     }
+
     public String getMemberShipType() {
         return memberShipType;
     }
 
-    public double getMembershipFee(){
+    public double getMembershipFee() {
         return membershipFee;
     }
 
-//************SETTERS********-------------------------------------------------------------------------------------------
+    //************SETTERS********-------------------------------------------------------------------------------------------
     public void setFirstName(String firstName) {
         this.memberFirstName = firstName;
     }
@@ -69,27 +75,39 @@ public abstract class Member {
     public void setActive(boolean active) {
         isActive = active;
     }
+
     public void setMemberShipType(String memberShipType) {
         this.memberShipType = memberShipType;
     }
 
     //************METHODS********---------------------------------------------------------------------------------------
-
-    public double calculateMembershipFee() {
+    public String calculateMembershipType() {
         LocalDate currentDate = LocalDate.now();
         int age = Period.between(dateOfBirth, currentDate).getYears();
-        double yearlyMembershipFee = 500;
-        //TODO: måske oprette junior/senior som en boolean
-
-        if (age < 18 && isActive) {
-            yearlyMembershipFee = 1000;
-        } else if (age > 18 && isActive) {
-            yearlyMembershipFee = 1600;
-        } else if (age > 60 && isActive) { //check if it works, condition isActive always false??
-            yearlyMembershipFee = (1600*0.75);
+        String membersShipType;
+        if (age < 18) {
+            return membersShipType = "junior";
+        } else {
+            return membersShipType = "senior";
         }
-        return yearlyMembershipFee;
     }
+
+        public double calculateMembershipFee() {
+            LocalDate currentDate = LocalDate.now();
+            int age = Period.between(dateOfBirth, currentDate).getYears();
+            double yearlyMembershipFee = 500;
+            //TODO refaktorer så vi kun tjekker isActive en gang
+
+            if (age < 18 && isActive) {
+                yearlyMembershipFee = 1000;
+            } else if (age >= 18 && age <= 59 && isActive) {
+                yearlyMembershipFee = 1600;
+            } else if (age > 60 && isActive) {
+                yearlyMembershipFee = (1600 * 0.75);
+            }
+            return yearlyMembershipFee;
+        }
+
 
     //------------------------------------------------------
 }
