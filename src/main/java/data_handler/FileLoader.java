@@ -44,6 +44,8 @@ public class FileLoader {
     }
 
 
+
+
     public ArrayList<Record> competitorHandler(String[] values){
 
         ArrayList<Record> memberRecordList = new ArrayList<>();
@@ -54,35 +56,24 @@ public class FileLoader {
             memberRecords.add(i, values[i]);
         }
 
-        int helperNumber = 0;
 
         Iterator<String> iterator = memberRecords.iterator();
 
         while (iterator.hasNext()) {
-            String recordType = iterator.next();
-            if (recordType.equalsIgnoreCase("training")) {
-                String title = recordType;
+                String title = iterator.next();
                 iterator.remove();
                 String discipline = iterator.next();
                 iterator.remove();
-                double trainingResult = Double.parseDouble(iterator.next());
+                double result = Double.parseDouble(iterator.next());
                 iterator.remove();
-                LocalDate traningDate = LocalDate.parse(iterator.next(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                LocalDate date = LocalDate.parse(iterator.next(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 iterator.remove();
-                TrainingRecord trainingRecord = new TrainingRecord(title, discipline, trainingResult, traningDate);
+            if (title.equalsIgnoreCase("training")) {
+                TrainingRecord trainingRecord = new TrainingRecord(title, discipline, result, date);
                 memberRecordList.add(trainingRecord);
             } else {
-                String title = recordType;
-                iterator.remove();
-                String discipline = iterator.next();
-                iterator.remove();
-                double competitionResult = Double.parseDouble(iterator.next());
-                iterator.remove();
-                LocalDate Competitiondate  = LocalDate.parse(iterator.next(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                iterator.remove();
                 String place =iterator.next();
-
-                CompetitionRecord record = new CompetitionRecord(title, discipline, competitionResult, Competitiondate, place);
+                CompetitionRecord record = new CompetitionRecord(title, discipline, result, date, place);
                 memberRecordList.add(record);
             }
         }
@@ -90,8 +81,7 @@ public class FileLoader {
         return memberRecordList;
 
     }
-
-
 }
+
 
 
