@@ -9,7 +9,7 @@ public class UserInterface {
     Scanner input = new Scanner(System.in);
     Controller controller = new Controller();
 
-    int userChoice = Integer.parseInt("-1");
+    int userChoice;
 
     public void startProgram() {
 

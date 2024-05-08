@@ -1,5 +1,7 @@
 package domain_model;
 
+import data_handler.SaveToFile;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 public class MemberCollection {
@@ -9,6 +11,7 @@ public class MemberCollection {
 
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
     private ArrayList<Member> memberList;
+    private SaveToFile fileHandler = new SaveToFile();
 
     //CONSTRUCTOR
     public MemberCollection(){
@@ -18,7 +21,7 @@ public class MemberCollection {
     //***METHODS***-----------------------------------------------------------------------------------------------------
     public void addMember(Member member) {
         memberList.add(member);
-        //fileHandler.saveMemberToFile(memberList);
+        fileHandler.saveToFile(memberList);
     }
 
 
@@ -59,6 +62,7 @@ public class MemberCollection {
             case 0: //exit
                 break;
         }
+        fileHandler.saveToFile(memberList);
         return memberToEdit;
     }
     public Member findSpecificMember(String specificMemberSearched) {
@@ -76,7 +80,7 @@ public class MemberCollection {
         Member targetMember = findSpecificMember(memberToDelete);
         if (targetMember != null){
             memberList.remove(targetMember);
-            //fileHandler.saveMovieToFile(movieList);
+            fileHandler.saveToFile(memberList);
             return true;
         } else {
             return false;
