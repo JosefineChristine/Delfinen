@@ -48,12 +48,13 @@ public class Team {
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-    //TODO: Fix addMemberToTeam metoden
+
     public void addMemberToTeam(Member member){
         if (member instanceof CompetitionMember &&
                 ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
             teamMemberList.add(member);
         } else if (member instanceof ExerciseMember){
+            //TODO: Add a check for Junior/senior Team
             teamMemberList.add(member);
         }
 
