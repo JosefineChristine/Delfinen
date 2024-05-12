@@ -13,6 +13,7 @@ public class Team {
     private boolean isTeamSenior;
     Coach coach;
 
+
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Team(String teamDiscipline, Coach coach, boolean isTeamSenior){
         this.teamDiscipline = teamDiscipline; // ex. " Crawl"
@@ -61,7 +62,6 @@ public class Team {
     public void removeMemberofTeam(Member member){
         this.teamMemberList.remove(member);
     }
-
 
     //***TO STRING METHOD***-----------------------------------------------------------------------------------------------
     @Override
