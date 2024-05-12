@@ -48,13 +48,15 @@ public class Team {
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
     //TODO: Fix addMemberToTeam metoden
-//    public void addMemberToTeam(Member member){
-//        if (member.getMemberShipType().equalsIgnoreCase("Competition")){
-//            CompetitionMember compMember = (CompetitionMember) member;
-//        }
-//
-//
-//    }
+    public void addMemberToTeam(Member member){
+        if (member instanceof CompetitionMember &&
+                ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
+            teamMemberList.add(member);
+        } else if (member instanceof ExerciseMember){
+            teamMemberList.add(member);
+        }
+
+    }
 
     public void removeMemberofTeam(Member member){
         this.teamMemberList.remove(member);
@@ -67,7 +69,7 @@ public class Team {
         return "Team:\n" +
                 "Team name: " + teamDiscipline + '\n' +
                 "Team coach: " + getCoach() + '\n' +
-                "Team type "  + getIsSenior() + '\n' +
+               // "Team type "  + getIsSenior() + '\n' +
                 "Team members: \n"         +
                 getTeamListAsString();
     }
