@@ -1,6 +1,11 @@
 package domain_model;
 
+import comparator.NameComparator;
+import comparator.RecordComparator;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Team {
 
@@ -53,8 +58,10 @@ public class Team {
     public Member addMemberToTeam(Member member){
         if (member instanceof CompetitionMember &&
                 ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
-            teamMemberList.add(member);
-            return member;
+            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
+                teamMemberList.add(member);
+                return member;
+            }
         } else if (member instanceof ExerciseMember ){
 
             if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
@@ -68,6 +75,8 @@ public class Team {
 
 //    public CompetitionMember[] getTopFive(){
 //        CompetitionMember[] topFive = new CompetitionMember[5];
+//
+//        return null;
 //
 //    }
 
