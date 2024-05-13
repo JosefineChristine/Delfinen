@@ -5,6 +5,7 @@ import comparator.RecordComparator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class CompetitionMember extends Member {
 
@@ -12,7 +13,8 @@ public class CompetitionMember extends Member {
     private ArrayList<Record> memberRecords = new ArrayList<>();
     private ArrayList<Team> teams;
     private Team team;
-    private ArrayList<String> activeDisciplines =new ArrayList<>() ;
+    private ArrayList<String> activeDisciplines =new ArrayList<>();
+    private double bestTrainingRecord;
 
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
     public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
@@ -31,6 +33,11 @@ public class CompetitionMember extends Member {
         return activeDisciplines;
     }
 
+    public double getBestTrainingRecord() {
+        return bestTrainingRecord;
+    }
+
+
     public String getTeamsForSpecificMember() {
         ArrayList<String> memberTeams = new ArrayList<>();
         for (Team team : teams) {
@@ -44,6 +51,10 @@ public class CompetitionMember extends Member {
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
     public void setMemberRecords(ArrayList<Record> memberRecords) {
         this.memberRecords = memberRecords;
+    }
+
+    public void setBestTrainingRecord(double bestTrainingRecord) {
+        this.bestTrainingRecord = bestTrainingRecord;
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
@@ -70,6 +81,8 @@ public class CompetitionMember extends Member {
 //        }
 
 
+
+
     public void findDisciplines(ArrayList<Record> records){
         for(Record record : records){
             if(!activeDisciplines.contains(record.getDiscipline())){
@@ -85,6 +98,8 @@ public class CompetitionMember extends Member {
                 trainingRecordList.add(record);
             }
         } Collections.sort(trainingRecordList, new RecordComparator()); //sorterer
+        //TODO could refactor this methode and added attributes
+        setBestTrainingRecord(trainingRecordList.get(0).getResult());
         return (trainingRecordList.get(0)); //henter index 0 og retunerer den
     }
 
@@ -97,6 +112,9 @@ public class CompetitionMember extends Member {
         } Collections.sort(competetionRecordList, new RecordComparator()); //sorterer
         return (competetionRecordList.get(0)); //henter index 0 og retunerer den
     }
+
+//    public static Comparator<CompetitionMember> BEST_TRAINING_RECORD =
+//            Comparator.comparing(CompetitionMember::getBestTrainingRecord);
 
 
 

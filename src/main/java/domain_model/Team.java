@@ -1,5 +1,6 @@
 package domain_model;
 
+import comparator.BestRecordComparator;
 import comparator.NameComparator;
 import comparator.RecordComparator;
 
@@ -73,12 +74,21 @@ public class Team {
         return null;
     }
 
-//    public CompetitionMember[] getTopFive(){
-//        CompetitionMember[] topFive = new CompetitionMember[5];
-//
-//        return null;
-//
-//    }
+    public CompetitionMember[] getTopFive(){
+        CompetitionMember[] topFive = new CompetitionMember[5];
+        ArrayList<CompetitionMember> membersToSort = new ArrayList<>();
+        for (Member member : teamMemberList) {
+
+                membersToSort.add((CompetitionMember) member);
+        }
+        Collections.sort(membersToSort, new BestRecordComparator());
+        topFive[0] = membersToSort.get(0);
+        topFive[1] = membersToSort.get(1);
+        topFive[2] = membersToSort.get(2);
+        topFive[3] = membersToSort.get(3);
+        topFive[4] = membersToSort.get(4);
+        return topFive;
+    }
 
     public void removeMemberofTeam(Member member){
         this.teamMemberList.remove(member);
