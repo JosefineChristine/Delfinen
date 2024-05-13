@@ -14,30 +14,32 @@ public class UserInterface {
     public void startProgram() {
 
         while (userChoice != 7) {
-            menu();
+            startMenu();
             userChoice = Integer.parseInt(input.next());
 
             switch (userChoice) {
+                //Exit
                 case 0 -> {
-                    System.exit(0);;
+                    System.exit(0);
                 }
+                //Admin
                 case 1 -> {
-                    System.out.println("Test print 1");
+                    adminMenu();
                 }
+                //Kasserer
                 case 2 -> {
-                    System.out.println("Test print 2");
+                    kassererMenu();
                 }
+                //Træner
                 case 3 -> {
-                    System.out.println("Test print 3");
+                    trænerMenu();
                 }
-                case 4 -> {
-                    System.out.println("Test print 4");
-                }
-                default -> System.out.println("Invalid input");
+                default -> System.out.println("Forkert input");
             }
         }
     }
-    public static void menu() {
+
+    public static void startMenu() {
         System.out.println("________________________________________");
         System.out.println("|         DELFINEN SVØMMEKLUB          |");
         System.out.println("|______________________________________|");
@@ -47,5 +49,93 @@ public class UserInterface {
         System.out.println("| Tast 0. : Afslut programmet.         |");
         System.out.println("|______________________________________|");
     }
+
+    public void adminMenu() {
+        //System.out.println("Delfinen har XX antal medlemmer på nuværende tidspunkt aktive/passive");
+        System.out.println("Valgmuligheder: ");
+        System.out.println("1. Tilføj nye medlemmer \n2. Søg efter medlem\n3. Slet medlem" +
+                "\n4. Rediger stamoplysning for medlem\n5.Se alle medlemmer i klubben \n0. Tilbage til startmenu");
+
+        while (userChoice != 0) {
+            userChoice = Integer.parseInt(input.next());
+            switch (userChoice) {
+                case 0 -> {
+                    startMenu();
+                }
+                case 1 -> {
+
+                }
+                case 2 -> {
+
+                }
+                case 3 -> {
+
+                }
+                case 4 -> {
+
+                }
+                default -> System.out.println("Forkert input");
+            }
+        }
+    }
+
+
+    public void kassererMenu() {
+        System.out.println("Delfinens årlige indtægt: "); //+ calculate annual fee ); og evt. også Medlemmernes samlede gæld
+        System.out.println("Valgmuligheder: ");
+        System.out.println("1. Søg efter medlem\n2. Se liste af medlemmer med restance\n0. Tilbage til startmenu");
+        while (userChoice != 0) {
+            userChoice = Integer.parseInt(input.next());
+            switch (userChoice) {
+                case 0 -> {
+                    startMenu();
+                }
+                case 1 -> {
+
+                }
+                case 2 -> {
+
+                }
+                case 3 -> {
+
+                }
+                case 4 -> {
+
+                }
+                default -> System.out.println("Forkert input");
+            }
+        }
+
+    }
+
+    public void trænerMenu() {
+        System.out.println("Valgmuligheder: ");
+        System.out.println("1. Se holdlister efter træner\n2. Se top fem træningstider efter svømmediscplin" +
+                "\n3. Tilføj konkurrenceresultat\n4. Tilføj træningsresultat\n5.Søg efter medlem\n0. Tilbage til startmenu");
+
+        while (userChoice != 0) {
+            userChoice = Integer.parseInt(input.next());
+            switch (userChoice) {
+                case 0 -> {
+                    startMenu();
+                }
+                case 1 -> {
+
+                }
+                case 2 -> {
+
+                }
+                case 3 -> {
+
+                }
+                case 4 -> {
+
+                }
+                default -> System.out.println("Forkert input");
+            }
+        }
+
+    }
+
 }
 

@@ -1,5 +1,7 @@
 package domain_model;
 
+import java.util.ArrayList;
+
 public class Coach {
 
     //***QUESTIONS& MISSING CODE***-------------------------------------------------------------------------------------
@@ -23,6 +25,7 @@ public class Coach {
     public String getCoachLastName(){
         return coachLastName;
     }
+
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     @Override

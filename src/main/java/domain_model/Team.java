@@ -39,6 +39,7 @@ public class Team {
         return teamMemberList;
     }
 
+    
     private String getTeamListAsString() {
         String teamMembers = "";
         for (Member member : teamMemberList) {
