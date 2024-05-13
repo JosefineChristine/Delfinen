@@ -13,6 +13,7 @@ public class Team {
     private boolean isTeamSenior;
     Coach coach;
 
+
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Team(String teamDiscipline, Coach coach, boolean isTeamSenior){
         this.teamDiscipline = teamDiscipline; // ex. " Crawl"
@@ -48,19 +49,21 @@ public class Team {
 
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-    //TODO: Fix addMemberToTeam metoden
-//    public void addMemberToTeam(Member member){
-//        if (member.getMemberShipType().equalsIgnoreCase("Competition")){
-//            CompetitionMember compMember = (CompetitionMember) member;
-//        }
-//
-//
-//    }
+
+    public void addMemberToTeam(Member member){
+        if (member instanceof CompetitionMember &&
+                ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
+            teamMemberList.add(member);
+        } else if (member instanceof ExerciseMember){
+            //TODO: Add a check for Junior/senior Team
+            teamMemberList.add(member);
+        }
+
+    }
 
     public void removeMemberofTeam(Member member){
         this.teamMemberList.remove(member);
     }
-
 
     //***TO STRING METHOD***-----------------------------------------------------------------------------------------------
     @Override
@@ -68,6 +71,7 @@ public class Team {
         return "Team:\n" +
                 "Team name: " + teamDiscipline + '\n' +
                 "Team coach: " + getCoach() + '\n' +
+
                 "Team type "  + getIsTeamSenior() + '\n' +
                 "Team members: \n"         +
                 getTeamListAsString();
