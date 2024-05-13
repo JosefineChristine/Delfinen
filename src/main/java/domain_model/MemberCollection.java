@@ -15,7 +15,7 @@ public class MemberCollection {
 
     //CONSTRUCTOR
     public MemberCollection(){
-        this.memberList = new ArrayList<>();
+        this.memberList = new ArrayList<Member>();
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@ public class MemberCollection {
 
 
     public ArrayList<Member> searchMember(String membersSearched) {
-        var foundMembers = new ArrayList<Member>(); //var kalder variablen, som er defineret efter new
+        ArrayList<Member> foundMembers = new ArrayList<>(); //var kalder variablen, som er defineret efter new
         for (Member items : memberList) {
             if (items.getMemberFirstName().toLowerCase().contains(membersSearched.toLowerCase()) ||
                     items.getMemberLastName().toLowerCase().contains(membersSearched.toLowerCase())) {
@@ -77,7 +77,7 @@ public class MemberCollection {
     }
 
     public boolean deleteMember(String memberToDelete){
-        Member targetMember = findSpecificMember(memberToDelete);
+        Object targetMember = findSpecificMember(memberToDelete);
         if (targetMember != null){
             memberList.remove(targetMember);
             fileHandler.saveToFile(memberList);
@@ -104,7 +104,7 @@ public class MemberCollection {
     }
 
     public ArrayList<Member> searchMemberDebt(String membersSearchedDebt) {
-        var foundMembersDebt = new ArrayList<Member>(); //var kalder variablen, som er defineret efter new
+        ArrayList<Member> foundMembersDebt = new ArrayList<>(); //var kalder variablen, som er defineret efter new
         for (Member items : memberList) {
             if (items.getDebt() > 0) {
                 foundMembersDebt.add(items);

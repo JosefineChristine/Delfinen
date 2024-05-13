@@ -22,6 +22,7 @@ public class CompetitionMember extends Member {
         super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
 
+
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -83,12 +84,13 @@ public class CompetitionMember extends Member {
 
 
 
-    public void findDisciplines(ArrayList<Record> records){
-        for(Record record : records){
+    public ArrayList<String> findDisciplines(){
+        for(Record record : memberRecords){
             if(!activeDisciplines.contains(record.getDiscipline())){
                 activeDisciplines.add(record.getDiscipline());
             }
         }
+        return activeDisciplines;
     }
 
     public Record findBestTrainingRecord(){

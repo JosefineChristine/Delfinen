@@ -11,7 +11,7 @@ import java.util.*;
 
 public class FileLoader {
     File memberList = new File("Delfin-members.csv");
-    ArrayList<Member> members = new ArrayList<>();
+    ArrayList<Member> members = new ArrayList<Member>();
     Scanner sc = null;
     public ArrayList<Member> getMembers() {
         try {

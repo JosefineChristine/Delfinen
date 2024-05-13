@@ -1,12 +1,9 @@
 package domain_model;
 
 import comparator.BestRecordComparator;
-import comparator.NameComparator;
-import comparator.RecordComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Team {
 
@@ -25,7 +22,7 @@ public class Team {
         this.teamDiscipline = teamDiscipline; // ex. " Crawl"
         this.coach = coach;
         this.isTeamSenior = isTeamSenior;
-        this.teamMemberList = new ArrayList<>();
+        this.teamMemberList = new ArrayList<Member>();
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -56,22 +53,22 @@ public class Team {
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
 
-    public Member addMemberToTeam(Member member){
+    public boolean addMemberToTeam(Member member){
+        boolean isAdded = false;
         if (member instanceof CompetitionMember &&
-                ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
+                ((CompetitionMember) member).findDisciplines().contains(getTeamDiscipline())){
             if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
                 teamMemberList.add(member);
-                return member;
+                isAdded = true;
             }
         } else if (member instanceof ExerciseMember ){
 
             if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
                 teamMemberList.add(member);
-                return member;
             }
-
+            isAdded =  true;
         }
-        return null;
+        return isAdded;
     }
 
     public CompetitionMember[] getTopFive(){
