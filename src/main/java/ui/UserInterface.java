@@ -258,7 +258,7 @@ public class UserInterface {
                     "Skriv 5 for at ændre medlemmet aktivitetsstatus" + "\n" +
                     "Skriv 0 for at forlade redigeringen:" + "\n");
 
-            menuOption = getUserInteger(1);
+            menuOption = Integer.parseInt(input.next()); // Her er opdateret med skal muligvis ændres eller uddybes
             if (menuOption == 0) break;
             System.out.println("Skriv hvad du vil ændre det til: ");
             String newValue = getUserString();
