@@ -1,12 +1,11 @@
 import domain_model.CompetitionMember;
 import domain_model.ExerciseMember;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 public class TestMembershipFee {
 
@@ -32,7 +31,7 @@ public class TestMembershipFee {
         double fee4 = exerciseMember2.calculateMembershipFee();
 
         // Verify that the membership fee has been calculated
-        assertEquals(1600, fee1);
+        assertEquals(1600, fee1); // Expected vs actual
         assertEquals(1000, fee2);
         assertEquals(1200, fee3);
         assertEquals(500, fee4);
