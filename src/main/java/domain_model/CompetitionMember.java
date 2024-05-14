@@ -1,6 +1,7 @@
 package domain_model;
 
 import comparator.RecordComparator;
+import data_handler.SaveToFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +13,8 @@ public class CompetitionMember extends Member {
     private ArrayList<Record> memberRecords = new ArrayList<>();
     private ArrayList<Team> teams;
     private Team team;
-    private ArrayList<String> activeDisciplines =new ArrayList<>() ;
+    private ArrayList<String> activeDisciplines =new ArrayList<>();
+    private SaveToFile fileHandler = new SaveToFile();
 
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
     public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
