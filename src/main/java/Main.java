@@ -2,6 +2,7 @@ import data_handler.FileLoader;
 import data_handler.SaveToFile;
 import domain_model.*;
 import domain_model.Record;
+import ui.UserInterface;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -16,6 +17,11 @@ public class Main {
         FileLoader fileLoader = new FileLoader();
         SaveToFile saveToFile = new SaveToFile();
 
+        UserInterface ui = new UserInterface();
+        ui.startProgram();
+
+
+        /* TEST TEST TEST TEST TEST
 //        String birthDate = "1991-09-11";
 //        LocalDate memberBirthDate = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 //
@@ -66,4 +72,9 @@ public class Main {
 //        }
 
     }
+
+         */
+
+    }
+
 }

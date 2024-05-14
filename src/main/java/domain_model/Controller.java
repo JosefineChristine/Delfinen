@@ -14,8 +14,12 @@ public class Controller {
     public Controller() {
     }
 
-    public void addMember(Member member) {
-        memberCollection.addMember(member);
+    public void addCompetitionMember(CompetitionMember competitionMember){
+        memberCollection.addCompetitionMember(competitionMember);
+    }
+
+    public void addExerciseMember(ExerciseMember exerciseMember){
+        memberCollection.addExerciseMember(exerciseMember);
     }
 
     public ArrayList<Member> searchMember(String input) {

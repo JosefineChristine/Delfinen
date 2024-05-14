@@ -1,5 +1,6 @@
 package ui;
 
+import domain_model.CompetitionMember;
 import domain_model.Controller;
 import domain_model.Member;
 
@@ -66,7 +67,17 @@ public class UserInterface {
                     startMenu();
                 }
                 case 1 -> {
-                    addMember();
+                    System.out.println("Vil du tilføje en motionssvømmer eller en konkurrencesvømmer?");
+                    System.out.println("1. Konkurrencesvømmer");
+                    System.out.println("2. Motionssvømmer");
+                    switch (userChoice){
+                        case 1 ->{
+                    addCompetitionMember();
+                        }
+                        case 2 -> {
+                            //TODO tilføj add motionssvømmermetode
+                        }
+                    }
                 }
                 case 2 -> {
                     searchMember();
@@ -87,6 +98,11 @@ public class UserInterface {
 
 
     public void kassererMenu() {
+        //KassererMenu skal indeholde:
+        //Se holdliste efter træner
+        //Se TOP5 træningsrekorder for alle discipliner
+        //Tilføje konkurrenceresultater
+        //Søge efter medlem -> som skal vise hvad?
         System.out.println("Delfinens årlige indtægt: "); //TODO + calculate annual fee ); og evt. også Medlemmernes samlede gæld
         System.out.println("Valgmuligheder: ");
         System.out.println("1. Søg efter medlem\n2. Se liste af medlemmer med restance\n0. Tilbage til startmenu");
@@ -141,8 +157,6 @@ public class UserInterface {
     }
 
     public String getUserString() {
-
-
         String userInput;
         do {
 
@@ -157,7 +171,7 @@ public class UserInterface {
         return userInput;
     }
 
-    public int getUserInteger(int exempt, int range) {
+    public int getUserInteger(int exempt) {
         int userInput;
         do {
             userInput = input.nextInt();
@@ -168,7 +182,7 @@ public class UserInterface {
         return userInput;
     }
 
-    public void addMember() {
+    public void addCompetitionMember() {
         //1. Bruger input - Medlemmets detaljer
         System.out.println("Tilføj medlemmets fornavn");
         String memberFirstName = getUserString();
@@ -179,22 +193,30 @@ public class UserInterface {
         System.out.println(memberLastName);
 
         System.out.println("Tilføj medlemmets fødselsdag ");
-        int dateOfBirth = getUserInteger(); //TODO tag localdate ind
+        System.out.println("Tilføj fødselsdags dag");
+        int dayOfBirth = getUserInteger(); //skal være to tal!
+        System.out.println("Tilføj fødselsdags måned");
+        int monthOfBirth = getUserInteger(); // skal være to tal
+        System.out.println("Tilføj fødselsår");
+        int yearOfBirth = getUserInteger(); // skal være fire tal
+        LocalDate userBirthday = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+        System.out.println(userBirthday);
+        //TODO tag localdate ind
 
         System.out.println("Tilføj medlemmets restance");
-        int debt = getUserInteger(0, 1000000000);
+        int debt = getUserInteger(0);
 
-        System.out.println("Er medlemmet aktivt eller passivt? ('Aktivt' eller 'Passivt)");
+        System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv)");
         String active = getUserString();
-        boolean isActive = active.equals("Aktivt");
+        boolean isActive = active.equals("Aktiv");
 
-        //TODO hjælp, linjen herunder virker ikke fordi Member er en abstrakt klasse
-        //controller.addMember(new Member(memberFirstName, memberLastName, dateOfBirth, debt, isActive)); 
+        //TODO dateOfBirth mangler ordentigt at kunne ændres
+        controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
 
         System.out.println("Medlemmet er nu blevet tilføjet til databasen: ");
         System.out.println("Stamoplysninger om medlem:");
         System.out.println("Navn: " + memberFirstName + memberLastName);
-        System.out.println("Fødselsdag: " + dateOfBirth);
+        System.out.println("Fødselsdag: " + userBirthday);
         System.out.println("Restance: " + debt);
         System.out.println("Er brugeren aktiv: " + isActive);
         System.out.println("...................................");
@@ -247,7 +269,7 @@ public class UserInterface {
                     "Skriv 5 for at ændre medlemmet aktivitetsstatus" + "\n" +
                     "Skriv 0 for at forlade redigeringen:" + "\n");
 
-            menuOption = getUserInteger(6);
+            menuOption = getUserInteger(1);
             if (menuOption == 0) break;
             System.out.println("Skriv hvad du vil ændre det til: ");
             String newValue = getUserString();

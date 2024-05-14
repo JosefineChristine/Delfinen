@@ -19,8 +19,13 @@ public class MemberCollection {
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
-    public void addMember(Member member) {
-        memberList.add(member);
+    public void addCompetitionMember(CompetitionMember competitionMember) {
+        memberList.add(competitionMember);
+        fileHandler.saveToFile(memberList);
+    }
+
+    public void addExerciseMember(ExerciseMember exerciseMember) {
+        memberList.add(exerciseMember);
         fileHandler.saveToFile(memberList);
     }
 
