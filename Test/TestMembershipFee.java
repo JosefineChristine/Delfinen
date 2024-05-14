@@ -30,7 +30,7 @@ public class TestMembershipFee {
         double fee3 = exerciseMember1.calculateMembershipFee();
         double fee4 = exerciseMember2.calculateMembershipFee();
 
-        // Verify that the membership fee has been calculated
+        // Verify that the membership fee has been calculated right
         assertEquals(1600, fee1); // Expected vs actual
         assertEquals(1000, fee2);
         assertEquals(1200, fee3);

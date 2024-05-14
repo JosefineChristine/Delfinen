@@ -171,17 +171,6 @@ public class UserInterface {
         return userInput;
     }
 
-    public int getUserInteger(int exempt) {
-        int userInput;
-        do {
-            userInput = input.nextInt();
-            input.nextLine();
-
-        } while (userInput < 0);
-
-        return userInput;
-    }
-
     public void addCompetitionMember() {
         //1. Bruger input - Medlemmets detaljer
         System.out.println("Tilføj medlemmets fornavn");
@@ -193,18 +182,18 @@ public class UserInterface {
         System.out.println(memberLastName);
 
         System.out.println("Tilføj medlemmets fødselsdag ");
-        System.out.println("Tilføj fødselsdags dag");
-        int dayOfBirth = getUserInteger(); //skal være to tal!
-        System.out.println("Tilføj fødselsdags måned");
-        int monthOfBirth = getUserInteger(); // skal være to tal
-        System.out.println("Tilføj fødselsår");
-        int yearOfBirth = getUserInteger(); // skal være fire tal
+        System.out.println("Tilføj fødselsdag (DD)");
+        int dayOfBirth = Integer.parseInt(input.next()); // Her er opdateret
+        System.out.println("Tilføj fødselsmåned (MM)");
+        int monthOfBirth = Integer.parseInt(input.next()); // Her er opdateret
+        System.out.println("Tilføj fødselsår (YYYY)");
+        int yearOfBirth = Integer.parseInt(input.next()); // Her er opdateret
         LocalDate userBirthday = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
         System.out.println(userBirthday);
         //TODO tag localdate ind
 
         System.out.println("Tilføj medlemmets restance");
-        int debt = getUserInteger(0);
+        int debt = Integer.parseInt(input.next()); // Her er opdateret
 
         System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv)");
         String active = getUserString();
