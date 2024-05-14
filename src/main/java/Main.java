@@ -25,9 +25,6 @@ public class Main {
         ArrayList<Member> members;
         members = fileLoader.getMembers();
 
-        TeamCollection teamCollection = new TeamCollection();
-        teamCollection.generateTeams();
-        teamCollection.printTeams();
 
 //
         for (Member member : members) {
@@ -50,6 +47,11 @@ public class Main {
             System.out.println();
 
         }
+
+
+        TeamCollection teamCollection = new TeamCollection();
+        teamCollection.generateTeams();
+        teamCollection.printTeams();
 
        saveToFile.saveToFile(members);
 
