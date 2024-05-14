@@ -19,6 +19,8 @@ public class Main {
 
         UserInterface ui = new UserInterface();
         ui.startProgram();
+    }
+}
 
 
         /* TEST TEST TEST TEST TEST
@@ -74,7 +76,3 @@ public class Main {
     }
 
          */
-
-    }
-
-}

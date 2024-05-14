@@ -100,19 +100,19 @@ public class MemberCollection {
         return annualIncome;
     }
 
-    public double calculateTotalDebt(){ //tjek om det er korrekt
+    public double calculateTotalDebt() {
         double totalDebt = 0;
-        for(Member debt : memberList){
-            totalDebt += debt.getDebt();
+        for (Member member : memberList) {
+            totalDebt += member.getDebt();
         }
         return totalDebt;
     }
 
-    public ArrayList<Member> searchMemberDebt(String membersSearchedDebt) {
-        var foundMembersDebt = new ArrayList<Member>(); //var kalder variablen, som er defineret efter new
-        for (Member items : memberList) {
-            if (items.getDebt() > 0) {
-                foundMembersDebt.add(items);
+    public ArrayList<Member> searchMemberDebt() {
+        ArrayList<Member> foundMembersDebt = new ArrayList<>();
+        for (Member member : memberList) {
+            if (member.getDebt() > 0) {
+                foundMembersDebt.add(member);
             }
         }
         return foundMembersDebt;
@@ -121,5 +121,26 @@ public class MemberCollection {
     public ArrayList<Member> getMemberList() {
         return memberList;
     }
+
+    public int activeMembersCount() {
+        int activeMembers = 0;
+        for (Member member : memberList) {
+            if (member.isActive()) {
+                activeMembers++;
+            }
+        }
+        return activeMembers;
+    }
+
+    public int inactiveMembersCount() {
+        int inActiveMembers = 0;
+        for (Member member : memberList) {
+            if (!member.isActive()) {
+                inActiveMembers++;
+            }
+        }
+        return inActiveMembers;
+    }
+
 
 }

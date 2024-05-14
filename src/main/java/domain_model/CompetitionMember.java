@@ -21,7 +21,6 @@ public class CompetitionMember extends Member {
         super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
-
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------

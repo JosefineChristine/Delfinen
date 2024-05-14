@@ -1,8 +1,6 @@
 package ui;
 
-import domain_model.CompetitionMember;
-import domain_model.Controller;
-import domain_model.Member;
+import domain_model.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,11 +8,13 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    //***ATTRIBUTES& OBJECTS***-----------------------------------------------------------------------------------------
     Scanner input = new Scanner(System.in);
     Controller controller = new Controller();
 
     int userChoice;
 
+    //***START PROGRAM***-----------------------------------------------------------------------------------------------
     public void startProgram() {
 
         while (userChoice != 7) {
@@ -43,6 +43,7 @@ public class UserInterface {
         }
     }
 
+    //***MENU METHODS***------------------------------------------------------------------------------------------------
     public static void startMenu() {
         System.out.println("________________________________________");
         System.out.println("|         DELFINEN SVØMMEKLUB          |");
@@ -55,10 +56,15 @@ public class UserInterface {
     }
 
     public void adminMenu() {
-        //TODO System.out.println("Delfinen har XX antal medlemmer på nuværende tidspunkt aktive/passive");
+        System.out.println("Delfinen har " + controller.activeMembersCount() + " aktive medlemmer på nuværende tidspunkt.");
+        System.out.println("Delfinen har " + controller.inActiveMembersCount() + " passive medlemmer på nuværende tidspunkt.");
         System.out.println("Valgmuligheder: ");
-        System.out.println("1. Tilføj nye medlemmer \n2. Søg efter medlem\n3. Slet medlem" +
-                "\n4. Rediger stamoplysning for medlem\n5.Se alle medlemmer i klubben \n0. Tilbage til startmenu");
+        System.out.println("1. Tilføj nye medlemmer\n" +
+                           "2. Søg efter medlem\n" +
+                           "3. Slet medlem\n" +
+                           "4. Rediger stamoplysning for medlem\n" +
+                           "5. Se alle medlemmer i klubben \n" +
+                           "0. Tilbage til startmenu");
 
         while (userChoice != 0) {
             userChoice = Integer.parseInt(input.next());
@@ -75,7 +81,7 @@ public class UserInterface {
                     addCompetitionMember();
                         }
                         case 2 -> {
-                            //TODO tilføj add motionssvømmermetode
+                            //TODO tilføj add motionssvømmermetode (copy paste når det virker)
                         }
                     }
                 }
@@ -96,16 +102,13 @@ public class UserInterface {
         }
     }
 
-
     public void kassererMenu() {
-        //KassererMenu skal indeholde:
-        //Se holdliste efter træner
-        //Se TOP5 træningsrekorder for alle discipliner
-        //Tilføje konkurrenceresultater
-        //Søge efter medlem -> som skal vise hvad?
-        System.out.println("Delfinens årlige indtægt: "); //TODO + calculate annual fee ); og evt. også Medlemmernes samlede gæld
+        System.out.println("Delfinens årlige indtægt: " + controller.calculateAnnualIncome());
+        System.out.println("Klubbens medlemmer har i alt " + controller.calculateTotalDebt() + " i restance.");
         System.out.println("Valgmuligheder: ");
-        System.out.println("1. Søg efter medlem\n2. Se liste af medlemmer med restance\n0. Tilbage til startmenu");
+        System.out.println("1. Søg efter medlem\n" +
+                           "2. Se liste af medlemmer med restance\n" +
+                           "0. Tilbage til startmenu");
         while (userChoice != 0) {
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
@@ -116,18 +119,27 @@ public class UserInterface {
                     searchMember();
                 }
                 case 2 -> {
-                    //se liste med restance
+                    allMembersWithDebtList();
                 }
                 default -> System.out.println("Forkert input");
             }
         }
-
     }
 
     public void trænerMenu() {
+        //trænerMenu skal indeholde:
+        //Se holdliste efter træner
+        //Se TOP5 træningsrekorder for alle discipliner
+        //Tilføje konkurrenceresultater
+        //Søge efter medlem -> som skal vise hvad?
+
         System.out.println("Valgmuligheder: ");
-        System.out.println("1. Se holdlister efter træner\n2. Se top fem træningstider efter svømmediscplin" +
-                "\n3. Tilføj konkurrenceresultat\n4. Tilføj træningsresultat\n5.Søg efter medlem\n0. Tilbage til startmenu");
+        System.out.println("1. Se holdlister efter træner                     \n" +
+                           "2. Se top fem træningstider efter svømmedisciplin \n" +
+                           "3. Tilføj konkurrenceresultat                     \n" +
+                           "4. Tilføj træningsresultat                        \n" +
+                           "5. Søg efter medlem                               \n" +
+                           "0. Tilbage til startmenu                          \n");
 
         while (userChoice != 0) {
             userChoice = Integer.parseInt(input.next());
@@ -139,13 +151,63 @@ public class UserInterface {
                     //se holdliste efter træner
                 }
                 case 2 -> {
-                    //top 5
+                    //top 5  -> venter på Vahab
                 }
                 case 3 -> {
-                    //tilføj konk resultat
+                        System.out.println("Du har valgt at tilføje et konkurrenceresultat");
+                        System.out.println("Søg svømmer som skal have et konkurrenceresultat");
+                        String searchMember = input.nextLine();
+                        controller.findSpecificMember(searchMember);
+
+                        System.out.println("Tilføj konkurrence titel");
+                        String titel = input.next(); // hvad er titel?
+
+                        System.out.println("Tilføj disciplin");
+                        String disciplin = input.next();
+
+                        System.out.println("Tilføj resultat (tiden skal have et komma)");
+                        double resultat = input.nextDouble();
+
+                        System.out.println("Tilføj dato for konkurrenceresultat");
+                        System.out.println("Tilføj dag (DD)");
+                        int dayOfBirth = input.nextInt();               // max to cifre
+                        System.out.println("Tilføj måned (MM)");
+                        int monthOfBirth = input.nextInt();             // max to cifre
+                        System.out.println("Tilføj årstal (YYYY)");
+                        int yearOfBirth = input.nextInt();              // max fire cifre
+                        LocalDate konkurrenceDato = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+
+                        System.out.println("Tilføj begivenhed");
+                        String begivenhed = input.next();
+
+                        controller.addRecord(new CompetitionRecord(titel, disciplin,resultat, konkurrenceDato, begivenhed));
+                        // TODO add CompetitionRecord til CompetitionMember - but how?
                 }
+
                 case 4 -> {
                     //tilføj træn resultat
+                    System.out.println("Du har valgt at tilføje et træningsresultat");
+                    System.out.println("Tilføj titel"); // hvad er titel? //TODO slet titel?
+                    String titel = input.next();
+
+                    System.out.println("Tilføj disciplin");
+                    String disciplin = input.next();
+
+                    System.out.println("Tilføj resultat (tiden skal have et komma)");
+                    double resultat = input.nextDouble();
+
+                    System.out.println("Tilføj dato for træningsresultat");
+                    System.out.println("Tilføj dato (DD)");
+                    int dayOfBirth = input.nextInt();            // max to cifre
+                    System.out.println("Tilføj måned (MM)");
+                    int monthOfBirth = input.nextInt();          // max to cifre
+                    System.out.println("Tilføj årstal (YYYY)");
+                    int yearOfBirth = input.nextInt();           // max fire cifre
+                    LocalDate træningsDato = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+
+                    controller.addRecord(new TrainingRecord(titel, disciplin, resultat, træningsDato)); //tilføj Trænings resultat
+                    //controller.AddRecordToMember(searchMember) -> eller hvordan tilføjer vi til member?
+                    // TODO add TrainingRecord til CompetitionMember - but how?
                 }
                 case 5 -> {
                     //søg og se resultater
@@ -156,14 +218,15 @@ public class UserInterface {
 
     }
 
+    //***OTHER METHODS***-----------------------------------------------------------------------------------------------
+
     public String getUserString() {
         String userInput;
         do {
-
             userInput = input.nextLine();
             input.nextLine();
             if (userInput.trim().isEmpty()) {
-                System.out.println("Forkert inpput. Prøv igen.");
+                System.out.println("Forkert input. Prøv igen.");
             }
 
         } while (userInput.trim().isEmpty());
@@ -172,6 +235,7 @@ public class UserInterface {
     }
 
     public void addCompetitionMember() {
+        //TODO Virker ikke, 1=forkert input, 2=formentlig nextline bug
         //1. Bruger input - Medlemmets detaljer
         System.out.println("Tilføj medlemmets fornavn");
         String memberFirstName = getUserString();
@@ -183,14 +247,14 @@ public class UserInterface {
 
         System.out.println("Tilføj medlemmets fødselsdag ");
         System.out.println("Tilføj fødselsdag (DD)");
-        int dayOfBirth = Integer.parseInt(input.next()); // Her er opdateret
+        int dayOfBirth = Integer.parseInt(input.next()); // Her er opdateret // max to cifre
         System.out.println("Tilføj fødselsmåned (MM)");
-        int monthOfBirth = Integer.parseInt(input.next()); // Her er opdateret
+        int monthOfBirth = Integer.parseInt(input.next()); // Her er opdateret // max to cifre
         System.out.println("Tilføj fødselsår (YYYY)");
-        int yearOfBirth = Integer.parseInt(input.next()); // Her er opdateret
+        int yearOfBirth = Integer.parseInt(input.next()); // Her er opdateret // max fire cifre
         LocalDate userBirthday = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
         System.out.println(userBirthday);
-        //TODO tag localdate ind
+        //TODO tjek om localdate virker
 
         System.out.println("Tilføj medlemmets restance");
         int debt = Integer.parseInt(input.next()); // Her er opdateret
@@ -212,17 +276,33 @@ public class UserInterface {
     }
 
     public void searchMember() {
-        //2. Søge efter medlem
+        //TODO siger 'forkert input' når man søger på Vahab
         System.out.println("Søg efter medlem");
         String search = getUserString();
         ArrayList<Member> printMemberList = controller.searchMember(search);
         for (Member member : printMemberList) {
             System.out.println(member.toString());
         }
+    }
 
+    public void allMembersWithDebtList() {
+        ArrayList<Member> membersWithDebt = controller.searchMemberDebt();
+
+        if (membersWithDebt.isEmpty()) {
+            System.out.println("Ingen medlemmer med restance fundet");
+        } else {
+            System.out.println("Medlemmer med restance: ");
+            for (Member member : membersWithDebt) {
+                System.out.println(member.toString());
+            }
+        }
     }
 
     public void deleteMember() {
+        //TODO Printer følgende to linjer når man vælge den mulighed:
+        // Hvilket medlem vil du slette?
+        // Der blev ikke fundet et medlem med det navn.
+
         System.out.println("Hvilket medlem vil du slette?"); //TODO forklar hvad man skal søge på
         String userInput = input.nextLine();
 
@@ -237,6 +317,7 @@ public class UserInterface {
     }
 
     public void editMember() {
+        //TODO virker ikke, siger forkert input når man skrive vahab
         int menuOption = -1;
         System.out.println("Skriv navnet på det medlem du vil redigere stamoplysningerne for: ");
 
@@ -268,8 +349,9 @@ public class UserInterface {
     }
 
     public void printMemberList() {
+        //TODO listen bliver ikke printet
         System.out.println("Liste over alle medlemmer:");
-        for (Member member : controller.getMemberList()) {
+        for (Member member : controller.getMemberCollection()) {
             System.out.println(member.toString());
         }
     }
