@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Coach {
 
     //***QUESTIONS& MISSING CODE***-------------------------------------------------------------------------------------
-    //Coach is trainer for?
+    //TODO Coach is trainer for?
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String coachFirstName;

@@ -10,7 +10,7 @@ import java.util.Comparator;
 public class Team {
 
     //**TO DO***--------------------------------------------------------------------------------------------------------
-    //TODO check age in addMember()method... --> calculateAge if over 18 --> isSenior == true
+
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String teamDiscipline;

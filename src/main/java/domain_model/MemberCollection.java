@@ -113,5 +113,8 @@ public class MemberCollection {
         return foundMembersDebt;
     }
 
+    public ArrayList<Member> getMemberList() {
+        return memberList;
+    }
 
 }

@@ -22,5 +22,21 @@ public class Controller {
         return memberCollection.searchMember(input);
     }
 
+    public Member findSpecificMember(String specificMemberSearched) {
+        return memberCollection.findSpecificMember(specificMemberSearched);
+    }
+
+    public boolean deleteMember(String memberName) {
+        return memberCollection.deleteMember(memberName);
+    }
+
+    public Member editMember(Member memberToEdit, int partToEdit, String newValue) {
+        return memberCollection.editMember(memberToEdit, partToEdit, newValue);
+    }
+
+    public ArrayList<Member> getMemberList() {
+        return memberCollection.getMemberList();
+    }
+
 
 }
