@@ -56,23 +56,23 @@ public class Team {
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
 
-    public Member addMemberToTeam(Member member){
-        if (member instanceof CompetitionMember &&
-                ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
-            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
-                teamMemberList.add(member);
-                return member;
-            }
-        } else if (member instanceof ExerciseMember ){
-
-            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
-                teamMemberList.add(member);
-                return member;
-            }
-
-        }
-        return null;
-    }
+//    public Member addMemberToTeam(Member member){
+//        if (member instanceof CompetitionMember &&
+//                ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
+//            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
+//                teamMemberList.add(member);
+//                return member;
+//            }
+//        } else if (member instanceof ExerciseMember ){
+//
+//            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
+//                teamMemberList.add(member);
+//                return member;
+//            }
+//
+//        }
+//        return null;
+//    }
 
 //    public CompetitionMember[] getTopFive(){
 //        CompetitionMember[] topFive = new CompetitionMember[5];

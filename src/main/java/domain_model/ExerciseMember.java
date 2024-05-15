@@ -17,13 +17,15 @@ public class ExerciseMember extends Member {
     //***TO STRING***---------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
-        return  "***MEMBER'S INFORMATION***\n" +
-                "Name: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
-                "Date of birth: "              + getDateOfBirth()     + '\n'     +
-                "Active member: "              + isActive() + '\n'    +
-                "Member type: "                + getMemberShipType()  + '\n'     +
-                "Yearly membership fee: "      + getMembershipFee()   + " DKK\n" +
-                "Debt: "                       + getDebt()            + " DKK\n" ;
+        String medlemsStatus = isActive() ?  "Aktiv" : "Passiv";
+
+        return  "***Medlemsinformation***\n" +
+                "Navn: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
+                "Fødselsdag: "              + getDateOfBirth()            + '\n'     +
+                "Medlemsstatus: "              + medlemsStatus                  + '\n'     +
+                "Medlemstype: "                + getMemberShipType()         + '\n'     +
+                "Årligt kontigent: "      + getMembershipFee()          + " DKK\n" +
+                "Restance: "                       + getDebt()                   + " DKK\n";
     }
 
     //------------------------------------------------------------------------------------------------------------------

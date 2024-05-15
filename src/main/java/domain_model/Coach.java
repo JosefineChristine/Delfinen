@@ -6,6 +6,7 @@ public class Coach {
 
     //***QUESTIONS& MISSING CODE***-------------------------------------------------------------------------------------
     //TODO Coach is trainer for?
+    //TODO arrayliste til medlemmer? metode hvorpå man kan se listen af medlemmer for hver træner
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String coachFirstName;

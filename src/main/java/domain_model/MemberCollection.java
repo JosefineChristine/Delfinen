@@ -1,5 +1,6 @@
 package domain_model;
 
+import data_handler.FileLoader;
 import data_handler.SaveToFile;
 
 import java.time.LocalDate;
@@ -12,10 +13,13 @@ public class MemberCollection {
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
     private ArrayList<Member> memberList;
     private SaveToFile fileHandler = new SaveToFile();
+   private FileLoader fileLoader = new FileLoader();
+
+
 
     //CONSTRUCTOR
     public MemberCollection(){
-        this.memberList = new ArrayList<>();
+        this.memberList = fileLoader.getMembers();
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
@@ -73,7 +77,8 @@ public class MemberCollection {
     public Member findSpecificMember(String specificMemberSearched) {
         Member targetMember = null;
         for (Member memberToEdit : memberList) {
-            if (memberToEdit.getMemberFirstName().equalsIgnoreCase(specificMemberSearched)) {
+            if (memberToEdit.getMemberFirstName().equalsIgnoreCase(specificMemberSearched) ||
+                    memberToEdit.getMemberLastName().equalsIgnoreCase(specificMemberSearched)) {
                 targetMember = memberToEdit;
                 return targetMember;
             }

@@ -11,7 +11,6 @@ public class UserInterface {
     //***ATTRIBUTES& OBJECTS***-----------------------------------------------------------------------------------------
     Scanner input = new Scanner(System.in);
     Controller controller = new Controller();
-
     int userChoice;
 
     //***START PROGRAM***-----------------------------------------------------------------------------------------------
@@ -74,14 +73,16 @@ public class UserInterface {
                 }
                 case 1 -> {
                     System.out.println("Vil du tilføje en motionssvømmer eller en konkurrencesvømmer?");
+                    input.nextLine();
                     System.out.println("1. Konkurrencesvømmer");
                     System.out.println("2. Motionssvømmer");
+                    int memberTypeChoice = Integer.parseInt(input.next());
                     switch (userChoice){
                         case 1 ->{
                     addCompetitionMember();
                         }
                         case 2 -> {
-                            //TODO tilføj add motionssvømmermetode (copy paste når det virker)
+                    addExerciseMember();
                         }
                     }
                 }
@@ -127,12 +128,6 @@ public class UserInterface {
     }
 
     public void trænerMenu() {
-        //trænerMenu skal indeholde:
-        //Se holdliste efter træner
-        //Se TOP5 træningsrekorder for alle discipliner
-        //Tilføje konkurrenceresultater
-        //Søge efter medlem -> som skal vise hvad?
-
         System.out.println("Valgmuligheder: ");
         System.out.println("1. Se holdlister efter træner                     \n" +
                            "2. Se top fem træningstider efter svømmedisciplin \n" +
@@ -204,13 +199,13 @@ public class UserInterface {
                     System.out.println("Tilføj årstal (YYYY)");
                     int yearOfBirth = input.nextInt();           // max fire cifre
                     LocalDate træningsDato = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
-
+                    input.nextLine();
                     controller.addRecord(new TrainingRecord(titel, disciplin, resultat, træningsDato)); //tilføj Trænings resultat
                     //controller.AddRecordToMember(searchMember) -> eller hvordan tilføjer vi til member?
                     // TODO add TrainingRecord til CompetitionMember - but how?
                 }
                 case 5 -> {
-                    //søg og se resultater
+                    //søg og se resultater (rekorder)
                 }
                 default -> System.out.println("Forkert input");
             }
@@ -235,40 +230,78 @@ public class UserInterface {
     }
 
     public void addCompetitionMember() {
-        //TODO Virker ikke, 1=forkert input, 2=formentlig nextline bug
+        input.nextLine();
         //1. Bruger input - Medlemmets detaljer
         System.out.println("Tilføj medlemmets fornavn");
-        String memberFirstName = getUserString();
+        String memberFirstName = input.nextLine();
         System.out.println(memberFirstName);
 
         System.out.println("Tilføj medlemmets efternavn");
-        String memberLastName = getUserString();
+        String memberLastName = input.nextLine();
         System.out.println(memberLastName);
 
         System.out.println("Tilføj medlemmets fødselsdag ");
         System.out.println("Tilføj fødselsdag (DD)");
-        int dayOfBirth = Integer.parseInt(input.next()); // Her er opdateret // max to cifre
+        int dayOfBirth = Integer.parseInt(input.next()); //TODO kun to cifre
         System.out.println("Tilføj fødselsmåned (MM)");
-        int monthOfBirth = Integer.parseInt(input.next()); // Her er opdateret // max to cifre
+        int monthOfBirth = Integer.parseInt(input.next()); // TODO kun to cifre
         System.out.println("Tilføj fødselsår (YYYY)");
-        int yearOfBirth = Integer.parseInt(input.next()); // Her er opdateret // max fire cifre
+        int yearOfBirth = Integer.parseInt(input.next()); // TODO kun fire cifre
         LocalDate userBirthday = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
         System.out.println(userBirthday);
-        //TODO tjek om localdate virker
-
         System.out.println("Tilføj medlemmets restance");
-        int debt = Integer.parseInt(input.next()); // Her er opdateret
-
-        System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv)");
-        String active = getUserString();
-        boolean isActive = active.equals("Aktiv");
+        int debt = Integer.parseInt(input.next());
+        input.nextLine();
+        System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')");
+        String active = input.nextLine();
+        boolean isActive = active.equalsIgnoreCase("Aktiv");
 
         //TODO dateOfBirth mangler ordentigt at kunne ændres
         controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
 
         System.out.println("Medlemmet er nu blevet tilføjet til databasen: ");
         System.out.println("Stamoplysninger om medlem:");
-        System.out.println("Navn: " + memberFirstName + memberLastName);
+        System.out.println("Navn: " + memberFirstName + " " + memberLastName);
+        System.out.println("Fødselsdag: " + userBirthday);
+        System.out.println("Restance: " + debt);
+        System.out.println("Er brugeren aktiv: " + isActive);
+        System.out.println("...................................");
+    }
+
+    public void addExerciseMember() {
+        //TODO adder som competition member
+        input.nextLine();
+        //1. Bruger input - Medlemmets detaljer
+        System.out.println("Tilføj medlemmets fornavn");
+        String memberFirstName = input.nextLine();
+        System.out.println(memberFirstName);
+
+        System.out.println("Tilføj medlemmets efternavn");
+        String memberLastName = input.nextLine();
+        System.out.println(memberLastName);
+
+        System.out.println("Tilføj medlemmets fødselsdag ");
+        System.out.println("Tilføj fødselsdag (DD)");
+        int dayOfBirth = Integer.parseInt(input.next()); //TODO kun to cifre
+        System.out.println("Tilføj fødselsmåned (MM)");
+        int monthOfBirth = Integer.parseInt(input.next()); // TODO kun to cifre
+        System.out.println("Tilføj fødselsår (YYYY)");
+        int yearOfBirth = Integer.parseInt(input.next()); // TODO kun fire cifre
+        LocalDate userBirthday = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+        System.out.println(userBirthday);
+        System.out.println("Tilføj medlemmets restance");
+        int debt = Integer.parseInt(input.next());
+        input.nextLine();
+        System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')");
+        String active = input.nextLine();
+        boolean isActive = active.equalsIgnoreCase("Aktiv");
+
+        //TODO dateOfBirth mangler ordentigt at kunne ændres
+        controller.addExerciseMember(new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+
+        System.out.println("Medlemmet er nu blevet tilføjet til databasen: ");
+        System.out.println("Stamoplysninger om medlem:");
+        System.out.println("Navn: " + memberFirstName + " " + memberLastName);
         System.out.println("Fødselsdag: " + userBirthday);
         System.out.println("Restance: " + debt);
         System.out.println("Er brugeren aktiv: " + isActive);
@@ -276,9 +309,9 @@ public class UserInterface {
     }
 
     public void searchMember() {
-        //TODO siger 'forkert input' når man søger på Vahab
-        System.out.println("Søg efter medlem");
-        String search = getUserString();
+        System.out.println("Indtast fornavn eller efternavn på det medlem du vil søge på: ");
+        input.nextLine();
+        String search = input.nextLine();
         ArrayList<Member> printMemberList = controller.searchMember(search);
         for (Member member : printMemberList) {
             System.out.println(member.toString());
