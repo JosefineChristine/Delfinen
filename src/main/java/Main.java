@@ -19,10 +19,80 @@ public class Main {
         FileLoader fileLoader = new FileLoader();
         SaveToFile saveToFile = new SaveToFile();
 
+        TeamCollection teamCollection = new TeamCollection();
+        MemberCollection memberCollection = new MemberCollection();
+        teamCollection.generateTeams();
+        teamCollection.printTeams();
+
         UserInterface ui = new UserInterface();
-        ui.startProgram();
+        //ui.startProgram();
+        ArrayList<Member> membersToAdd = memberCollection.getMemberList();
+
+        for (Member member : membersToAdd) {
+            System.out.println(member.getMemberFirstName());
+            System.out.println(member.getDateOfBirth());
+            System.out.println(member.calculateMembershipFee());
+            System.out.println(member.getDebt());
+            System.out.println(member.getMemberShipType());
+            if (member.getMemberShipType().equalsIgnoreCase("competition")){
+                CompetitionMember member1 = (CompetitionMember) member;
+                ArrayList<Record> memberRecords = member1.getMemberRecords();
+                for (Record memberRecord : memberRecords) {
+                    System.out.println(memberRecord.getEventName());
+                    System.out.println(memberRecord.getDiscipline());
+                    System.out.println(memberRecord.getResult());
+                    System.out.println();
+                }
+            }
+            System.out.println();
+
+        }
+
+
+
+        saveToFile.saveToFile(membersToAdd);
+
+
     }
 }
 
 
+        /*  TEST
+//        String birthDate = "1991-09-11";
+//        LocalDate memberBirthDate = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//
+        ArrayList<Member> members;
+//
+        members = fileLoader.getMembers();
 
+
+//
+
+
+
+
+
+
+
+//        for (Member member : members) {
+//            if (member instanceof CompetitionMember){
+//                ((CompetitionMember) member).findBestCompetetionRecord();
+//                System.out.println("Best competition record: ");
+//                System.out.println(member.getMemberFirstName() + " " + member.getMemberLastName());
+//                System.out.println(((CompetitionMember) member).findBestCompetetionRecord());
+//            }
+//        }
+
+//        for (Member member : members) {
+//            if (member instanceof CompetitionMember){
+//                ((CompetitionMember) member).findBestTrainingRecord();
+//                System.out.println("Best training record: ");
+//                System.out.println(member.getMemberFirstName() + " " + member.getMemberLastName());
+//                System.out.println(((CompetitionMember) member).findBestTrainingRecord());
+//            }
+//        }
+
+    }
+}
+
+         */

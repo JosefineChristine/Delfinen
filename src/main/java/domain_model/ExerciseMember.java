@@ -11,7 +11,7 @@ public class ExerciseMember extends Member {
               dateOfBirth,
               debt,
               isActive);
-        super.setMemberShipType("exerciser");
+//        super.setMemberShipType("exerciser");
     }
 
     //***TO STRING***---------------------------------------------------------------------------------------------------

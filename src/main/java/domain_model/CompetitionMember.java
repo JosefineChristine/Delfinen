@@ -23,7 +23,7 @@ public class CompetitionMember extends Member {
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
     public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
         super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
-        super.setMemberShipType("Competition");
+//        super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
         setActiveDisciplines();
 

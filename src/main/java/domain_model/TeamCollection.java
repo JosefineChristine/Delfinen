@@ -30,50 +30,21 @@ public class TeamCollection {
     //************TEAMS********-----------------------------------------------------------------------------------------
 
 
-
-
-
-//
-
-
-
-
-    public void printTeams(){
-
-        allTheTeams.add(team1);
-        allTheTeams.add(team2);
-        allTheTeams.add(team3);
-        allTheTeams.add(team4);
-        allTheTeams.add(team5);
-        allTheTeams.add(team6);
-        allTheTeams.add(team7);
-        allTheTeams.add(team8);
-        allTheTeams.add(team9);
-        allTheTeams.add(team10);
-        for (Team team : allTheTeams) {
-            System.out.println(team.toString());
-            System.out.println(team.getTeamMemberList().size());
-            for (Member member : team.getTeamMemberList()) {
-                System.out.println(member.toString());
+    public String generateTeams(){
+        MemberCollection memberCollection = new MemberCollection();
+        ArrayList<Member> members;
+        members = memberCollection.getMemberList();
+        for (Member member : members) {
+            if( member instanceof ExerciseMember){
+                addExerciseMember((ExerciseMember) member);
+            } else {
+                addCompetitionMember((CompetitionMember) member);
             }
+
         }
 
-
+        return "Not Implemented";
     }
-
-//    public String generateTeams(){
-//        MemberCollection memberCollection = new MemberCollection();
-//        ArrayList<Member> members;
-//        members = memberCollection.getMemberList();
-//        int roundCounter = 0;
-//        for (Member member : members) {
-//            addMembersToTeams(member, roundCounter);
-//            roundCounter = (roundCounter <4) ? roundCounter++ : 4 ;
-//
-//        }
-//
-//        return "Not Implemented";
-//    }
 
 //    public void addMemberToTeam(Member member, Team team){
 //        if (member instanceof CompetitionMember &&
@@ -146,6 +117,31 @@ public class TeamCollection {
             team10.addMemberToTeam(memberToAdd);
         }
     }
+
+    public void printTeams(){
+
+        allTheTeams.add(team1);
+        allTheTeams.add(team2);
+        allTheTeams.add(team3);
+        allTheTeams.add(team4);
+        allTheTeams.add(team5);
+        allTheTeams.add(team6);
+        allTheTeams.add(team7);
+        allTheTeams.add(team8);
+        allTheTeams.add(team9);
+        allTheTeams.add(team10);
+        for (Team team : allTheTeams) {
+            System.out.println(team.toString());
+            System.out.println(team.getTeamMemberList().size());
+//            for (Member member : team.getTeamMemberList()) {
+//                System.out.println(member.toString());
+//            }
+        }
+
+
+    }
+
+
     }
 
     //------------------------------------------------------------------------------------------------------------------

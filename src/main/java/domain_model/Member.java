@@ -22,7 +22,7 @@ public abstract class Member {
         this.debt = debt;
         this.isActive = isActive;
         this.membershipFee = calculateMembershipFee();
-        this.memberShipType = calculateMembershipType();
+        memberShipType = calculateMembershipType();
 
     }
 
@@ -83,13 +83,15 @@ public abstract class Member {
     //************METHODS********---------------------------------------------------------------------------------------
     public String calculateMembershipType() {
         LocalDate currentDate = LocalDate.now();
-        int age = Period.between(dateOfBirth, currentDate).getYears();
+        int age = Period.between(getDateOfBirth(), currentDate).getYears();
         String membersShipType;
         if (age < 18) {
-            return membersShipType = "junior";
+            membersShipType = "junior";
         } else {
-            return membersShipType = "senior";
+             membersShipType= "senior";
         }
+        setMemberShipType(membersShipType);
+        return membersShipType;
     }
 
         public double calculateMembershipFee() {
