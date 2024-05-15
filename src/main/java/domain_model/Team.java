@@ -8,7 +8,7 @@ import java.util.Collections;
 public class Team {
 
     //**TO DO***--------------------------------------------------------------------------------------------------------
-    //TODO check age in addMember()method... --> calculateAge if over 18 --> isSenior == true
+
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String teamDiscipline;
@@ -42,6 +42,7 @@ public class Team {
         return teamMemberList;
     }
 
+    
     private String getTeamListAsString() {
         String teamMembers = "";
         for (Member member : teamMemberList) {

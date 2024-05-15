@@ -10,7 +10,6 @@ public class MemberCollection {
     //***TO DO***-------------------------------------------------------------------------------------------------------
     //TODO tjek om calculateTotalDebt er lavet korrekt
 
-
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
     private ArrayList<Member> memberList;
     private SaveToFile fileHandler = new SaveToFile();
@@ -23,8 +22,13 @@ public class MemberCollection {
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
-    public void addMember(Member member) {
-        memberList.add(member);
+    public void addCompetitionMember(CompetitionMember competitionMember) {
+        memberList.add(competitionMember);
+        fileHandler.saveToFile(memberList);
+    }
+
+    public void addExerciseMember(ExerciseMember exerciseMember) {
+        memberList.add(exerciseMember);
         fileHandler.saveToFile(memberList);
     }
 
@@ -81,7 +85,7 @@ public class MemberCollection {
     }
 
     public boolean deleteMember(String memberToDelete){
-        Object targetMember = findSpecificMember(memberToDelete);
+        Member targetMember = findSpecificMember(memberToDelete);
         if (targetMember != null){
             memberList.remove(targetMember);
             fileHandler.saveToFile(memberList);
@@ -99,22 +103,44 @@ public class MemberCollection {
         return annualIncome;
     }
 
-    public double calculateTotalDebt(){ //tjek om det er korrekt
+    public double calculateTotalDebt() {
         double totalDebt = 0;
-        for(Member debt : memberList){
-            totalDebt += debt.getDebt();
+        for (Member member : memberList) {
+            totalDebt += member.getDebt();
         }
         return totalDebt;
     }
 
-    public ArrayList<Member> searchMemberDebt(String membersSearchedDebt) {
-        ArrayList<Member> foundMembersDebt = new ArrayList<>(); //var kalder variablen, som er defineret efter new
-        for (Member items : memberList) {
-            if (items.getDebt() > 0) {
-                foundMembersDebt.add(items);
+    public ArrayList<Member> searchMemberDebt() {
+        ArrayList<Member> foundMembersDebt = new ArrayList<>();
+        for (Member member : memberList) {
+            if (member.getDebt() > 0) {
+                foundMembersDebt.add(member);
             }
         }
         return foundMembersDebt;
+    }
+
+
+
+    public int activeMembersCount() {
+        int activeMembers = 0;
+        for (Member member : memberList) {
+            if (member.isActive()) {
+                activeMembers++;
+            }
+        }
+        return activeMembers;
+    }
+
+    public int inactiveMembersCount() {
+        int inActiveMembers = 0;
+        for (Member member : memberList) {
+            if (!member.isActive()) {
+                inActiveMembers++;
+            }
+        }
+        return inActiveMembers;
     }
 
 

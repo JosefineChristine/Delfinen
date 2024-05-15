@@ -1,6 +1,7 @@
 package domain_model;
 
 import comparator.RecordComparator;
+import data_handler.SaveToFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -123,9 +124,6 @@ public class CompetitionMember extends Member {
         } Collections.sort(competetionRecordList, new RecordComparator()); //sorterer
         return (competetionRecordList.get(0)); //henter index 0 og retunerer den
     }
-
-//    public static Comparator<CompetitionMember> BEST_TRAINING_RECORD =
-//            Comparator.comparing(CompetitionMember::getBestTrainingRecord);
 
 
 

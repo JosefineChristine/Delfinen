@@ -11,7 +11,7 @@ public abstract class Member {
     private LocalDate dateOfBirth;
     private double debt;
     private boolean isActive;
-    private String memberShipType; //mangler i konstruktør
+    private String memberShipType;
     private double membershipFee;
 
 
@@ -107,6 +107,19 @@ public abstract class Member {
             }
             return yearlyMembershipFee;
         }
+
+    @Override
+    public String toString() {
+        String result = "";
+        result += "Medlem: " + memberFirstName + memberLastName + "\n" + "Fødselsdag: " + dateOfBirth + "\n" + "Restance: " + debt + "\n"
+                + "Pris for medlemsskab: " + calculateMembershipFee();
+        if (isActive) {
+            result += "\n" + "Aktivitetsstatus: Aktiv";
+        } else {
+            result += "\n" + "Aktivitetsstatus: Passiv";
+        }
+        return result + "\n";
+    }
 
 
     //------------------------------------------------------

@@ -2,6 +2,7 @@ import data_handler.FileLoader;
 import data_handler.SaveToFile;
 import domain_model.*;
 import domain_model.Record;
+import ui.UserInterface;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,11 +19,18 @@ public class Main {
         FileLoader fileLoader = new FileLoader();
         SaveToFile saveToFile = new SaveToFile();
 
-        String birthDate = "1991-09-11";
-        LocalDate memberBirthDate = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        UserInterface ui = new UserInterface();
+        ui.startProgram();
+    }
+}
 
 
+        /* TEST TEST TEST TEST TEST
+//        String birthDate = "1991-09-11";
+//        LocalDate memberBirthDate = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//
         ArrayList<Member> members;
+//
         members = fileLoader.getMembers();
 
 
@@ -40,7 +48,6 @@ public class Main {
                     System.out.println(memberRecord.getEventName());
                     System.out.println(memberRecord.getDiscipline());
                     System.out.println(memberRecord.getResult());
-                    System.out.println(((CompetitionMember) member).findDisciplines());
                     System.out.println();
                 }
             }
@@ -56,7 +63,23 @@ public class Main {
        saveToFile.saveToFile(members);
 
 
+//        for (Member member : members) {
+//            if (member instanceof CompetitionMember){
+//                ((CompetitionMember) member).findBestCompetetionRecord();
+//                System.out.println("Best competition record: ");
+//                System.out.println(member.getMemberFirstName() + " " + member.getMemberLastName());
+//                System.out.println(((CompetitionMember) member).findBestCompetetionRecord());
+//            }
+//        }
 
+//        for (Member member : members) {
+//            if (member instanceof CompetitionMember){
+//                ((CompetitionMember) member).findBestTrainingRecord();
+//                System.out.println("Best training record: ");
+//                System.out.println(member.getMemberFirstName() + " " + member.getMemberLastName());
+//                System.out.println(((CompetitionMember) member).findBestTrainingRecord());
+//            }
+//        }
 
     }
 }
