@@ -61,19 +61,19 @@ public class TeamCollection {
 
     }
 
-    public String generateTeams(){
-        FileLoader fileLoader = new FileLoader();
-        ArrayList<Member> members;
-        members = fileLoader.getMembers();
-        int roundCounter = 0;
-        for (Member member : members) {
-            addMembersToTeams(member, roundCounter);
-            roundCounter = (roundCounter <4) ? roundCounter++ : 4 ;
-
-        }
-
-        return "Not Implemented";
-    }
+//    public String generateTeams(){
+//        MemberCollection memberCollection = new MemberCollection();
+//        ArrayList<Member> members;
+//        members = memberCollection.getMemberList();
+//        int roundCounter = 0;
+//        for (Member member : members) {
+//            addMembersToTeams(member, roundCounter);
+//            roundCounter = (roundCounter <4) ? roundCounter++ : 4 ;
+//
+//        }
+//
+//        return "Not Implemented";
+//    }
 
 //    public void addMemberToTeam(Member member, Team team){
 //        if (member instanceof CompetitionMember &&
@@ -89,6 +89,74 @@ public class TeamCollection {
 //
 //        }
 //    }
+
+//
+//    public void addMembersToTeams(Member member){
+//        //TODO: refactor this methode
+//     if (member instanceof CompetitionMember && member.getMemberShipType().equalsIgnoreCase("junior")) {
+//            String memberDiscipline =((CompetitionMember) member).getActiveDisciplines().get(number);
+//            switch (memberDiscipline){
+//                case "crawl" -> team5.addMemberToTeam(member);
+//                case "butterfly"-> team6.addMemberToTeam(member);
+//                case "backstroke"-> team7.addMemberToTeam(member);
+//                case "breaststroke"->team8.addMemberToTeam(member);
+//            }
+//        } else if (member instanceof CompetitionMember && member.getMemberShipType().equalsIgnoreCase("senior")) {
+//            String memberDiscipline =((CompetitionMember) member).getActiveDisciplines().get(number);
+//            switch (memberDiscipline){
+//                case "crawl" -> team1.addMemberToTeam(member);
+//                case "butterfly"-> team2.addMemberToTeam(member);
+//                case "backstroke"-> team3.addMemberToTeam(member);
+//                case "breaststroke"->team4.addMemberToTeam(member);
+//            }
+//        }
+//
+//    }
+
+    // make a methode for competition member
+    public void addCompetitionMember(CompetitionMember memberToAdd){
+        ArrayList<String> memberDisciplines = memberToAdd.getActiveDisciplines();
+        if (memberToAdd.getMemberShipType().equalsIgnoreCase("junior")) {
+            for (String memberDiscipline : memberDisciplines) {
+                switch (memberDiscipline) {
+                    case "crawl" -> team5.addMemberToTeam(memberToAdd);
+                    case "butterfly" -> team6.addMemberToTeam(memberToAdd);
+                    case "backstroke" -> team7.addMemberToTeam(memberToAdd);
+                    case "breaststroke" -> team8.addMemberToTeam(memberToAdd);
+                }
+            }
+        } else if (memberToAdd.getMemberShipType().equalsIgnoreCase("senior")) {
+
+            for (String memberDiscipline : memberDisciplines) {
+                switch (memberDiscipline) {
+                case "crawl" -> team1.addMemberToTeam(memberToAdd);
+                case "butterfly"-> team2.addMemberToTeam(memberToAdd);
+                case "backstroke"-> team3.addMemberToTeam(memberToAdd);
+                case "breaststroke"->team4.addMemberToTeam(memberToAdd);
+            }
+        }
+    }
+    }
+
+    // make a method for exercise member
+    public void addExerciseMember(ExerciseMember memberToAdd){
+        if (memberToAdd.getMemberShipType().equalsIgnoreCase("junior")){
+            team9.addMemberToTeam(memberToAdd);
+        } else if (memberToAdd.getMemberShipType().equalsIgnoreCase("senior")) {
+            team10.addMemberToTeam(memberToAdd);
+        }
+    }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+
+
+
+// code grave yard
+
+
+/*
+
 
 
     public void addMembersToTeams(Member member, int number){
@@ -116,7 +184,5 @@ public class TeamCollection {
         }
 
     }
-    }
 
-    //------------------------------------------------------------------------------------------------------------------
-
+ */

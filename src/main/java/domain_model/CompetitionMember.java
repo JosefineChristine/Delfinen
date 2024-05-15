@@ -13,6 +13,9 @@ public class CompetitionMember extends Member {
     private ArrayList<Record> memberRecords = new ArrayList<>();
     private ArrayList<Team> teams;
     private Team team;
+
+
+
     private ArrayList<String> activeDisciplines =new ArrayList<>();
     private double bestTrainingRecord;
 
@@ -21,6 +24,7 @@ public class CompetitionMember extends Member {
         super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
+        setActiveDisciplines();
 
 
     }
@@ -58,6 +62,10 @@ public class CompetitionMember extends Member {
         this.bestTrainingRecord = bestTrainingRecord;
     }
 
+    public void setActiveDisciplines() {
+        findDisciplines();
+    }
+
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
     public void addTeamForSpecificMember(Team team) {
         this.teams.add(team);
@@ -90,6 +98,7 @@ public class CompetitionMember extends Member {
                 activeDisciplines.add(record.getDiscipline());
             }
         }
+
         return activeDisciplines;
     }
 
@@ -129,9 +138,8 @@ public class CompetitionMember extends Member {
                 "Member type: "                + getMemberShipType()         + '\n'     +
                 "Yearly membership fee: "      + getMembershipFee()          + " DKK\n" +
                 "Debt: "                       + getDebt()                   + " DKK\n" +
-                "Team: "                       + getTeamsForSpecificMember() + '\n' ;
-//                "Competition records: "        + competitionRecord           + '\n' +
-//                "Training records: "           + trainingRecord              + '\n' ;
+                "Team: "                       + getTeamsForSpecificMember() + '\n' +
+                "Active Discipline: "          + findDisciplines()           + "\n";
     }
 
     //------------------------------------------------------------------------------------------------------------------

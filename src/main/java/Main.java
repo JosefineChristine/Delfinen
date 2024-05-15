@@ -50,7 +50,7 @@ public class Main {
 
 
         TeamCollection teamCollection = new TeamCollection();
-        teamCollection.generateTeams();
+//        teamCollection.generateTeams();
         teamCollection.printTeams();
 
        saveToFile.saveToFile(members);

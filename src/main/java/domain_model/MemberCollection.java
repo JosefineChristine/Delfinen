@@ -1,5 +1,6 @@
 package domain_model;
 
+import data_handler.FileLoader;
 import data_handler.SaveToFile;
 
 import java.time.LocalDate;
@@ -9,13 +10,16 @@ public class MemberCollection {
     //***TO DO***-------------------------------------------------------------------------------------------------------
     //TODO tjek om calculateTotalDebt er lavet korrekt
 
+
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
     private ArrayList<Member> memberList;
     private SaveToFile fileHandler = new SaveToFile();
+    private FileLoader loadToFole = new FileLoader();
 
     //CONSTRUCTOR
     public MemberCollection(){
-        this.memberList = new ArrayList<Member>();
+        this.memberList = loadToFole.getMembers();
+
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
@@ -111,6 +115,18 @@ public class MemberCollection {
             }
         }
         return foundMembersDebt;
+    }
+
+
+
+    //*** Getter/Setter***-------------------------------------------------------------------------------------------------------
+
+    public ArrayList<Member> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(ArrayList<Member> memberList) {
+        this.memberList = memberList;
     }
 
 
