@@ -17,6 +17,8 @@ public class MemberCollection {
     //CONSTRUCTOR
     public MemberCollection(){
         this.memberList = fileLoader.getMembers();
+        this.coachList = new ArrayList<>();
+
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------

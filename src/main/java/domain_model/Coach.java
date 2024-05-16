@@ -1,7 +1,7 @@
 package domain_model;
 
 import java.util.ArrayList;
-//test
+
 
 public class Coach {
 
@@ -19,7 +19,6 @@ public class Coach {
     public Coach(String coachFirstName, String coachLastName){
         this.coachFirstName = coachFirstName;
         this.coachLastName = coachLastName;
-
         this.competitionMemberListForCoach = new ArrayList<>();
     }
 

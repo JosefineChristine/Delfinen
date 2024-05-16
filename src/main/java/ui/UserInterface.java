@@ -467,10 +467,11 @@ public class UserInterface {
 
     /*public Coach searchCoach() {
         //2. Søge efter coach
-        System.out.println("Search Coach");
+        System.out.println("Søg træner");
         String search = input.nextLine();
         ArrayList<Coach> printCoachList = controller.searchCoach(search);
         for (Coach coach : printCoachList) {
+            System.out.println(coach.toString());
         }
         //return coach;
     }*/

@@ -3,11 +3,13 @@ package domain_model;
 public class TeamCollection {
 
     //************COACHES********---------------------------------------------------------------------------------------
+
     Coach coach1 = new Coach("Vahab", "Lotfyyekta");
     Coach coach2 = new Coach("Edith", "Terte");
     Coach coach3 = new Coach("Bjarne", "Larsen");
     Coach coach4 = new Coach("Sommer", "Dahl");
     Coach coach5 = new Coach("Arne", "Falk");
+
 
 
     //************TEAMS********---------------------------------------------------------------------------------------
