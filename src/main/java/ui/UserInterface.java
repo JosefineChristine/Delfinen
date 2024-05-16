@@ -231,7 +231,6 @@ public class UserInterface {
 
     public void addCompetitionMember() {
         input.nextLine();
-        //1. Bruger input - Medlemmets detaljer
         System.out.println("Tilføj medlemmets fornavn");
         String memberFirstName = input.nextLine();
         System.out.println(memberFirstName);
@@ -269,9 +268,8 @@ public class UserInterface {
     }
 
     public void addExerciseMember() {
-        //TODO adder som competition member
+        //TODO adder som competition member i stedet for exercise
         input.nextLine();
-        //1. Bruger input - Medlemmets detaljer
         System.out.println("Tilføj medlemmets fornavn");
         String memberFirstName = input.nextLine();
         System.out.println(memberFirstName);
@@ -332,11 +330,10 @@ public class UserInterface {
     }
 
     public void deleteMember() {
-        //TODO Printer følgende to linjer når man vælge den mulighed:
-        // Hvilket medlem vil du slette?
-        // Der blev ikke fundet et medlem med det navn.
+        //TODO deleteMember() skriver 'Der blev ikke fundet et medlem med det navn' når man skriver vahab
 
-        System.out.println("Hvilket medlem vil du slette?"); //TODO forklar hvad man skal søge på
+        System.out.println("Skriv navnet på det medlem du vil slette");
+        input.next();
         String userInput = input.nextLine();
 
         boolean output = controller.deleteMember(userInput);
@@ -350,7 +347,7 @@ public class UserInterface {
     }
 
     public void editMember() {
-        //TODO virker ikke, siger forkert input når man skrive vahab
+        //TODO editMember() virker ikke, siger forkert input når man skriver vahab
         int menuOption = -1;
         System.out.println("Skriv navnet på det medlem du vil redigere stamoplysningerne for: ");
 
@@ -382,7 +379,7 @@ public class UserInterface {
     }
 
     public void printMemberList() {
-        //TODO listen bliver ikke printet
+        //TODO printMemberList() har [] fra Arraylisten med teams?
         System.out.println("Liste over alle medlemmer:");
         for (Member member : controller.getMemberCollection()) {
             System.out.println(member.toString());
