@@ -96,16 +96,16 @@ public abstract class Member {
             LocalDate currentDate = LocalDate.now();
             int age = Period.between(dateOfBirth, currentDate).getYears();
             double yearlyMembershipFee = 500;
-            //TODO refaktorer så vi kun tjekker isActive en gang
 
-            if (age < 18 && isActive) {
-                yearlyMembershipFee = 1000;
-            } else if (age >= 18 && age <= 59 && isActive) {
-                yearlyMembershipFee = 1600;
-            } else if (age > 60 && isActive) {
-                yearlyMembershipFee = (1600 * 0.75);
-            }
-            return yearlyMembershipFee;
+            if (isActive) {
+                if (age < 18) {
+                    yearlyMembershipFee = 1000;
+                } else if (age > 60) {
+                    yearlyMembershipFee = (1600 * 0.75);
+                } else {
+                    yearlyMembershipFee = 1600;
+                }
+            } return yearlyMembershipFee;
         }
 
     @Override

@@ -3,6 +3,7 @@ package ui;
 import domain_model.*;
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -79,10 +80,10 @@ public class UserInterface {
                     int memberTypeChoice = Integer.parseInt(input.next());
                     switch (userChoice){
                         case 1 ->{
-                    addCompetitionMember();
+                    addMember("Competition");
                         }
                         case 2 -> {
-                    addExerciseMember();
+                    addMember("Exercise");
                         }
                     }
                 }
@@ -229,7 +230,8 @@ public class UserInterface {
         return userInput;
     }
 
-    public void addCompetitionMember() {
+
+    public void addMember(String memberType) {
         input.nextLine();
         System.out.println("Tilføj medlemmets fornavn");
         String memberFirstName = input.nextLine();
@@ -240,62 +242,82 @@ public class UserInterface {
         System.out.println(memberLastName);
 
         System.out.println("Tilføj medlemmets fødselsdag ");
-        System.out.println("Tilføj fødselsdag (DD)");
-        int dayOfBirth = Integer.parseInt(input.next()); //TODO kun to cifre
-        System.out.println("Tilføj fødselsmåned (MM)");
-        int monthOfBirth = Integer.parseInt(input.next()); // TODO kun to cifre
+
+        int dayOfBirth = -1; // Initialize variable outside valid range
+
+        // Loop until the user enters correct input
+        while (dayOfBirth < 1 || dayOfBirth > 31) {
+            System.out.println("Tilføj fødselsdag (DD)");
+            String userInput = input.next();
+
+            // Check if input consists of two digits
+            if (userInput.matches("0[1-9]|[1-2][0-9]|3[0-1]")) {
+                dayOfBirth = Integer.parseInt(userInput);
+                if (dayOfBirth >= 1 && dayOfBirth <= 31) {
+                    // Correct input, exit loop
+                    break;
+                }
+            }
+            System.out.println("Input er ikke accepteret, tast venligst en godkendt fødselsdag mellem 01-31.");
+        }
+
+        int monthOfBirth = -1; // Initialize variable outside valid range
+
+        // Loop until the user enters correct input
+        while (monthOfBirth < 1 || monthOfBirth > 12) {
+            System.out.println("Tilføj fødselsmåned (MM)");
+            String userInput = input.next();
+
+            // Check if input consists of two digits
+            if (userInput.matches("0[1-9]|1[0-2]")) {
+                monthOfBirth = Integer.parseInt(userInput);
+                if (monthOfBirth >= 1 && monthOfBirth <= 12) {
+                    // Correct input, exit loop
+                    break;
+                }
+            }
+            System.out.println("Input er ikke accepteret, tast venligst en godkendt fødselsmåned mellem 01-12.");
+        }
+
         System.out.println("Tilføj fødselsår (YYYY)");
-        int yearOfBirth = Integer.parseInt(input.next()); // TODO kun fire cifre
+        int yearOfBirth = -1; // Initialize variable outside valid range
+
+        // Define a realistic range for the year of birth
+        int currentYear = Year.now().getValue();
+        int minYear = currentYear - 120; // Assuming a person cannot be more than 120 years old
+
+        // Loop until the user enters correct input
+        while (yearOfBirth < minYear || yearOfBirth > currentYear) {
+            System.out.print("Enter four-digit year of birth: ");
+            String userInput = input.next();
+
+            // Check if input consists of four digits
+            if (userInput.matches("\\d{4}")) {
+                yearOfBirth = Integer.parseInt(userInput);
+                if (yearOfBirth >= minYear && yearOfBirth <= currentYear) {
+                    // Correct input, exit loop
+                    break;
+                }
+            }
+            System.out.println("Input er ikke accepteret, tast venligst et godkendt fødselsår.");
+        }
+
         LocalDate userBirthday = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
         System.out.println(userBirthday);
+
         System.out.println("Tilføj medlemmets restance");
         int debt = Integer.parseInt(input.next());
         input.nextLine();
+
         System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')");
         String active = input.nextLine();
         boolean isActive = active.equalsIgnoreCase("Aktiv");
 
-        //TODO dateOfBirth mangler ordentigt at kunne ændres
-        controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
-
-        System.out.println("Medlemmet er nu blevet tilføjet til databasen: ");
-        System.out.println("Stamoplysninger om medlem:");
-        System.out.println("Navn: " + memberFirstName + " " + memberLastName);
-        System.out.println("Fødselsdag: " + userBirthday);
-        System.out.println("Restance: " + debt);
-        System.out.println("Er brugeren aktiv: " + isActive);
-        System.out.println("...................................");
-    }
-
-    public void addExerciseMember() {
-        //TODO adder som competition member i stedet for exercise
-        input.nextLine();
-        System.out.println("Tilføj medlemmets fornavn");
-        String memberFirstName = input.nextLine();
-        System.out.println(memberFirstName);
-
-        System.out.println("Tilføj medlemmets efternavn");
-        String memberLastName = input.nextLine();
-        System.out.println(memberLastName);
-
-        System.out.println("Tilføj medlemmets fødselsdag ");
-        System.out.println("Tilføj fødselsdag (DD)");
-        int dayOfBirth = Integer.parseInt(input.next()); //TODO kun to cifre
-        System.out.println("Tilføj fødselsmåned (MM)");
-        int monthOfBirth = Integer.parseInt(input.next()); // TODO kun to cifre
-        System.out.println("Tilføj fødselsår (YYYY)");
-        int yearOfBirth = Integer.parseInt(input.next()); // TODO kun fire cifre
-        LocalDate userBirthday = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
-        System.out.println(userBirthday);
-        System.out.println("Tilføj medlemmets restance");
-        int debt = Integer.parseInt(input.next());
-        input.nextLine();
-        System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')");
-        String active = input.nextLine();
-        boolean isActive = active.equalsIgnoreCase("Aktiv");
-
-        //TODO dateOfBirth mangler ordentigt at kunne ændres
-        controller.addExerciseMember(new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+        if (memberType.equals("Competition")) {
+            controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+        } else if (memberType.equals("Exercise")) {
+            controller.addExerciseMember(new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+        }
 
         System.out.println("Medlemmet er nu blevet tilføjet til databasen: ");
         System.out.println("Stamoplysninger om medlem:");

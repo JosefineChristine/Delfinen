@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    //TODO: Giv klassen et mere passende navn //hvorfor? ;(
-
     //OBJEKTER
     private MemberCollection memberCollection;
     private Member member;

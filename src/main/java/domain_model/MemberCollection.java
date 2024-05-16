@@ -7,9 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 public class MemberCollection {
 
-    //***TO DO***-------------------------------------------------------------------------------------------------------
-    //TODO tjek om calculateTotalDebt er lavet korrekt
-
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
     private ArrayList<Member> memberList;
     private SaveToFile fileHandler = new SaveToFile();
