@@ -1,7 +1,6 @@
 package domain_model;
 
 import comparator.RecordComparator;
-import data_handler.SaveToFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,6 +10,8 @@ public class CompetitionMember extends Member {
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private ArrayList<Record> memberRecords = new ArrayList<>();
+    private ArrayList<TrainingRecord> trainingRecords;
+    private ArrayList<CompetitionRecord> competitionRecords;
     private ArrayList<Team> teams;
     private ArrayList<String> activeDisciplines = new ArrayList<>();
 
@@ -20,6 +21,9 @@ public class CompetitionMember extends Member {
         super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
         teams = new ArrayList<>();
+        trainingRecords = new ArrayList<>();
+        competitionRecords = new ArrayList<>();
+
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -34,7 +38,7 @@ public class CompetitionMember extends Member {
                 memberTeams.add(team.getTeamDiscipline());
             }
         }
-        //TODO Navn getter måske slettes hvis vi ikke bruger metoden udover i de fulde stamoplysningsprint
+        //TODO Navn getter måske slettes hvis vi ikke bruger metoden udover i de fulde stamoplysningsprint (Og "hold for" tilføjes i toString)
         return "Hold for " + getMemberFirstName() + " " + getMemberLastName() + ":\n" + memberTeams;
     }
 
@@ -55,6 +59,15 @@ public class CompetitionMember extends Member {
     public void addRecord(Record record) {
         memberRecords.add(record);
     }
+
+    public void addTrainingRecordToMember(TrainingRecord record){
+        trainingRecords.add(record);
+    }
+
+    public void addCompetitionRecordToMember(CompetitionRecord record){
+        competitionRecords.add(record);
+    }
+
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
 
