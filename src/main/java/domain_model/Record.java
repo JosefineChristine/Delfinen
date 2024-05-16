@@ -15,7 +15,7 @@ public abstract class Record {
 
     public Record(String eventName, String discipline, double result, LocalDate date) {
         this.eventName = eventName;
-        this.discipline = discipline;
+        this.discipline = discipline.toLowerCase();
         this.result = result;
         this.date = date;
     }

@@ -14,16 +14,13 @@ public class CompetitionMember extends Member {
     private ArrayList<Record> memberRecords = new ArrayList<>();
     private ArrayList<Team> teams;
     private Team team;
-
-
-
     private ArrayList<String> activeDisciplines =new ArrayList<>();
     private double bestTrainingRecord;
 
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
     public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
         super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
-//        super.setMemberShipType("Competition");
+        super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
         setActiveDisciplines();
 

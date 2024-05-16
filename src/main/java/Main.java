@@ -20,33 +20,35 @@ public class Main {
         SaveToFile saveToFile = new SaveToFile();
 
         TeamCollection teamCollection = new TeamCollection();
-        MemberCollection memberCollection = new MemberCollection();
+       MemberCollection memberCollection = new MemberCollection();
         teamCollection.generateTeams();
         teamCollection.printTeams();
+        teamCollection.showTeams();
 
         UserInterface ui = new UserInterface();
         //ui.startProgram();
         ArrayList<Member> membersToAdd = memberCollection.getMemberList();
 
-        for (Member member : membersToAdd) {
-            System.out.println(member.getMemberFirstName());
-            System.out.println(member.getDateOfBirth());
-            System.out.println(member.calculateMembershipFee());
-            System.out.println(member.getDebt());
-            System.out.println(member.getMemberShipType());
-            if (member.getMemberShipType().equalsIgnoreCase("competition")){
-                CompetitionMember member1 = (CompetitionMember) member;
-                ArrayList<Record> memberRecords = member1.getMemberRecords();
-                for (Record memberRecord : memberRecords) {
-                    System.out.println(memberRecord.getEventName());
-                    System.out.println(memberRecord.getDiscipline());
-                    System.out.println(memberRecord.getResult());
-                    System.out.println();
-                }
-            }
-            System.out.println();
-
-        }
+//        for (Member member : membersToAdd) {
+//            System.out.println(member.getMemberFirstName());
+//            System.out.println(member.getDateOfBirth());
+//            System.out.println(member.calculateMembershipFee());
+//            System.out.println(member.getDebt());
+//            System.out.println(member.getMemberShipType());
+//            System.out.println(member.getAgeGroup());
+//            if (member.getMemberShipType().equalsIgnoreCase("competition")){
+//                CompetitionMember member1 = (CompetitionMember) member;
+//                ArrayList<Record> memberRecords = member1.getMemberRecords();
+//                for (Record memberRecord : memberRecords) {
+//                    System.out.println(memberRecord.getEventName());
+//                    System.out.println(memberRecord.getDiscipline());
+//                    System.out.println(memberRecord.getResult());
+//                    System.out.println();
+//                }
+//            }
+//            System.out.println();
+//
+//        }
 
 
 

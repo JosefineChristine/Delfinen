@@ -20,7 +20,7 @@ public class SaveToFile {
                             member.getDebt(),
                             member.isActive(),
                             member.getMemberShipType());
-                if (member instanceof CompetitionMember)  {
+                if (!member.getMemberShipType().equalsIgnoreCase("EXERCISER"))  {
                     String[] memberRecords = competitionMemberHandler((CompetitionMember) member);
                     for (String record : memberRecords) {
                         csvLine = csvLine + "," + record;

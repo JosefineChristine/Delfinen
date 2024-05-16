@@ -30,7 +30,7 @@ public class FileLoader {
             boolean isActive = Boolean.parseBoolean(data[4]);
             String memberShipType = data[5];
 
-            if (data.length > 6) {
+            if (memberShipType.equalsIgnoreCase("competition")) {
                 String[] memberRecords = Arrays.copyOfRange(data, 6, data.length);
                 CompetitionMember member = new CompetitionMember(firstName, lastName, dateOfBirth, debt, isActive);
                 member.setMemberRecords(competitorHandler(memberRecords));

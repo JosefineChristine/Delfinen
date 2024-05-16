@@ -1,7 +1,5 @@
 package domain_model;
 
-import data_handler.FileLoader;
-
 import java.util.ArrayList;
 
 public class TeamCollection {
@@ -30,7 +28,7 @@ public class TeamCollection {
     //************TEAMS********-----------------------------------------------------------------------------------------
 
 
-    public String generateTeams(){
+    public void generateTeams(){
         MemberCollection memberCollection = new MemberCollection();
         ArrayList<Member> members;
         members = memberCollection.getMemberList();
@@ -43,51 +41,15 @@ public class TeamCollection {
 
         }
 
-        return "Not Implemented";
+
     }
 
-//    public void addMemberToTeam(Member member, Team team){
-//        if (member instanceof CompetitionMember &&
-//                ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
-//            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
-//                teamMemberList.add(member);
-//            }
-//        } else if (member instanceof ExerciseMember ){
-//
-//            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
-//                teamMemberList.add(member);
-//            }
-//
-//        }
-//    }
 
-//
-//    public void addMembersToTeams(Member member){
-//        //TODO: refactor this methode
-//     if (member instanceof CompetitionMember && member.getMemberShipType().equalsIgnoreCase("junior")) {
-//            String memberDiscipline =((CompetitionMember) member).getActiveDisciplines().get(number);
-//            switch (memberDiscipline){
-//                case "crawl" -> team5.addMemberToTeam(member);
-//                case "butterfly"-> team6.addMemberToTeam(member);
-//                case "backstroke"-> team7.addMemberToTeam(member);
-//                case "breaststroke"->team8.addMemberToTeam(member);
-//            }
-//        } else if (member instanceof CompetitionMember && member.getMemberShipType().equalsIgnoreCase("senior")) {
-//            String memberDiscipline =((CompetitionMember) member).getActiveDisciplines().get(number);
-//            switch (memberDiscipline){
-//                case "crawl" -> team1.addMemberToTeam(member);
-//                case "butterfly"-> team2.addMemberToTeam(member);
-//                case "backstroke"-> team3.addMemberToTeam(member);
-//                case "breaststroke"->team4.addMemberToTeam(member);
-//            }
-//        }
-//
-//    }
 
     // make a methode for competition member
     public void addCompetitionMember(CompetitionMember memberToAdd){
         ArrayList<String> memberDisciplines = memberToAdd.getActiveDisciplines();
-        if (memberToAdd.getMemberShipType().equalsIgnoreCase("junior")) {
+        if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")) {
             for (String memberDiscipline : memberDisciplines) {
                 switch (memberDiscipline) {
                     case "crawl" -> team5.addMemberToTeam(memberToAdd);
@@ -96,7 +58,7 @@ public class TeamCollection {
                     case "breaststroke" -> team8.addMemberToTeam(memberToAdd);
                 }
             }
-        } else if (memberToAdd.getMemberShipType().equalsIgnoreCase("senior")) {
+        } else if (memberToAdd.getAgeGroup().equalsIgnoreCase("senior")) {
 
             for (String memberDiscipline : memberDisciplines) {
                 switch (memberDiscipline) {
@@ -111,9 +73,9 @@ public class TeamCollection {
 
     // make a method for exercise member
     public void addExerciseMember(ExerciseMember memberToAdd){
-        if (memberToAdd.getMemberShipType().equalsIgnoreCase("junior")){
+        if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")){
             team9.addMemberToTeam(memberToAdd);
-        } else if (memberToAdd.getMemberShipType().equalsIgnoreCase("senior")) {
+        } else if (memberToAdd.getAgeGroup().equalsIgnoreCase("senior")) {
             team10.addMemberToTeam(memberToAdd);
         }
     }
@@ -130,17 +92,18 @@ public class TeamCollection {
         allTheTeams.add(team8);
         allTheTeams.add(team9);
         allTheTeams.add(team10);
-        for (Team team : allTheTeams) {
-            System.out.println(team.toString());
-            System.out.println(team.getTeamMemberList().size());
-//            for (Member member : team.getTeamMemberList()) {
-//                System.out.println(member.toString());
-//            }
-        }
-
 
     }
 
+
+    public void showTeams(){
+
+        for (Team team : allTheTeams) {
+            System.out.println(team.getTeamListAsString());
+            System.out.println(team.getTeamMemberList().size());
+
+        }
+    }
 
     }
 
@@ -180,5 +143,55 @@ public class TeamCollection {
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+//    public void addMemberToTeam(Member member, Team team){
+//        if (member instanceof CompetitionMember &&
+//                ((CompetitionMember) member).getActiveDisciplines().contains(getTeamDiscipline())){
+//            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
+//                teamMemberList.add(member);
+//            }
+//        } else if (member instanceof ExerciseMember ){
+//
+//            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
+//                teamMemberList.add(member);
+//            }
+//
+//        }
+//    }
+
+//
+//    public void addMembersToTeams(Member member){
+//        //TODO: refactor this methode
+//     if (member instanceof CompetitionMember && member.getMemberShipType().equalsIgnoreCase("junior")) {
+//            String memberDiscipline =((CompetitionMember) member).getActiveDisciplines().get(number);
+//            switch (memberDiscipline){
+//                case "crawl" -> team5.addMemberToTeam(member);
+//                case "butterfly"-> team6.addMemberToTeam(member);
+//                case "backstroke"-> team7.addMemberToTeam(member);
+//                case "breaststroke"->team8.addMemberToTeam(member);
+//            }
+//        } else if (member instanceof CompetitionMember && member.getMemberShipType().equalsIgnoreCase("senior")) {
+//            String memberDiscipline =((CompetitionMember) member).getActiveDisciplines().get(number);
+//            switch (memberDiscipline){
+//                case "crawl" -> team1.addMemberToTeam(member);
+//                case "butterfly"-> team2.addMemberToTeam(member);
+//                case "backstroke"-> team3.addMemberToTeam(member);
+//                case "breaststroke"->team4.addMemberToTeam(member);
+//            }
+//        }
+//
+//    }
+
 
  */

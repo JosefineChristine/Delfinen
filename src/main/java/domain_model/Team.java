@@ -12,17 +12,17 @@ public class Team {
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String teamDiscipline;
-    private ArrayList<Member> teamMemberList;
+    private ArrayList<Member> teamMemberList = new ArrayList<>();
     private boolean isTeamSenior;
     Coach coach;
 
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Team(String teamDiscipline, Coach coach, boolean isTeamSenior){
-        this.teamDiscipline = teamDiscipline; // ex. " Crawl"
+        this.teamDiscipline = teamDiscipline.toLowerCase(); // ex. " Crawl"
         this.coach = coach;
         this.isTeamSenior = isTeamSenior;
-        this.teamMemberList = new ArrayList<Member>();
+       // this.teamMemberList = new ArrayList<>();
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ public class Team {
     }
 
     
-    private String getTeamListAsString() {
+    public String getTeamListAsString() {
         String teamMembers = "";
         for (Member member : teamMemberList) {
             teamMembers += member.getMemberFirstName() + ' ' + member.getMemberLastName() + '\n';
