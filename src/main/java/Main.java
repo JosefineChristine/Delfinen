@@ -22,8 +22,8 @@ public class Main {
     }
 }
 
-
         /* TEST TEST TEST TEST TEST
+        //TODO Ryd op i main
 //        String birthDate = "1991-09-11";
 //        LocalDate memberBirthDate = LocalDate.parse(birthDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 //

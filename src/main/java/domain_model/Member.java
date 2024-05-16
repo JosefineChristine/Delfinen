@@ -22,7 +22,7 @@ public abstract class Member {
         this.debt = debt;
         this.isActive = isActive;
         this.membershipFee = calculateMembershipFee();
-        //this.memberShipType = calculateMembershipType();
+       // this.memberShipType = calculateMembershipType();
 
     }
 

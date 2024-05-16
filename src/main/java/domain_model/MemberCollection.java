@@ -30,17 +30,17 @@ public class MemberCollection {
         fileHandler.saveToFile(memberList);
     }
 
-
-    public ArrayList<Member> searchMember(String membersSearched) {
-        var foundMembers = new ArrayList<Member>(); //var kalder variablen, som er defineret efter new
-        for (Member items : memberList) {
-            if (items.getMemberFirstName().toLowerCase().contains(membersSearched.toLowerCase()) ||
-                    items.getMemberLastName().toLowerCase().contains(membersSearched.toLowerCase())) {
-                foundMembers.add(items);
+    public ArrayList<Member> searchMember(String input) {
+        ArrayList<Member> foundMembers = new ArrayList<>();
+        for (Member member : memberList) {
+            if (member.getMemberFirstName().equalsIgnoreCase(input) ||
+                    member.getMemberLastName().equalsIgnoreCase(input)) {
+                foundMembers.add(member);
             }
         }
         return foundMembers;
     }
+
 
     public Member editMember(Member memberToEdit, int partToEdit, String newValue) {
 
@@ -83,15 +83,16 @@ public class MemberCollection {
         return targetMember;
     }
 
-    public boolean deleteMember(String memberToDelete){
-        Member targetMember = findSpecificMember(memberToDelete);
-        if (targetMember != null){
-            memberList.remove(targetMember);
-            fileHandler.saveToFile(memberList);
-            return true;
-        } else {
-            return false;
+    public boolean deleteMember(String memberName) {
+        for (Member member : memberList) {
+            if (member.getMemberFirstName().equalsIgnoreCase(memberName) ||
+                    member.getMemberLastName().equalsIgnoreCase(memberName)) {
+                memberList.remove(member);
+                fileHandler.saveToFile(memberList);
+                return true;
+            }
         }
+        return false;
     }
 
     public double calculateAnnualIncome(){
