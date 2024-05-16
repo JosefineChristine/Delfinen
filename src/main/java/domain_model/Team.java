@@ -30,9 +30,9 @@ public class Team {
         return teamDiscipline;
     }
 
-    public String getIsTeamSenior(){
-        return (true) ? "Senior" : "Junior";
-    }
+//    public String getIsTeamSenior(){
+//        return (true) ? "Senior" : "Junior";
+//    }
 
     public String getCoach() {
         return coach.getCoachFirstName() + ' ' + coach.getCoachLastName();
@@ -56,21 +56,7 @@ public class Team {
 
     public void addMemberToTeam(Member member){
         teamMemberList.add(member);
-//        boolean isAdded = false;
-//        if (member instanceof CompetitionMember &&
-//                ((CompetitionMember) member).findDisciplines().contains(getTeamDiscipline())){
-//            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
-//                teamMemberList.add(member);
-//                isAdded = true;
-//            }
-//        } else if (member instanceof ExerciseMember ){
-//
-//            if (member.getMemberShipType().equalsIgnoreCase(getIsTeamSenior())){
-//                teamMemberList.add(member);
-//            }
-//            isAdded =  true;
-//        }
-//        return isAdded;
+
     }
 
     public CompetitionMember[] getTopFive(){
@@ -100,7 +86,7 @@ public class Team {
                 "Team name: " + teamDiscipline + '\n' +
                 "Team coach: " + getCoach() + '\n' +
 
-                "Team type "  + getIsTeamSenior() + '\n' +
+//                "Team type "  + getIsTeamSenior() + '\n' +
                 "Team members: \n"         +
                 getTeamListAsString();
     }

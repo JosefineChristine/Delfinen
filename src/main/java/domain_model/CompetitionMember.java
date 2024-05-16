@@ -23,6 +23,7 @@ public class CompetitionMember extends Member {
         super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
         setActiveDisciplines();
+     //   findBestTrainingRecord();
 
 
     }
@@ -79,13 +80,7 @@ public class CompetitionMember extends Member {
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
 
-//    public ArrayList<Record> searchMemberRecord(String membersSearchedRecord) {
-//        var bestMembersRecord = new ArrayList<Record>(); //var kalder variablen, som er defineret efter new
-//        for (Record items : memberRecords) {
-//            if //sort metode {
-//                //itererer
-//            } return bestMembersRecord;
-//        }
+
 
 
 
