@@ -78,12 +78,14 @@ public class UserInterface {
                     System.out.println("1. Konkurrencesvømmer");
                     System.out.println("2. Motionssvømmer");
                     int memberTypeChoice = Integer.parseInt(input.next());
-                    switch (userChoice){
+                    switch (memberTypeChoice){
                         case 1 ->{
-                    addMember("Competition");
+                            String membershipType = "Konkurrencesvømmer";
+                    addMember(membershipType);
                         }
                         case 2 -> {
-                    addMember("Exercise");
+                            String membershipType = "Motionssvømmer";
+                    addMember(membershipType);
                         }
                     }
                 }
@@ -181,7 +183,7 @@ public class UserInterface {
                 }
 
                 case 4 -> {
-                    //tilføj træn resultat
+                    //tilføj træningsresultat
                     System.out.println("Du har valgt at tilføje et træningsresultat");
                     System.out.println("Tilføj titel"); // hvad er titel? //TODO slet titel?
                     String titel = input.next();
@@ -193,14 +195,58 @@ public class UserInterface {
                     double resultat = input.nextDouble();
 
                     System.out.println("Tilføj dato for træningsresultat");
-                    System.out.println("Tilføj dato (DD)");
-                    int dayOfBirth = input.nextInt();            // max to cifre
-                    System.out.println("Tilføj måned (MM)");
-                    int monthOfBirth = input.nextInt();          // max to cifre
-                    System.out.println("Tilføj årstal (YYYY)");
-                    int yearOfBirth = input.nextInt();           // max fire cifre
-                    LocalDate træningsDato = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+
+                    int dayOfTraining = -1;
+                    while (dayOfTraining < 1 || dayOfTraining > 31) {
+                        System.out.println("Tilføj dag (DD)");
+                        String userInput = input.next();
+
+                        if (userInput.matches("0[1-9]|[1-2][0-9]|3[0-1]")) {
+                            dayOfTraining = Integer.parseInt(userInput);
+                            if (dayOfTraining >= 1 && dayOfTraining <= 31) {
+                                break;
+                            }
+                        }
+                        System.out.println("Input er ikke accepteret, tast venligst en godkendt dag mellem 01-31.");
+                    }
+
+                    int monthOfTraining = -1;
+
+                    while (monthOfTraining < 1 || monthOfTraining > 12) {
+                        System.out.println("Tilføj måned (MM)");
+                        String userInput = input.next();
+
+                        if (userInput.matches("0[1-9]|1[0-2]")) {
+                            monthOfTraining= Integer.parseInt(userInput);
+                            if (monthOfTraining >= 1 && monthOfTraining <= 12) {
+                                break;
+                            }
+                        }
+                        System.out.println("Input er ikke accepteret, tast venligst en godkendt måned mellem 01-12.");
+                    }
+
+                    int yearOfTraining= -1;
+
+                    int currentYear = Year.now().getValue();
+                    int minYear = currentYear - 10;
+
+                    // Loop until the user enters correct input
+                    while (yearOfTraining < minYear || yearOfTraining > currentYear) {
+                        System.out.println("Tilføj årstal (YYYY)");
+                        String userInput = input.next();
+
+                        if (userInput.matches("\\d{4}")) {
+                            yearOfTraining = Integer.parseInt(userInput);
+                            if (yearOfTraining >= minYear && yearOfTraining <= currentYear) {
+                                break;
+                            }
+                        }
+                        System.out.println("Input er ikke accepteret, tast venligst et godkendt årstal.");
+                    }
+
+                    LocalDate træningsDato = LocalDate.of(yearOfTraining, monthOfTraining, dayOfTraining);
                     input.nextLine();
+
                     controller.addRecord(new TrainingRecord(titel, disciplin, resultat, træningsDato)); //tilføj Trænings resultat
                     //controller.AddRecordToMember(searchMember) -> eller hvordan tilføjer vi til member?
                     // TODO add TrainingRecord til CompetitionMember - but how?
@@ -241,8 +287,6 @@ public class UserInterface {
         String memberLastName = input.nextLine();
         System.out.println(memberLastName);
 
-        System.out.println("Tilføj medlemmets fødselsdag ");
-
         int dayOfBirth = -1; // Initialize variable outside valid range
 
         // Loop until the user enters correct input
@@ -279,7 +323,6 @@ public class UserInterface {
             System.out.println("Input er ikke accepteret, tast venligst en godkendt fødselsmåned mellem 01-12.");
         }
 
-        System.out.println("Tilføj fødselsår (YYYY)");
         int yearOfBirth = -1; // Initialize variable outside valid range
 
         // Define a realistic range for the year of birth
@@ -288,7 +331,7 @@ public class UserInterface {
 
         // Loop until the user enters correct input
         while (yearOfBirth < minYear || yearOfBirth > currentYear) {
-            System.out.print("Enter four-digit year of birth: ");
+            System.out.println("Tilføj fødselsår (YYYY)");
             String userInput = input.next();
 
             // Check if input consists of four digits
@@ -312,11 +355,12 @@ public class UserInterface {
         System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')");
         String active = input.nextLine();
         boolean isActive = active.equalsIgnoreCase("Aktiv");
+        String memberStatus = isActive ? "Ja" : "Nej";
 
-        if (memberType.equals("Competition")) {
-            controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
-        } else if (memberType.equals("Exercise")) {
+        if (memberType.equals("Motionssvømmer")) {
             controller.addExerciseMember(new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+        }else if (memberType.equals("Konkurrencesvømmer")) {
+            controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
         }
 
         System.out.println("Medlemmet er nu blevet tilføjet til databasen: ");
@@ -324,7 +368,7 @@ public class UserInterface {
         System.out.println("Navn: " + memberFirstName + " " + memberLastName);
         System.out.println("Fødselsdag: " + userBirthday);
         System.out.println("Restance: " + debt);
-        System.out.println("Er brugeren aktiv: " + isActive);
+        System.out.println("Er brugeren aktiv: " + memberStatus);
         System.out.println("...................................");
     }
 
@@ -352,7 +396,6 @@ public class UserInterface {
     }
 
     public void deleteMember() {
-        //TODO deleteMember() skriver 'Der blev ikke fundet et medlem med det navn' når man skriver vahab
 
         System.out.println("Skriv navnet på det medlem du vil slette");
         input.next();
@@ -369,7 +412,7 @@ public class UserInterface {
     }
 
     public void editMember() {
-        //TODO editMember() virker ikke, siger forkert input når man skriver vahab
+
         int menuOption = -1;
         System.out.println("Skriv navnet på det medlem du vil redigere stamoplysningerne for: ");
 
