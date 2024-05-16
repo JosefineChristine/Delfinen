@@ -87,7 +87,7 @@ public class Controller {
     }
 
     public ArrayList<Coach> searchCoach(String input){
-        return coach.searchCoach(input);
+        return memberCollection.searchCoach(input);
     }
 
 

@@ -1,6 +1,17 @@
 package domain_model;
 
+import java.util.ArrayList;
+
 public class TeamCollection {
+    //private ArrayList<Coach> coachList = new ArrayList<>();
+//    ArrayList<Coach> allCoaches = new ArrayList<>();
+
+    //************CONSTRUCTOR********-----------------------------------------------------------------------------------
+//    public TeamCollection(){
+//        addCoachToCoachList();
+//    }
+
+    MemberCollection memberCollection;
 
     //************COACHES********---------------------------------------------------------------------------------------
 
@@ -24,8 +35,19 @@ public class TeamCollection {
     Team team9 = new Team("exercise senior", coach5, true);
     Team team10 = new Team("exercise junior", coach5, false );
 
-    //************TEAMS********-----------------------------------------------------------------------------------------
+    //************METHODS********-----------------------------------------------------------------------------------------
 
+//    public void addCoachToCoachList(){
+//        allCoaches.add(coach1);
+//        allCoaches.add(coach2);
+//        allCoaches.add(coach3);
+//        allCoaches.add(coach4);
+//        allCoaches.add(coach5);
+//    }
+//
+//    public ArrayList<Coach> getAllCoaches() {
+//        return allCoaches;
+//    }
 
     //------------------------------------------------------------------------------------------------------------------
 }

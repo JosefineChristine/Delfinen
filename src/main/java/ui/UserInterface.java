@@ -148,11 +148,10 @@ public class UserInterface {
                 case 1 -> {
                     //TODO se holdliste efter træner
                     System.out.println("Søg efter træner som du gerne vil se en medlemsliste over");
-                   // Coach coach = searchCoach();
+                    searchCoach();
 
-                   // Coach coach = controller.findSpecificCoach(trænerSøgning);
                    // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
-                    //System.out.println("liste af konkurrencemedlemmer");
+                   //System.out.println("liste af konkurrencemedlemmer");
                    // coach.getCompetitionMemberListForCoach();
 
                 }
@@ -194,8 +193,6 @@ public class UserInterface {
                     // TODO tilføj findSpecificMember
                     //CompetitionMember targetMember = controller.findSpecificMember(medlemsSøgning)
                     //controller.addCompetitionRecordToMember(targetMember);
-
-
                 }
 
                 case 4 -> {
@@ -465,7 +462,7 @@ public class UserInterface {
         }
     }
 
-    /*public Coach searchCoach() {
+    public void searchCoach() {
         //2. Søge efter coach
         System.out.println("Søg træner");
         String search = input.nextLine();
@@ -473,8 +470,7 @@ public class UserInterface {
         for (Coach coach : printCoachList) {
             System.out.println(coach.toString());
         }
-        //return coach;
-    }*/
+    }
 
     public void selectCoach() {
 

@@ -13,7 +13,6 @@ public class Coach {
     private String coachFirstName;
     private String coachLastName;
 
-    private ArrayList<Coach> coachList;
     private ArrayList<CompetitionMember> competitionMemberListForCoach;
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Coach(String coachFirstName, String coachLastName){
@@ -40,6 +39,8 @@ public class Coach {
         competitionMemberListForCoach.remove(competitionMember);
     }
 
+
+
     //***METHODS***-----------------------------------------------------------------------------------------------------
     public ArrayList<String> getCompetitionMemberListForCoach() {
         ArrayList<String> memberListForCoach = new ArrayList<>();
@@ -49,16 +50,6 @@ public class Coach {
         return memberListForCoach;
     }
 
-    public ArrayList<Coach> searchCoach(String input) {
-        ArrayList<Coach> foundCoaches = new ArrayList<>();
-        for (Coach coach : coachList) {
-            if (coach.getCoachFirstName().equalsIgnoreCase(input) ||
-                    coach.getCoachLastName().equalsIgnoreCase(input)) {
-                foundCoaches.add(coach);
-            }
-        }
-        return foundCoaches;
-    }
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     @Override

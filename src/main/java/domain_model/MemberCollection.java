@@ -10,9 +10,8 @@ public class MemberCollection {
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
     private ArrayList<Member> memberList;
     private SaveToFile fileHandler = new SaveToFile();
-   private FileLoader fileLoader = new FileLoader();
-
-
+    private FileLoader fileLoader = new FileLoader();
+    private ArrayList<Coach> coachList;
 
     //CONSTRUCTOR
     public MemberCollection(){
@@ -145,6 +144,22 @@ public class MemberCollection {
             }
         }
         return inActiveMembers;
+    }
+
+    //***COACH METHODS***-----------------------------------------------------------------------------------------------
+    public ArrayList<Coach> searchCoach(String input) {
+        ArrayList<Coach> foundCoaches = new ArrayList<>();
+        for (Coach coach : coachList) {
+            if (coach.getCoachFirstName().equalsIgnoreCase(input) ||
+                    coach.getCoachLastName().equalsIgnoreCase(input)) {
+                foundCoaches.add(coach);
+            }
+        }
+        return foundCoaches;
+    }
+
+    public void addCoachToCoachList(Coach coach){
+        coachList.add(coach);
     }
 
 
