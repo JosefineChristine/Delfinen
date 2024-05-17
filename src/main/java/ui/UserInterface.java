@@ -471,7 +471,7 @@ public class UserInterface {
         if (memberIndex >= 0 && memberIndex < matchingMembers.size()) {
             Member targetMember = matchingMembers.get(memberIndex);
 
-            int menuOption = -1;
+           // int menuOption = -1;
             while (menuOption != 0) {
                 System.out.println("Skriv 1 for at ændre fornavnet" + "\n" +
                         "Skriv 2 for at ændre efternavnet" + "\n" +
