@@ -13,12 +13,13 @@ public class Main {
         // regardless of the system's default locale.
         Locale.setDefault(Locale.US);
 
-        // these lines are just for test and must be removed from the main class
-        FileLoader fileLoader = new FileLoader();
-        SaveToFile saveToFile = new SaveToFile();
+//        // these lines are just for test and must be removed from the main class
+//        FileLoader fileLoader = new FileLoader();
+//        SaveToFile saveToFile = new SaveToFile();
 
         UserInterface ui = new UserInterface();
         ui.startProgram();
+
     }
 
 }

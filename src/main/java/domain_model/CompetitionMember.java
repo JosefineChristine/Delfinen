@@ -5,6 +5,7 @@ import comparator.RecordComparator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class CompetitionMember extends Member {
 
@@ -13,13 +14,20 @@ public class CompetitionMember extends Member {
     private ArrayList<TrainingRecord> trainingRecords;
     private ArrayList<CompetitionRecord> competitionRecords;
     private ArrayList<Team> teams;
-    private ArrayList<String> activeDisciplines = new ArrayList<>();
+    private Team team;
+    private ArrayList<String> activeDisciplines =new ArrayList<>();
+    private double bestTrainingRecord;
 
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
     public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth,
                              double debt, boolean isActive) {
         super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
+        this.teams= new ArrayList<>();
+        setActiveDisciplines();
+     //   findBestTrainingRecord();
+
+
         teams = new ArrayList<>();
         trainingRecords = new ArrayList<>();
         competitionRecords = new ArrayList<>();
@@ -30,6 +38,16 @@ public class CompetitionMember extends Member {
     public ArrayList<Record> getMemberRecords() {
         return memberRecords;
     }
+
+    //TODO this methode does not work. must fixe
+    public ArrayList<String> getActiveDisciplines() {
+        return activeDisciplines;
+    }
+
+    public double getBestTrainingRecord() {
+        return bestTrainingRecord;
+    }
+
 
     public String getTeamsForSpecificMember() {
         ArrayList<String> memberTeams = new ArrayList<>();
@@ -45,6 +63,14 @@ public class CompetitionMember extends Member {
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
     public void setMemberRecords(ArrayList<Record> memberRecords) {
         this.memberRecords = memberRecords;
+    }
+
+    public void setBestTrainingRecord(double bestTrainingRecord) {
+        this.bestTrainingRecord = bestTrainingRecord;
+    }
+
+    public void setActiveDisciplines() {
+        findDisciplines();
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
@@ -71,6 +97,21 @@ public class CompetitionMember extends Member {
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
 
+
+
+
+
+
+    public ArrayList<String> findDisciplines(){
+        for(Record record : memberRecords){
+            if(!activeDisciplines.contains(record.getDiscipline())){
+                activeDisciplines.add(record.getDiscipline());
+            }
+        }
+
+        return activeDisciplines;
+    }
+
     public Record findBestTrainingRecord(){
         ArrayList<Record> trainingRecordList = new ArrayList<>();
         for (Record record : memberRecords) {
@@ -78,6 +119,8 @@ public class CompetitionMember extends Member {
                 trainingRecordList.add(record);
             }
         } Collections.sort(trainingRecordList, new RecordComparator()); //sorterer
+        //TODO could refactor this methode and added attributes
+        setBestTrainingRecord(trainingRecordList.get(0).getResult());
         return (trainingRecordList.get(0)); //henter index 0 og retunerer den
     }
 
@@ -97,7 +140,7 @@ public class CompetitionMember extends Member {
     public String toString() {
         String medlemsStatus = isActive() ?  "Aktiv" : "Passiv";
 
-        return  "***Medlemsinformation***\n" +
+        return  "***Medlemsinformation konkurrencesvømmer***\n" +
                 "Navn: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
                 "Fødselsdag: "              + getDateOfBirth()            + '\n'     +
                 "Medlemsstatus: "              + medlemsStatus                  + '\n'     +

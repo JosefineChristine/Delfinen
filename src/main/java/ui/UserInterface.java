@@ -17,8 +17,9 @@ public class UserInterface {
     //***START PROGRAM***-----------------------------------------------------------------------------------------------
     public void startProgram() {
 
+        startMenu();
+
         while (userChoice != 7) {
-            startMenu();
             userChoice = Integer.parseInt(input.next());
 
             switch (userChoice) {
@@ -58,17 +59,20 @@ public class UserInterface {
     //TODO sørg for man kan komme tilbage til menuen, i stedet for at skulle stoppe programmet for at gøre noget nyt
 
     public void adminMenu() {
-        System.out.println("Delfinen har " + controller.activeMembersCount() + " aktive medlemmer på nuværende tidspunkt.");
-        System.out.println("Delfinen har " + controller.inActiveMembersCount() + " passive medlemmer på nuværende tidspunkt.");
-        System.out.println("Valgmuligheder: ");
-        System.out.println("1. Tilføj nye medlemmer\n" +
-                "2. Søg efter medlem\n" +
-                "3. Slet medlem\n" +
-                "4. Rediger stamoplysning for medlem\n" +
-                "5. Se alle medlemmer i klubben \n" +
-                "0. Tilbage til startmenu");
 
         while (userChoice != 0) {
+            System.out.println("**********************ADMINSTRATOR**********************");
+            System.out.println("Delfinen har " + controller.activeMembersCount() + " aktive medlemmer på nuværende tidspunkt.");
+            System.out.println("Delfinen har " + controller.inActiveMembersCount() + " passive medlemmer på nuværende tidspunkt.");
+            System.out.println("________________________________________________________");
+            System.out.println("Valgmuligheder: ");
+            System.out.println("1. Tilføj nye medlemmer\n" +
+                    "2. Søg efter medlem\n" +
+                    "3. Slet medlem\n" +
+                    "4. Rediger stamoplysning for medlem\n" +
+                    "5. Se alle medlemmer i klubben \n" +
+                    "0. Tilbage til startmenu");
+
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
                 case 0 -> {
@@ -80,12 +84,14 @@ public class UserInterface {
                     System.out.println("1. Konkurrencesvømmer");
                     System.out.println("2. Motionssvømmer");
                     int memberTypeChoice = Integer.parseInt(input.next());
-                    switch (userChoice){
-                        case 1 ->{
-                    addMember("Competition");
+                    switch (memberTypeChoice) {
+                        case 1 -> {
+                            String membershipType = "Konkurrencesvømmer";
+                            addMember(membershipType);
                         }
                         case 2 -> {
-                    addMember("Exercise");
+                            String membershipType = "Motionssvømmer";
+                            addMember(membershipType);
                         }
                     }
                 }
@@ -107,13 +113,17 @@ public class UserInterface {
     }
 
     public void kassererMenu() {
-        System.out.println("Delfinens årlige indtægt: " + controller.calculateAnnualIncome());
-        System.out.println("Klubbens medlemmer har i alt " + controller.calculateTotalDebt() + " i restance.");
-        System.out.println("Valgmuligheder: ");
-        System.out.println("1. Søg efter medlem\n" +
-                "2. Se liste af medlemmer med restance\n" +
-                "0. Tilbage til startmenu");
+
         while (userChoice != 0) {
+            System.out.println("*********************KASSERER*********************");
+            System.out.println("Delfinens årlige indtægt: " + controller.calculateAnnualIncome());
+            System.out.println("Klubbens medlemmer har i alt " + controller.calculateTotalDebt() + " i restance.");
+            System.out.println("__________________________________________________");
+            System.out.println("Valgmuligheder: ");
+            System.out.println("1. Søg efter medlem\n" +
+                    "2. Se liste af medlemmer med restance\n" +
+                    "0. Tilbage til startmenu");
+
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
                 case 0 -> {
@@ -131,15 +141,16 @@ public class UserInterface {
     }
 
     public void trænerMenu() {
-        System.out.println("Valgmuligheder: ");
-        System.out.println("1. Se liste af medlemmer efter træner  \n" +
-                "2. Se top fem træningstider efter svømmedisciplin \n" +
-                "3. Tilføj konkurrenceresultat                     \n" +
-                "4. Tilføj træningsresultat                        \n" +
-                "5. Søg efter medlem                               \n" +
-                "0. Tilbage til startmenu                          \n");
 
         while (userChoice != 0) {
+            System.out.println("**********************TRÆNER**********************");
+            System.out.println("Valgmuligheder: ");
+            System.out.println("1. Se liste af medlemmer efter træner  \n" +
+                    "2. Se top fem træningstider efter svømmedisciplin \n" +
+                    "3. Tilføj konkurrenceresultat                     \n" +
+                    "4. Tilføj træningsresultat                        \n" +
+                    "5. Søg efter medlem                               \n" +
+                    "0. Tilbage til startmenu                          \n");
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
                 case 0 -> {
@@ -148,13 +159,12 @@ public class UserInterface {
                 case 1 -> {
                     //TODO se holdliste efter træner
                     System.out.println("Søg efter træner som du gerne vil se en medlemsliste over");
-                    System.out.println(controller.getCoachList().toString());
-                    input.nextLine();
-                    searchCoach();
+                    // Coach coach = searchCoach();
 
-                   // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
-                   //System.out.println("liste af konkurrencemedlemmer");
-                   // coach.getCompetitionMemberListForCoach();
+                    // Coach coach = controller.findSpecificCoach(trænerSøgning);
+                    // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
+                    //System.out.println("liste af konkurrencemedlemmer");
+                    // coach.getCompetitionMemberListForCoach();
 
                 }
                 case 2 -> {
@@ -187,20 +197,22 @@ public class UserInterface {
                     System.out.println("Tilføj begivenhed");
                     String begivenhed = input.next();
 
-//                    CompetitionRecord competitionRecord = new CompetitionRecord(titel, disciplin, resultat, konkurrenceDato, begivenhed);
-//                    controller.addRecord(competitionRecord);
-//                    System.out.println("Søg medlem du vil tilføje rekord til");
-//                    String medlemsSøgning = input.nextLine();
+                    CompetitionRecord competitionRecord = new CompetitionRecord(titel, disciplin, resultat, konkurrenceDato, begivenhed);
+                    controller.addRecord(competitionRecord);
+                    System.out.println("Søg medlem du vil tilføje rekord til");
+                    String medlemsSøgning = input.nextLine();
 
                     // TODO tilføj findSpecificMember
                     //CompetitionMember targetMember = controller.findSpecificMember(medlemsSøgning)
                     //controller.addCompetitionRecordToMember(targetMember);
+
+
                 }
 
                 case 4 -> {
-                    //tilføj træn resultat
+                    //tilføj træningsresultat
                     System.out.println("Du har valgt at tilføje et træningsresultat");
-                    System.out.println("Tilføj titel"); // hvad er titel? //TODO slet titel?
+                    System.out.println("Skriv navnet på det medlem du vil tilføje resultatet for?"); //TODO skrive fornavn/efternavn/begge dele?
                     String titel = input.next();
 
                     System.out.println("Tilføj disciplin");
@@ -210,24 +222,61 @@ public class UserInterface {
                     double resultat = input.nextDouble();
 
                     System.out.println("Tilføj dato for træningsresultat");
-                    System.out.println("Tilføj dato (DD)");
-                    int dayOfBirth = input.nextInt();
-                    System.out.println("Tilføj måned (MM)");
-                    int monthOfBirth = input.nextInt();
-                    System.out.println("Tilføj årstal (YYYY)");
-                    int yearOfBirth = input.nextInt();
-                    LocalDate træningsDato = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+
+                    int dayOfTraining = -1;
+                    while (dayOfTraining < 1 || dayOfTraining > 31) {
+                        System.out.println("Tilføj dag (DD)");
+                        String userInput = input.next();
+
+                        if (userInput.matches("0[1-9]|[1-2][0-9]|3[0-1]")) {
+                            dayOfTraining = Integer.parseInt(userInput);
+                            if (dayOfTraining >= 1 && dayOfTraining <= 31) {
+                                break;
+                            }
+                        }
+                        System.out.println("Input er ikke accepteret, tast venligst en godkendt dag mellem 01-31.");
+                    }
+
+                    int monthOfTraining = -1;
+
+                    while (monthOfTraining < 1 || monthOfTraining > 12) {
+                        System.out.println("Tilføj måned (MM)");
+                        String userInput = input.next();
+
+                        if (userInput.matches("0[1-9]|1[0-2]")) {
+                            monthOfTraining = Integer.parseInt(userInput);
+                            if (monthOfTraining >= 1 && monthOfTraining <= 12) {
+                                break;
+                            }
+                        }
+                        System.out.println("Input er ikke accepteret, tast venligst en godkendt måned mellem 01-12.");
+                    }
+
+                    int yearOfTraining = -1;
+
+                    int currentYear = Year.now().getValue();
+                    int minYear = currentYear - 10;
+
+                    // Loop until the user enters correct input
+                    while (yearOfTraining < minYear || yearOfTraining > currentYear) {
+                        System.out.println("Tilføj årstal (YYYY)");
+                        String userInput = input.next();
+
+                        if (userInput.matches("\\d{4}")) {
+                            yearOfTraining = Integer.parseInt(userInput);
+                            if (yearOfTraining >= minYear && yearOfTraining <= currentYear) {
+                                break;
+                            }
+                        }
+                        System.out.println("Input er ikke accepteret, tast venligst et godkendt årstal.");
+                    }
+
+                    LocalDate træningsDato = LocalDate.of(yearOfTraining, monthOfTraining, dayOfTraining);
                     input.nextLine();
 
-//                    TrainingRecord trainingRecord = new TrainingRecord(titel, disciplin, resultat, træningsDato);
-//                    controller.addRecord(trainingRecord); //tilføj Trænings resultat
-//                    System.out.println("Søg medlem du vil tilføje rekord til");
-//                    String medlemsSøgning = input.nextLine();
-
-                    // TODO tilføj findSpecificMember
-                    //CompetitionMember targetMember = controller.findSpecificMember(medlemsSøgning)
-                    //controller.addTrainingRecordToMember(targetMember);
-
+                    controller.addRecord(new TrainingRecord(titel, disciplin, resultat, træningsDato)); //tilføj Trænings resultat
+                    //controller.AddRecordToMember(searchMember) -> eller hvordan tilføjer vi til member?
+                    // TODO add TrainingRecord til CompetitionMember - but how?
                 }
                 case 5 -> {
                     //TODO søg og se medlems rekorder
@@ -265,8 +314,6 @@ public class UserInterface {
         String memberLastName = input.nextLine();
         System.out.println(memberLastName);
 
-        System.out.println("Tilføj medlemmets fødselsdag ");
-
         int dayOfBirth = -1; // Initialize variable outside valid range
 
         // Loop until the user enters correct input
@@ -303,7 +350,6 @@ public class UserInterface {
             System.out.println("Input er ikke accepteret, tast venligst en godkendt fødselsmåned mellem 01-12.");
         }
 
-        System.out.println("Tilføj fødselsår (YYYY)");
         int yearOfBirth = -1; // Initialize variable outside valid range
 
         // Define a realistic range for the year of birth
@@ -312,7 +358,7 @@ public class UserInterface {
 
         // Loop until the user enters correct input
         while (yearOfBirth < minYear || yearOfBirth > currentYear) {
-            System.out.print("Enter four-digit year of birth: ");
+            System.out.println("Tilføj fødselsår (YYYY)");
             String userInput = input.next();
 
             // Check if input consists of four digits
@@ -336,12 +382,12 @@ public class UserInterface {
         System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')");
         String active = input.nextLine();
         boolean isActive = active.equalsIgnoreCase("Aktiv");
+        String memberStatus = isActive ? "Ja" : "Nej";
 
-        if (memberType.equals("Competition")) {
-            controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
-        }
-        if (memberType.equals("Exercise")) {
+        if (memberType.equals("Motionssvømmer")) {
             controller.addExerciseMember(new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+        } else if (memberType.equals("Konkurrencesvømmer")) {
+            controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
         }
 
         System.out.println("Medlemmet er nu blevet tilføjet til databasen: ");
@@ -349,7 +395,7 @@ public class UserInterface {
         System.out.println("Navn: " + memberFirstName + " " + memberLastName);
         System.out.println("Fødselsdag: " + userBirthday);
         System.out.println("Restance: " + debt);
-        System.out.println("Er brugeren aktiv: " + isActive);
+        System.out.println("Er brugeren aktiv: " + memberStatus);
         System.out.println("...................................");
     }
 
@@ -377,6 +423,7 @@ public class UserInterface {
     }
 
     public void deleteMember() {
+
         System.out.println("Skriv navnet på det medlem du vil slette");
         input.nextLine(); // Consume leftover newline
         String userInput = input.nextLine().trim();
@@ -409,6 +456,8 @@ public class UserInterface {
     }
 
     public void editMember() {
+
+        int menuOption = -1;
         System.out.println("Skriv navnet på det medlem du vil redigere stamoplysningerne for: ");
         input.nextLine(); // Consume leftover newline
         String memberName = input.nextLine().trim();
@@ -431,13 +480,13 @@ public class UserInterface {
         if (memberIndex >= 0 && memberIndex < matchingMembers.size()) {
             Member targetMember = matchingMembers.get(memberIndex);
 
-            int menuOption = -1;
+            // int menuOption = -1;
             while (menuOption != 0) {
                 System.out.println("Skriv 1 for at ændre fornavnet" + "\n" +
                         "Skriv 2 for at ændre efternavnet" + "\n" +
                         "Skriv 3 for at ændre fødselsdatoen" + "\n" +
                         "Skriv 4 for at ændre medlemmets gæld" + "\n" +
-                        "Skriv 5 for at ændre medlemmet aktivitetsstatus. Skriv 'true' eller 'false'" + "\n" + //TODO fix true false til passiv/aktiv
+                        "Skriv 5 for at ændre medlemmet aktivitetsstatus. Skriv 'aktiv' eller 'passiv'" + "\n" +
                         "Skriv 0 for at forlade redigeringen:" + "\n");
 
                 menuOption = Integer.parseInt(input.nextLine().trim());
@@ -462,6 +511,9 @@ public class UserInterface {
         for (Member member : controller.getMemberCollection()) {
             System.out.println(member.toString());
         }
+//        for (Team team : controller.) {
+//            System.out.println(team.toString());
+//        }
     }
 
 //    public void printCoachList () { //TODO ret så den passer på coach

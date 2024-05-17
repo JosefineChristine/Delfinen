@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
-//TODO - Hvordan håndterer vi member type? String metoden vs. enums?
 public abstract class Member {
     private String memberFirstName;
     private String memberLastName;
@@ -12,6 +11,7 @@ public abstract class Member {
     private double debt;
     private boolean isActive;
     private String memberShipType;
+    private String ageGroup;
     private double membershipFee;
 
 
@@ -22,7 +22,7 @@ public abstract class Member {
         this.debt = debt;
         this.isActive = isActive;
         this.membershipFee = calculateMembershipFee();
-       // this.memberShipType = calculateMembershipType();
+        this.ageGroup = calculateMembershipType();
 
     }
 
@@ -55,6 +55,11 @@ public abstract class Member {
         return membershipFee;
     }
 
+
+    public String getAgeGroup() {
+        return ageGroup;
+    }
+
     //************SETTERS********-------------------------------------------------------------------------------------------
     public void setFirstName(String firstName) {
         this.memberFirstName = firstName;
@@ -80,16 +85,23 @@ public abstract class Member {
         this.memberShipType = memberShipType;
     }
 
+
+    public void setAgeGroup(String ageGroup) {
+        this.ageGroup = ageGroup;
+    }
+
     //************METHODS********---------------------------------------------------------------------------------------
     public String calculateMembershipType() {
         LocalDate currentDate = LocalDate.now();
-        int age = Period.between(dateOfBirth, currentDate).getYears();
+        int age = Period.between(getDateOfBirth(), currentDate).getYears();
         String membersShipType;
         if (age < 18) {
-            return membersShipType = "junior";
+            membersShipType = "junior";
         } else {
-            return membersShipType = "senior";
+             membersShipType= "senior";
         }
+        setMemberShipType(membersShipType);
+        return membersShipType;
     }
 
         public double calculateMembershipFee() {

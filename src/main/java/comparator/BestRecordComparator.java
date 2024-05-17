@@ -1,0 +1,28 @@
+//package comparator;
+//
+//import domain_model.CompetitionMember;
+//
+//
+//import java.util.Comparator;
+//
+//public class BestRecordComparator {
+//    public  Comparator<CompetitionMember> BEST_TRAINING_RECORD =
+//            Comparator.comparing(CompetitionMember::getBestTrainingRecord);
+//}
+
+package comparator;
+
+import domain_model.CompetitionMember;
+
+import java.util.Comparator;
+
+public class BestRecordComparator implements Comparator<CompetitionMember> {
+    @Override
+    public int compare(CompetitionMember member1, CompetitionMember member2) {
+        return Double.compare(member1.getBestTrainingRecord(), member2.getBestTrainingRecord());
+    }
+}
+
+
+
+

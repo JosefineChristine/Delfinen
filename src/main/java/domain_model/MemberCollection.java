@@ -42,7 +42,6 @@ public class MemberCollection {
         return foundMembers;
     }
 
-
     public Member editMember(Member memberToEdit, int partToEdit, String newValue) {
 
         switch (partToEdit) {
@@ -63,7 +62,8 @@ public class MemberCollection {
                 break;
 
             case 5: //isActive
-                memberToEdit.setActive(Boolean.parseBoolean(newValue));
+                boolean activity = newValue.equalsIgnoreCase("aktiv");
+                memberToEdit.setActive(activity);
                 break;
 
             case 0: //exit

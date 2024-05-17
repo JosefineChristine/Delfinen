@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Coach {
 
     //***QUESTIONS& MISSING CODE***-------------------------------------------------------------------------------------
-    //TODO Coach is trainer for?
     //TODO Arrayliste til medlemmer? metode hvorpå man kan se listen af medlemmer for hver træner
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
