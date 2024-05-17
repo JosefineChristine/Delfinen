@@ -7,7 +7,7 @@ public class TeamCollection {
 
     ArrayList<Team> allTheTeams = new ArrayList<>();
     MemberCollection memberCollection = new MemberCollection();
-    private ArrayList<Coach> coachList;
+    private ArrayList<Coach> coachList = new ArrayList<>();
     //************COACHES********--------
     Coach coach1 = new Coach("Vahab", "Lotfyyekta");
     Coach coach2 = new Coach("Edith", "Terte");
@@ -15,21 +15,9 @@ public class TeamCollection {
     Coach coach4 = new Coach("Sommer", "Dahl");
     Coach coach5 = new Coach("Arne", "Falk");
 
-    //************TEAMS********-----
 
-    private void initializeCoaches() {
-        Coach coach1 = new Coach("Vahab", "Lotfyyekta");
-        Coach coach2 = new Coach("Edith", "Terte");
-        Coach coach3 = new Coach("Bjarne", "Larsen");
-        Coach coach4 = new Coach("Sommer", "Dahl");
-        Coach coach5 = new Coach("Arne", "Falk");
 
-        addCoachToCoachList(coach1);
-        addCoachToCoachList(coach2);
-        addCoachToCoachList(coach3);
-        addCoachToCoachList(coach4);
-        addCoachToCoachList(coach5);
-    }
+
 
     //************TEAMS************-------------------------------------------------------------------------------------
     Team team1 = new Team("crawl", coach1, true);
@@ -48,8 +36,22 @@ public class TeamCollection {
     public TeamCollection() {
         teamsArrayList();
         generateTeams();
+        initializeCoaches();
 
     }
+
+
+//    public ArrayList<Coach> searchCoach(String input) {
+//        ArrayList<Coach> foundCoaches = new ArrayList<>();
+//        for (Coach coach : coachList) {
+//            if (coach.getCoachFirstName().equalsIgnoreCase(input) ||
+//                    coach.getCoachLastName().equalsIgnoreCase(input)) {
+//                foundCoaches.add(coach);
+//            }
+//        }
+//        return foundCoaches;
+//    }
+
 
 
     //************METHODS********---------
@@ -57,6 +59,16 @@ public class TeamCollection {
 
     public ArrayList<Team> getAllTheTeams() {
         return allTheTeams;
+    }
+
+
+    private void initializeCoaches() {
+
+        addCoachToCoachList(coach1);
+        addCoachToCoachList(coach2);
+        addCoachToCoachList(coach3);
+        addCoachToCoachList(coach4);
+        addCoachToCoachList(coach5);
     }
 
 
@@ -141,7 +153,7 @@ public class TeamCollection {
 
     public ArrayList<Coach> searchCoach(String input) {
         ArrayList<Coach> foundCoaches = new ArrayList<>();
-        for (Coach coach : coachList) {
+        for (Coach coach : getCoachList()) {
             if (coach.getCoachFirstName().equalsIgnoreCase(input) ||
                     coach.getCoachLastName().equalsIgnoreCase(input)) {
                 foundCoaches.add(coach);

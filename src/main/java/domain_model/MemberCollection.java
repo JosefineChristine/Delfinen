@@ -16,7 +16,7 @@ public class MemberCollection {
     //CONSTRUCTOR
     public MemberCollection(){
         this.memberList = fileLoader.getMembers();
-        this.coachList = new ArrayList<>();
+     //   this.coachList = new ArrayList<>();
 
     }
 
@@ -42,6 +42,7 @@ public class MemberCollection {
         return foundMembers;
     }
 
+
     public Member editMember(Member memberToEdit, int partToEdit, String newValue) {
 
         switch (partToEdit) {
@@ -62,8 +63,7 @@ public class MemberCollection {
                 break;
 
             case 5: //isActive
-                boolean activity = newValue.equalsIgnoreCase("aktiv");
-                memberToEdit.setActive(activity);
+                memberToEdit.setActive(Boolean.parseBoolean(newValue));
                 break;
 
             case 0: //exit

@@ -159,7 +159,7 @@ public class UserInterface {
                 case 1 -> {
                     //TODO se holdliste efter træner
                     System.out.println("Søg efter træner som du gerne vil se en medlemsliste over");
-                    // Coach coach = searchCoach();
+                    searchCoach();
 
                     // Coach coach = controller.findSpecificCoach(trænerSøgning);
                     // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
@@ -197,10 +197,10 @@ public class UserInterface {
                     System.out.println("Tilføj begivenhed");
                     String begivenhed = input.next();
 
-                    CompetitionRecord competitionRecord = new CompetitionRecord(titel, disciplin, resultat, konkurrenceDato, begivenhed);
-                    controller.addRecord(competitionRecord);
-                    System.out.println("Søg medlem du vil tilføje rekord til");
-                    String medlemsSøgning = input.nextLine();
+//                    CompetitionRecord competitionRecord = new CompetitionRecord(titel, disciplin, resultat, konkurrenceDato, begivenhed);
+//                    controller.addRecord(competitionRecord);
+//                    System.out.println("Søg medlem du vil tilføje rekord til");
+//                    String medlemsSøgning = input.nextLine();
 
                     // TODO tilføj findSpecificMember
                     //CompetitionMember targetMember = controller.findSpecificMember(medlemsSøgning)
@@ -274,7 +274,7 @@ public class UserInterface {
                     LocalDate træningsDato = LocalDate.of(yearOfTraining, monthOfTraining, dayOfTraining);
                     input.nextLine();
 
-                    controller.addRecord(new TrainingRecord(titel, disciplin, resultat, træningsDato)); //tilføj Trænings resultat
+                //    controller.addRecord(new TrainingRecord(titel, disciplin, resultat, træningsDato)); //tilføj Trænings resultat
                     //controller.AddRecordToMember(searchMember) -> eller hvordan tilføjer vi til member?
                     // TODO add TrainingRecord til CompetitionMember - but how?
                 }
@@ -527,6 +527,7 @@ public class UserInterface {
     public void searchCoach() {
         //2. Søge efter coach
         System.out.println("Søg træner");
+        input.nextLine();
         String search = input.nextLine();
         ArrayList<Coach> printCoachList = controller.searchCoach(search);
         for (Coach coach : printCoachList) {
