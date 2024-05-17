@@ -32,10 +32,11 @@ public class CompetitionRecord extends Record {
     @Override
     public String toString(){
         return
-                "Discipline: "        + getDiscipline()    + '\n' +
-                "Time result (min): " + getResult()        + '\n' +
-                "Date: "              + getDate()          + '\n' +
-                "Rank : "             + getPlaceAchieved() + '\n' +
-                "Event: "             + getEventName()     + '\n';
+                "Konkurrenceresultat: \n" +
+                "Disciplin: "        + getDiscipline()    + '\n' +
+                "Tidsresultat: " + getResult() +  " minutter"      + '\n' +
+                "Dato: "              + getDate()          + '\n' +
+                "Placering : "             + getPlaceAchieved() + '\n' +
+                "Begivenhed: "             + getEventName()     + '\n';
     }
 }

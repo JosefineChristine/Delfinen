@@ -11,8 +11,8 @@ public class CompetitionMember extends Member {
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private ArrayList<Record> memberRecords = new ArrayList<>();
-    private ArrayList<TrainingRecord> trainingRecords;
-    private ArrayList<CompetitionRecord> competitionRecords;
+    private ArrayList<TrainingRecord> trainingRecords = new ArrayList<>();
+    private ArrayList<CompetitionRecord> competitionRecords = new ArrayList<>();
     private ArrayList<Team> teams;
     private Team team;
     private ArrayList<String> activeDisciplines =new ArrayList<>();
@@ -25,6 +25,7 @@ public class CompetitionMember extends Member {
         super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
         setActiveDisciplines();
+        recordInitializer();
      //   findBestTrainingRecord();
 
 
@@ -64,7 +65,7 @@ public class CompetitionMember extends Member {
             }
         }
         //TODO Navn getter måske slettes hvis vi ikke bruger metoden udover i de fulde stamoplysningsprint (Og "hold for" tilføjes i toString)
-        return "Hold for " + getMemberFirstName() + " " + getMemberLastName() + ":\n" + memberTeams;
+        return " for " + getMemberFirstName() + " " + getMemberLastName() + ":\n" + memberTeams;
     }
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
@@ -103,6 +104,16 @@ public class CompetitionMember extends Member {
 
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
+    public void recordInitializer(){
+        for (Record record : getMemberRecords()){
+            if (record instanceof CompetitionRecord){
+                addCompetitionRecordToMember((CompetitionRecord) record);
+            } else {
+                addTrainingRecordToMember((TrainingRecord) record);
+            }
+
+        }
+    }
 
     public ArrayList<String> findDisciplines(){
         for(Record record : memberRecords){
@@ -110,7 +121,6 @@ public class CompetitionMember extends Member {
                 activeDisciplines.add(record.getDiscipline());
             }
         }
-
         return activeDisciplines;
     }
 
@@ -136,8 +146,6 @@ public class CompetitionMember extends Member {
         return (competetionRecordList.get(0)); //henter index 0 og retunerer den
     }
 
-
-
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     public String toString() {
         String medlemsStatus = isActive() ?  "Aktiv" : "Passiv";
@@ -149,9 +157,9 @@ public class CompetitionMember extends Member {
                 "Medlemstype: "                + getMemberShipType()         + '\n'     +
                 "Årligt kontigent: "           + getMembershipFee()          + " DKK\n" +
                 "Restance: "                   + getDebt()                   + " DKK\n" +
-                "Teams "                       + getTeamsForSpecificMember() + '\n'     +
-                "Competition records: "        + getCompetitionRecords()     + '\n'     +
-                "Training records: "           + getTrainingRecords()        + '\n'     ;
+                "Hold "                       + getTeamsForSpecificMember() + '\n';
+                //"Konkurrenceresultater: "        + getCompetitionRecords()     + '\n'     +
+                //"Træningsresultater: "           + getTrainingRecords()        + '\n'     ;
                 //"Discipliner: "              + findDisciplines()           + '\n' ;
     }
 

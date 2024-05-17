@@ -1,6 +1,7 @@
 package ui;
 
 import domain_model.*;
+import domain_model.Record;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -510,7 +511,15 @@ public class UserInterface {
         //TODO printMemberList() har [] fra Arraylisten med teams?
         System.out.println("Liste over alle medlemmer:");
         for (Member member : controller.getMemberCollection()) {
+            String memberName = member.getMemberFirstName() + " " + member.getMemberLastName();
             System.out.println(member.toString());
+            if (member instanceof CompetitionMember){
+                ArrayList<Record> memberRecords = ((CompetitionMember) member).getMemberRecords();
+                for (Record memberRecord : memberRecords){
+                    System.out.println(memberName);
+                    System.out.println(memberRecord.toString());
+                }
+            }
         }
 //        for (Team team : controller.) {
 //            System.out.println(team.toString());
