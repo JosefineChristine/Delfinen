@@ -1,6 +1,7 @@
 package domain_model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TeamCollection {
 
@@ -34,6 +35,7 @@ public class TeamCollection {
         generateTeams();
 
     }
+
 
 
     //************METHODS********---------
@@ -120,6 +122,18 @@ public class TeamCollection {
             System.out.println(team.getTeamMemberList().size());
 
         }
+    }
+
+
+
+    // Top 5 **************
+
+    public void showTop5(){
+        Team team = team1;
+//        for (Member member : team.getTopFive()){
+//            System.out.println(member);
+//        }
+        System.out.println(Arrays.toString(team.getTopFive()));
     }
 
 

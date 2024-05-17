@@ -25,8 +25,7 @@ public class CompetitionMember extends Member {
         super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
         setActiveDisciplines();
-     //   findBestTrainingRecord();
-
+//        findBestTrainingRecord();
 
         teams = new ArrayList<>();
         trainingRecords = new ArrayList<>();
@@ -45,6 +44,7 @@ public class CompetitionMember extends Member {
     }
 
     public double getBestTrainingRecord() {
+        findBestTrainingRecord();
         return bestTrainingRecord;
     }
 
@@ -114,7 +114,7 @@ public class CompetitionMember extends Member {
 
     public Record findBestTrainingRecord(){
         ArrayList<Record> trainingRecordList = new ArrayList<>();
-        for (Record record : memberRecords) {
+        for (Record record : getMemberRecords()) {
             if (record instanceof TrainingRecord) {
                 trainingRecordList.add(record);
             }
