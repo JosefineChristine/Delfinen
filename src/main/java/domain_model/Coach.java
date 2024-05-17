@@ -13,12 +13,13 @@ public class Coach {
     private String coachFirstName;
     private String coachLastName;
 
-    private ArrayList<CompetitionMember> competitionMemberListForCoach;
+    private ArrayList<Member> memberListForCoach;
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Coach(String coachFirstName, String coachLastName){
         this.coachFirstName = coachFirstName;
         this.coachLastName = coachLastName;
-        this.competitionMemberListForCoach = new ArrayList<>();
+        this.memberListForCoach = new ArrayList<>();
+
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
@@ -30,31 +31,41 @@ public class Coach {
         return coachLastName;
     }
 
-    //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-    public void addCompetitionMemberToCoach(CompetitionMember competitionMember){
-        competitionMemberListForCoach.add(competitionMember);
+    public void setMemberListForCoach(ArrayList<Member> memberListForCoach) {
+        this.memberListForCoach = memberListForCoach;
     }
 
-    public void removeCompetitionMemberToCoach(CompetitionMember competitionMember){
-        competitionMemberListForCoach.remove(competitionMember);
+    //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
+    public void addMemberToCoach(Member member){
+        memberListForCoach.add(member);
+    }
+
+    public void removeMemberToCoach(Member member){
+        memberListForCoach.remove(member);
     }
 
 
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
-    public ArrayList<String> getCompetitionMemberListForCoach() {
-        ArrayList<String> memberListForCoach = new ArrayList<>();
-        for (CompetitionMember member : competitionMemberListForCoach) {
-            memberListForCoach.add(member.getMemberFirstName() + " " + member.getMemberLastName());
-        }
+    public ArrayList<Member> getMemberListForCoach() {
         return memberListForCoach;
     }
+
+//    public ArrayList<Coach> printCoachList() { /TODO måske slet
+//        ArrayList<Coach> foundCoaches = new ArrayList<>();
+//        for (Coach coach : coachList) {
+//            if (coach.getDebt() > 0) {
+//                foundMembersDebt.add(member);
+//            }
+//        }
+//        return ;
+//    }
 
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     @Override
     public String toString(){
-        return "Coach name: " + getCoachFirstName() + " " + getCoachLastName();
+        return "\n" + getCoachFirstName() + " " + getCoachLastName();
     }
 
     //------------------------------------------------------------------------------------------------------------------

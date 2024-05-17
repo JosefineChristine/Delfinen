@@ -147,20 +147,7 @@ public class MemberCollection {
     }
 
     //***COACH METHODS***-----------------------------------------------------------------------------------------------
-    public ArrayList<Coach> searchCoach(String input) {
-        ArrayList<Coach> foundCoaches = new ArrayList<>();
-        for (Coach coach : coachList) {
-            if (coach.getCoachFirstName().equalsIgnoreCase(input) ||
-                    coach.getCoachLastName().equalsIgnoreCase(input)) {
-                foundCoaches.add(coach);
-            }
-        }
-        return foundCoaches;
-    }
 
-    public void addCoachToCoachList(Coach coach){
-        coachList.add(coach);
-    }
 
 
 }

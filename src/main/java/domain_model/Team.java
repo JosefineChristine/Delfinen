@@ -25,6 +25,7 @@ public class Team {
         this.coach = coach;
         this.isTeamSenior = isTeamSenior;
         this.teamMemberList = new ArrayList<>();
+        initialiseCompetitionMemberToCoach();
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -51,6 +52,11 @@ public class Team {
             teamMembers += member.getMemberFirstName() + ' ' + member.getMemberLastName() + '\n';
         }
         return teamMembers;
+    }
+
+    //***METHODS***----------------------------------------------------------------------------------------
+    public void initialiseCompetitionMemberToCoach(){
+        coach.setMemberListForCoach(getTeamMemberList());
     }
 
 
