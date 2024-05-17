@@ -128,12 +128,31 @@ public class TeamCollection {
 
     // Top 5 **************
 
-    public void showTop5(){
-        Team team = team1;
-//        for (Member member : team.getTopFive()){
-//            System.out.println(member);
-//        }
-        System.out.println(Arrays.toString(team.getTopFive()));
+    public void showTop5(Team team){
+        int memberPlace = 1;
+        System.out.println(team.getTeamDiscipline());
+        System.out.println(team.getIsTeamSenior());
+        for (Member member : team.getTopFive()){
+            if(team.getTopFive() != null){
+                System.out.println(memberPlace);
+                System.out.println(member);
+                memberPlace++;
+            }
+
+        }
+//        System.out.println(Arrays.toString(team.getTopFive()));
+    }
+
+    public void printTopFives(){
+
+        for (Team team : allTheTeams) {
+            // Filter out exercise teams and empty teams
+            if (!team.getTeamDiscipline().contains("exercise") && !team.getTeamMemberList().isEmpty()){
+                System.out.println(team.getTeamDiscipline());
+                showTop5(team);
+            }
+
+        }
     }
 
 

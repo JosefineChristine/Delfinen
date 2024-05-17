@@ -147,8 +147,8 @@ public class CompetitionMember extends Member {
                 "Medlemstype: "                + getMemberShipType()         + '\n'     +
                 "Årligt kontigent: "      + getMembershipFee()          + " DKK\n" +
                 "Restance: "                       + getDebt()                   + " DKK\n" +
-                                        getTeamsForSpecificMember() + '\n' ;
-                //"Discipliner: "                       + findDisciplines() + '\n' ;
+                                        getTeamsForSpecificMember() + '\n' +
+                "Discipliner: "                       + findDisciplines() + '\n' ;
 //                "Competition records: "        + competitionRecord           + '\n' +
 //                "Training records: "           + trainingRecord              + '\n' ;
     }

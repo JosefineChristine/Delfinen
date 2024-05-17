@@ -20,15 +20,36 @@ public class Main {
 //        UserInterface ui = new UserInterface();
 //        ui.startProgram();
         TeamCollection teamCollection = new TeamCollection();
-//        MemberCollection memberCollection = new MemberCollection();
+        MemberCollection memberCollection = new MemberCollection();
 //        for (Member member : memberCollection.getMemberList()){
 //            if(member instanceof CompetitionMember){
 //                System.out.println(((CompetitionMember) member).getMemberRecords());
 //            }
 //        }
-        teamCollection.showTop5();
+        teamCollection.printTopFives();
 
-    }
+
+//        for (Member member : memberCollection.getMemberList()) {
+//            System.out.println(member.getMemberFirstName());
+//            System.out.println(member.getDateOfBirth());
+//            System.out.println(member.calculateMembershipFee());
+//            System.out.println(member.getDebt());
+//            System.out.println(member.getMemberShipType());
+//            if (member.getMemberShipType().equalsIgnoreCase("competition")){
+//                CompetitionMember member1 = (CompetitionMember) member;
+//                ArrayList<Record> memberRecords = member1.getMemberRecords();
+//                for (Record memberRecord : memberRecords) {
+//                    System.out.println(memberRecord.getEventName());
+//                    System.out.println(memberRecord.getDiscipline());
+//                    System.out.println(memberRecord.getResult());
+//                    System.out.println();
+//                }
+//            }
+//            System.out.println();
+//
+//        }
+//
+   }
 }
 
         /* TEST TEST TEST TEST TEST
