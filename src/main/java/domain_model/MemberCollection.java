@@ -61,7 +61,8 @@ public class MemberCollection {
                 break;
 
             case 5: //isActive
-                memberToEdit.setActive(Boolean.parseBoolean(newValue));
+                boolean activity = newValue.equalsIgnoreCase("aktiv");
+                memberToEdit.setActive(activity);
                 break;
 
             case 0: //exit

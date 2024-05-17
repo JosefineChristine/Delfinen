@@ -485,7 +485,7 @@ public class UserInterface {
                         "Skriv 2 for at ændre efternavnet" + "\n" +
                         "Skriv 3 for at ændre fødselsdatoen" + "\n" +
                         "Skriv 4 for at ændre medlemmets gæld" + "\n" +
-                        "Skriv 5 for at ændre medlemmet aktivitetsstatus. Skriv 'true' eller 'false'" + "\n" + //TODO fix true false til passiv/aktiv
+                        "Skriv 5 for at ændre medlemmet aktivitetsstatus. Skriv 'aktiv' eller 'passiv'" + "\n" +
                         "Skriv 0 for at forlade redigeringen:" + "\n");
 
                 menuOption = Integer.parseInt(input.nextLine().trim());
@@ -510,6 +510,9 @@ public class UserInterface {
         for (Member member : controller.getMemberCollection()) {
             System.out.println(member.toString());
         }
+//        for (Team team : controller.) {
+//            System.out.println(team.toString());
+//        }
     }
 
     /*public Coach searchCoach() {

@@ -19,7 +19,7 @@ public class ExerciseMember extends Member {
     public String toString() {
         String medlemsStatus = isActive() ?  "Aktiv" : "Passiv";
 
-        return  "***Medlemsinformation***\n" +
+        return  "***Medlemsinformation motionssvømmer***\n" +
                 "Navn: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
                 "Fødselsdag: "              + getDateOfBirth()            + '\n'     +
                 "Medlemsstatus: "              + medlemsStatus                  + '\n'     +

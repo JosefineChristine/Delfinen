@@ -140,7 +140,7 @@ public class CompetitionMember extends Member {
     public String toString() {
         String medlemsStatus = isActive() ?  "Aktiv" : "Passiv";
 
-        return  "***Medlemsinformation***\n" +
+        return  "***Medlemsinformation konkurrencesvømmer***\n" +
                 "Navn: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
                 "Fødselsdag: "              + getDateOfBirth()            + '\n'     +
                 "Medlemsstatus: "              + medlemsStatus                  + '\n'     +
