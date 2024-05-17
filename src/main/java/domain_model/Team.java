@@ -17,12 +17,12 @@ public class Team {
     private boolean isTeamSenior;
     Coach coach;
 
-
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Team(String teamDiscipline, Coach coach, boolean isTeamSenior){
         this.teamDiscipline = teamDiscipline.toLowerCase(); // ex. " Crawl"
         this.coach = coach;
         this.isTeamSenior = isTeamSenior;
+        initialiseCompetitionMemberToCoach();
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -49,6 +49,11 @@ public class Team {
             teamMembers += member.getMemberFirstName() + ' ' + member.getMemberLastName() + '\n';
         }
         return teamMembers;
+    }
+
+    //***METHODS***----------------------------------------------------------------------------------------
+    public void initialiseCompetitionMemberToCoach(){
+        coach.setMemberListForCoach(getTeamMemberList());
     }
 
 

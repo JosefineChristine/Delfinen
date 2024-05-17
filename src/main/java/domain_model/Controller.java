@@ -11,18 +11,21 @@ public class Controller {
     private Coach coach;
     private Record record;
     private TrainingRecord trainingRecord;
+    private TeamCollection teamCollection;
 
     public Controller() {
         memberCollection = new MemberCollection();
-    }
+        teamCollection = new TeamCollection();
+        }
+
 
 
     //***KASSERERMENU***------------------------------------------------------------------------------------------------
 
     //***COACH MENU***--------------------------------------------------------------------------------------------------
-    public void addRecord(Record record){
-        record.addRecord(record);
-    }
+//    public void addRecord(Record record){
+//        record.addRecord(record);
+//    }
 
     //***ADMIN MENU***--------------------------------------------------------------------------------------------------
     public void addCompetitionMember(CompetitionMember competitionMember){
@@ -82,13 +85,20 @@ public class Controller {
         competitionMember.addCompetitionRecordToMember(record);
     }
 
-    public ArrayList<String>getCompetitionMemberListForCoach(){
-        return coach.getCompetitionMemberListForCoach();
+    public ArrayList<Member>getCompetitionMemberListForCoach(){
+        return coach.getMemberListForCoach();
     }
 
     public ArrayList<Coach> searchCoach(String input){
-        return coach.searchCoach(input);
+        return teamCollection.searchCoach(input);
     }
+
+    public ArrayList<Coach> getCoachList() { //TODO skal virke
+        return teamCollection.getCoachList();
+    }
+
+
+
 
     //------------------------------------------------------------------------------------------------------------------
 }

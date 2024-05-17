@@ -1,6 +1,7 @@
 package ui;
 
 import domain_model.*;
+import domain_model.Record;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -56,6 +57,7 @@ public class UserInterface {
         System.out.println("|______________________________________|");
     }
 
+    //TODO sørg for man kan komme tilbage til menuen, i stedet for at skulle stoppe programmet for at gøre noget nyt
 
     public void adminMenu() {
 
@@ -158,7 +160,8 @@ public class UserInterface {
                 case 1 -> {
                     //TODO se holdliste efter træner
                     System.out.println("Søg efter træner som du gerne vil se en medlemsliste over");
-                    // Coach coach = searchCoach();
+                    System.out.println(controller.getCoachList());
+                    searchCoach();
 
                     // Coach coach = controller.findSpecificCoach(trænerSøgning);
                     // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
@@ -196,10 +199,10 @@ public class UserInterface {
                     System.out.println("Tilføj begivenhed");
                     String begivenhed = input.next();
 
-                    CompetitionRecord competitionRecord = new CompetitionRecord(titel, disciplin, resultat, konkurrenceDato, begivenhed);
-                    controller.addRecord(competitionRecord);
-                    System.out.println("Søg medlem du vil tilføje rekord til");
-                    String medlemsSøgning = input.nextLine();
+//                    CompetitionRecord competitionRecord = new CompetitionRecord(titel, disciplin, resultat, konkurrenceDato, begivenhed);
+//                    controller.addRecord(competitionRecord);
+//                    System.out.println("Søg medlem du vil tilføje rekord til");
+//                    String medlemsSøgning = input.nextLine();
 
                     // TODO tilføj findSpecificMember
                     //CompetitionMember targetMember = controller.findSpecificMember(medlemsSøgning)
@@ -273,7 +276,7 @@ public class UserInterface {
                     LocalDate træningsDato = LocalDate.of(yearOfTraining, monthOfTraining, dayOfTraining);
                     input.nextLine();
 
-                    controller.addRecord(new TrainingRecord(titel, disciplin, resultat, træningsDato)); //tilføj Trænings resultat
+                //    controller.addRecord(new TrainingRecord(titel, disciplin, resultat, træningsDato)); //tilføj Trænings resultat
                     //controller.AddRecordToMember(searchMember) -> eller hvordan tilføjer vi til member?
                     // TODO add TrainingRecord til CompetitionMember - but how?
                 }
@@ -508,27 +511,43 @@ public class UserInterface {
         //TODO printMemberList() har [] fra Arraylisten med teams?
         System.out.println("Liste over alle medlemmer:");
         for (Member member : controller.getMemberCollection()) {
+            String memberName = member.getMemberFirstName() + " " + member.getMemberLastName();
             System.out.println(member.toString());
+            if (member instanceof CompetitionMember){
+                ArrayList<Record> memberRecords = ((CompetitionMember) member).getMemberRecords();
+                for (Record memberRecord : memberRecords){
+                    System.out.println(memberName);
+                    System.out.println(memberRecord.toString());
+                }
+            }
         }
 //        for (Team team : controller.) {
 //            System.out.println(team.toString());
 //        }
     }
 
-    /*public Coach searchCoach() {
+//    public void printCoachList () { //TODO ret så den passer på coach
+//        //3. Overblik over hele filmsamlingen
+//        System.out.println("Overview of your Movie Collection");
+//        for (Movie movie : controller.getMovieCollection()) {
+//            System.out.println(movie.toString());
+//        }
+//    }
+
+    public void searchCoach() {
         //2. Søge efter coach
-        System.out.println("Search Coach");
+        System.out.println("Søg træner");
+        input.nextLine();
         String search = input.nextLine();
         ArrayList<Coach> printCoachList = controller.searchCoach(search);
         for (Coach coach : printCoachList) {
+            System.out.println(coach.getMemberListForCoach());
         }
-        //return coach;
-    }*/
+    }
 
     public void selectCoach() {
-
         System.out.println("Skriv navnet på den træner du gerne vil se medlemmer for");
-        input.nextLine(); // Consume leftover newline
+        input.nextLine();
         String userInput = input.nextLine().trim();
 
         ArrayList<Coach> matchingCoaches = controller.searchCoach(userInput);
@@ -543,20 +562,21 @@ public class UserInterface {
             System.out.println((i + 1) + ": " + matchingCoaches.get(i).toString());
         }
 
-        /*System.out.println("Vælg det nummer på det af træner, du vil se medlemmer for:");
+        System.out.println("Vælg det nummer på det af træner, du vil se medlemmer for:");
         int memberIndex = Integer.parseInt(input.nextLine()) - 1;
 
         if (memberIndex >= 0 && memberIndex < matchingCoaches.size()) {
-            boolean output = controller.deleteMember(matchingCoaches.get(memberIndex).getMemberFirstName());
-            if (!output) {
-                System.out.println("Der blev ikke fundet et medlem med det navn.\n");
-            } else {
-                System.out.println("Medlemmet blev slettet.\n");
-            }
-        } else {
-            System.out.println("Ugyldigt valg.");
+            System.out.println("Print holdliste for træner");
+//            boolean output = controller.(matchingCoaches.get(memberIndex).getCoachFirstName());
+//            if (!output) {
+//                System.out.println("Der blev ikke fundet en træner med det navn.\n");
+//            } else {
+//                System.out.println("Print medlemsliste"); //TODO print holdliste for træner
+//            }
+//        } else {
+//            System.out.println("Ugyldigt valg.");
         }
-         */
+
     }
 
 }

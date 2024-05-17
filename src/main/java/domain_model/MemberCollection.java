@@ -10,13 +10,14 @@ public class MemberCollection {
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
     private ArrayList<Member> memberList;
     private SaveToFile fileHandler = new SaveToFile();
-   private FileLoader fileLoader = new FileLoader();
+    private FileLoader fileLoader = new FileLoader();
 
 
-
-    //CONSTRUCTOR
+    //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public MemberCollection(){
         this.memberList = fileLoader.getMembers();
+     //   this.coachList = new ArrayList<>();
+
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
@@ -41,6 +42,7 @@ public class MemberCollection {
         return foundMembers;
     }
 
+
     public Member editMember(Member memberToEdit, int partToEdit, String newValue) {
 
         switch (partToEdit) {
@@ -61,8 +63,7 @@ public class MemberCollection {
                 break;
 
             case 5: //isActive
-                boolean activity = newValue.equalsIgnoreCase("aktiv");
-                memberToEdit.setActive(activity);
+                memberToEdit.setActive(Boolean.parseBoolean(newValue));
                 break;
 
             case 0: //exit
@@ -144,6 +145,9 @@ public class MemberCollection {
         }
         return inActiveMembers;
     }
+
+    //***COACH METHODS***-----------------------------------------------------------------------------------------------
+
 
 
 }
