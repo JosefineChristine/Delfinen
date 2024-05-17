@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    //TODO: Giv klassen et mere passende navn //hvorfor? ;(
-
     //OBJEKTER
     private MemberCollection memberCollection;
     private Member member;
+    private CompetitionMember competitionMember;
     private Coach coach;
     private Record record;
+    private TrainingRecord trainingRecord;
 
     public Controller() {
         memberCollection = new MemberCollection();
@@ -52,6 +52,7 @@ public class Controller {
         return memberCollection.editMember(memberToEdit, partToEdit, newValue);
     }
 
+
     public ArrayList<Member> getMemberCollection() {
         return memberCollection.getMemberList();
     }
@@ -72,5 +73,22 @@ public class Controller {
         return memberCollection.inactiveMembersCount();
     }
 
+    //***COACH MENU***--------------------------------------------------------------------------------------------------
+    public void addTrainingRecordToMember(TrainingRecord record){
+        competitionMember.addTrainingRecordToMember(record);
+    }
 
+    public void addCompetitionRecordToMember(CompetitionRecord record){
+        competitionMember.addCompetitionRecordToMember(record);
+    }
+
+    public ArrayList<String>getCompetitionMemberListForCoach(){
+        return coach.getCompetitionMemberListForCoach();
+    }
+
+    public ArrayList<Coach> searchCoach(String input){
+        return coach.searchCoach(input);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
 }

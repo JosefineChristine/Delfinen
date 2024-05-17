@@ -13,7 +13,7 @@ public class TeamCollection {
     Coach coach2 = new Coach("Edith", "Terte");
     Coach coach3 = new Coach("Bjarne", "Larsen");
     Coach coach4 = new Coach("Sommer", "Dahl");
-    Coach coach5 = new Coach("Arne", "Lmao");
+    Coach coach5 = new Coach("Arne", "Falk");
 
     //************TEAMS********-----
     Team team1 = new Team("crawl", coach1, true);
@@ -24,8 +24,8 @@ public class TeamCollection {
     Team team6 = new Team("butterfly", coach2, false);
     Team team7 = new Team("backstroke", coach3, false);
     Team team8 = new Team("breaststroke",coach4, false);
-    Team team9 = new Team("exercise junior", coach5, false );
-    Team team10 = new Team("exercise senior", coach5, true);
+    Team team9 = new Team("exercise senior", coach5, true);
+    Team team10 = new Team("exercise junior", coach5, false );
 
 
 

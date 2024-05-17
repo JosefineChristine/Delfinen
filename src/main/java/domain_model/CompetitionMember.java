@@ -1,7 +1,6 @@
 package domain_model;
 
 import comparator.RecordComparator;
-import data_handler.SaveToFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,19 +11,26 @@ public class CompetitionMember extends Member {
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private ArrayList<Record> memberRecords = new ArrayList<>();
+    private ArrayList<TrainingRecord> trainingRecords;
+    private ArrayList<CompetitionRecord> competitionRecords;
     private ArrayList<Team> teams;
     private Team team;
     private ArrayList<String> activeDisciplines =new ArrayList<>();
     private double bestTrainingRecord;
 
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
-    public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
+    public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth,
+                             double debt, boolean isActive) {
         super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
         this.teams= new ArrayList<>();
         setActiveDisciplines();
      //   findBestTrainingRecord();
 
+
+        teams = new ArrayList<>();
+        trainingRecords = new ArrayList<>();
+        competitionRecords = new ArrayList<>();
 
     }
 
@@ -50,7 +56,8 @@ public class CompetitionMember extends Member {
                 memberTeams.add(team.getTeamDiscipline());
             }
         }
-        return "Teams for " + getMemberFirstName() + " " + getMemberLastName() + ":\n" + memberTeams;
+        //TODO Navn getter måske slettes hvis vi ikke bruger metoden udover i de fulde stamoplysningsprint (Og "hold for" tilføjes i toString)
+        return "Hold for " + getMemberFirstName() + " " + getMemberLastName() + ":\n" + memberTeams;
     }
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
@@ -78,6 +85,15 @@ public class CompetitionMember extends Member {
     public void addRecord(Record record) {
         memberRecords.add(record);
     }
+
+    public void addTrainingRecordToMember(TrainingRecord record){
+        trainingRecords.add(record);
+    }
+
+    public void addCompetitionRecordToMember(CompetitionRecord record){
+        competitionRecords.add(record);
+    }
+
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
 
@@ -122,15 +138,19 @@ public class CompetitionMember extends Member {
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     public String toString() {
-        return  "***MEMBER'S INFORMATION***\n" +
-                "Name: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
-                "Date of birth: "              + getDateOfBirth()            + '\n'     +
-                "Active member: "              + isActive()                  + '\n'     +
-                "Member type: "                + getMemberShipType()         + '\n'     +
-                "Yearly membership fee: "      + getMembershipFee()          + " DKK\n" +
-                "Debt: "                       + getDebt()                   + " DKK\n" +
-                "Team: "                       + getTeamsForSpecificMember() + '\n' +
-                "Active Discipline: "          + findDisciplines()           + "\n";
+        String medlemsStatus = isActive() ?  "Aktiv" : "Passiv";
+
+        return  "***Medlemsinformation***\n" +
+                "Navn: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
+                "Fødselsdag: "              + getDateOfBirth()            + '\n'     +
+                "Medlemsstatus: "              + medlemsStatus                  + '\n'     +
+                "Medlemstype: "                + getMemberShipType()         + '\n'     +
+                "Årligt kontigent: "      + getMembershipFee()          + " DKK\n" +
+                "Restance: "                       + getDebt()                   + " DKK\n" +
+                                        getTeamsForSpecificMember() + '\n' ;
+                //"Discipliner: "                       + findDisciplines() + '\n' ;
+//                "Competition records: "        + competitionRecord           + '\n' +
+//                "Training records: "           + trainingRecord              + '\n' ;
     }
 
     //------------------------------------------------------------------------------------------------------------------

@@ -7,18 +7,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 public class MemberCollection {
 
-    //***TO DO***-------------------------------------------------------------------------------------------------------
-    //TODO tjek om calculateTotalDebt er lavet korrekt
-
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
     private ArrayList<Member> memberList;
     private SaveToFile fileHandler = new SaveToFile();
-    private FileLoader loadToFole = new FileLoader();
+   private FileLoader fileLoader = new FileLoader();
+
+
 
     //CONSTRUCTOR
     public MemberCollection(){
-        this.memberList = loadToFole.getMembers();
-
+        this.memberList = fileLoader.getMembers();
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
@@ -32,13 +30,12 @@ public class MemberCollection {
         fileHandler.saveToFile(memberList);
     }
 
-
-    public ArrayList<Member> searchMember(String membersSearched) {
-        ArrayList<Member> foundMembers = new ArrayList<>(); //var kalder variablen, som er defineret efter new
-        for (Member items : memberList) {
-            if (items.getMemberFirstName().toLowerCase().contains(membersSearched.toLowerCase()) ||
-                    items.getMemberLastName().toLowerCase().contains(membersSearched.toLowerCase())) {
-                foundMembers.add(items);
+    public ArrayList<Member> searchMember(String input) {
+        ArrayList<Member> foundMembers = new ArrayList<>();
+        for (Member member : memberList) {
+            if (member.getMemberFirstName().equalsIgnoreCase(input) ||
+                    member.getMemberLastName().equalsIgnoreCase(input)) {
+                foundMembers.add(member);
             }
         }
         return foundMembers;
@@ -76,7 +73,8 @@ public class MemberCollection {
     public Member findSpecificMember(String specificMemberSearched) {
         Member targetMember = null;
         for (Member memberToEdit : memberList) {
-            if (memberToEdit.getMemberFirstName().equalsIgnoreCase(specificMemberSearched)) {
+            if (memberToEdit.getMemberFirstName().equalsIgnoreCase(specificMemberSearched) ||
+                    memberToEdit.getMemberLastName().equalsIgnoreCase(specificMemberSearched)) {
                 targetMember = memberToEdit;
                 return targetMember;
             }
@@ -84,15 +82,16 @@ public class MemberCollection {
         return targetMember;
     }
 
-    public boolean deleteMember(String memberToDelete){
-        Member targetMember = findSpecificMember(memberToDelete);
-        if (targetMember != null){
-            memberList.remove(targetMember);
-            fileHandler.saveToFile(memberList);
-            return true;
-        } else {
-            return false;
+    public boolean deleteMember(String memberName) {
+        for (Member member : memberList) {
+            if (member.getMemberFirstName().equalsIgnoreCase(memberName) ||
+                    member.getMemberLastName().equalsIgnoreCase(memberName)) {
+                memberList.remove(member);
+                fileHandler.saveToFile(memberList);
+                return true;
+            }
         }
+        return false;
     }
 
     public double calculateAnnualIncome(){
@@ -121,7 +120,9 @@ public class MemberCollection {
         return foundMembersDebt;
     }
 
-
+    public ArrayList<Member> getMemberList() {
+        return memberList;
+    }
 
     public int activeMembersCount() {
         int activeMembers = 0;
@@ -141,18 +142,6 @@ public class MemberCollection {
             }
         }
         return inActiveMembers;
-    }
-
-
-
-    //*** Getter/Setter***-------------------------------------------------------------------------------------------------------
-
-    public ArrayList<Member> getMemberList() {
-        return memberList;
-    }
-
-    public void setMemberList(ArrayList<Member> memberList) {
-        this.memberList = memberList;
     }
 
 
