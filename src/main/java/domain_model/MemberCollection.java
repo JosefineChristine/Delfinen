@@ -41,7 +41,6 @@ public class MemberCollection {
         return foundMembers;
     }
 
-
     public Member editMember(Member memberToEdit, int partToEdit, String newValue) {
 
         switch (partToEdit) {
