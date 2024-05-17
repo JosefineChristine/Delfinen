@@ -17,8 +17,9 @@ public class UserInterface {
     //***START PROGRAM***-----------------------------------------------------------------------------------------------
     public void startProgram() {
 
+        startMenu();
+
         while (userChoice != 7) {
-            startMenu();
             userChoice = Integer.parseInt(input.next());
 
             switch (userChoice) {
@@ -55,20 +56,22 @@ public class UserInterface {
         System.out.println("|______________________________________|");
     }
 
-    //TODO sørg for man kan komme tilbage til menuen, i stedet for at skulle stoppe programmet for at gøre noget nyt
 
     public void adminMenu() {
-        System.out.println("Delfinen har " + controller.activeMembersCount() + " aktive medlemmer på nuværende tidspunkt.");
-        System.out.println("Delfinen har " + controller.inActiveMembersCount() + " passive medlemmer på nuværende tidspunkt.");
-        System.out.println("Valgmuligheder: ");
-        System.out.println("1. Tilføj nye medlemmer\n" +
-                "2. Søg efter medlem\n" +
-                "3. Slet medlem\n" +
-                "4. Rediger stamoplysning for medlem\n" +
-                "5. Se alle medlemmer i klubben \n" +
-                "0. Tilbage til startmenu");
 
         while (userChoice != 0) {
+            System.out.println("**********************ADMINSTRATOR**********************");
+            System.out.println("Delfinen har " + controller.activeMembersCount() + " aktive medlemmer på nuværende tidspunkt.");
+            System.out.println("Delfinen har " + controller.inActiveMembersCount() + " passive medlemmer på nuværende tidspunkt.");
+            System.out.println("________________________________________________________");
+            System.out.println("Valgmuligheder: ");
+            System.out.println("1. Tilføj nye medlemmer\n" +
+                    "2. Søg efter medlem\n" +
+                    "3. Slet medlem\n" +
+                    "4. Rediger stamoplysning for medlem\n" +
+                    "5. Se alle medlemmer i klubben \n" +
+                    "0. Tilbage til startmenu");
+
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
                 case 0 -> {
@@ -80,14 +83,14 @@ public class UserInterface {
                     System.out.println("1. Konkurrencesvømmer");
                     System.out.println("2. Motionssvømmer");
                     int memberTypeChoice = Integer.parseInt(input.next());
-                    switch (memberTypeChoice){
-                        case 1 ->{
+                    switch (memberTypeChoice) {
+                        case 1 -> {
                             String membershipType = "Konkurrencesvømmer";
-                    addMember(membershipType);
+                            addMember(membershipType);
                         }
                         case 2 -> {
                             String membershipType = "Motionssvømmer";
-                    addMember(membershipType);
+                            addMember(membershipType);
                         }
                     }
                 }
@@ -109,13 +112,17 @@ public class UserInterface {
     }
 
     public void kassererMenu() {
-        System.out.println("Delfinens årlige indtægt: " + controller.calculateAnnualIncome());
-        System.out.println("Klubbens medlemmer har i alt " + controller.calculateTotalDebt() + " i restance.");
-        System.out.println("Valgmuligheder: ");
-        System.out.println("1. Søg efter medlem\n" +
-                "2. Se liste af medlemmer med restance\n" +
-                "0. Tilbage til startmenu");
+
         while (userChoice != 0) {
+            System.out.println("*********************KASSERER*********************");
+            System.out.println("Delfinens årlige indtægt: " + controller.calculateAnnualIncome());
+            System.out.println("Klubbens medlemmer har i alt " + controller.calculateTotalDebt() + " i restance.");
+            System.out.println("__________________________________________________");
+            System.out.println("Valgmuligheder: ");
+            System.out.println("1. Søg efter medlem\n" +
+                    "2. Se liste af medlemmer med restance\n" +
+                    "0. Tilbage til startmenu");
+
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
                 case 0 -> {
@@ -133,15 +140,16 @@ public class UserInterface {
     }
 
     public void trænerMenu() {
-        System.out.println("Valgmuligheder: ");
-        System.out.println("1. Se liste af medlemmer efter træner  \n" +
-                "2. Se top fem træningstider efter svømmedisciplin \n" +
-                "3. Tilføj konkurrenceresultat                     \n" +
-                "4. Tilføj træningsresultat                        \n" +
-                "5. Søg efter medlem                               \n" +
-                "0. Tilbage til startmenu                          \n");
 
         while (userChoice != 0) {
+            System.out.println("**********************TRÆNER**********************");
+            System.out.println("Valgmuligheder: ");
+            System.out.println("1. Se liste af medlemmer efter træner  \n" +
+                    "2. Se top fem træningstider efter svømmedisciplin \n" +
+                    "3. Tilføj konkurrenceresultat                     \n" +
+                    "4. Tilføj træningsresultat                        \n" +
+                    "5. Søg efter medlem                               \n" +
+                    "0. Tilbage til startmenu                          \n");
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
                 case 0 -> {
@@ -150,12 +158,12 @@ public class UserInterface {
                 case 1 -> {
                     //TODO se holdliste efter træner
                     System.out.println("Søg efter træner som du gerne vil se en medlemsliste over");
-                   // Coach coach = searchCoach();
+                    // Coach coach = searchCoach();
 
-                   // Coach coach = controller.findSpecificCoach(trænerSøgning);
-                   // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
+                    // Coach coach = controller.findSpecificCoach(trænerSøgning);
+                    // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
                     //System.out.println("liste af konkurrencemedlemmer");
-                   // coach.getCompetitionMemberListForCoach();
+                    // coach.getCompetitionMemberListForCoach();
 
                 }
                 case 2 -> {
@@ -203,7 +211,7 @@ public class UserInterface {
                 case 4 -> {
                     //tilføj træningsresultat
                     System.out.println("Du har valgt at tilføje et træningsresultat");
-                    System.out.println("Tilføj titel"); // hvad er titel? //TODO slet titel?
+                    System.out.println("Skriv navnet på det medlem du vil tilføje resultatet for?"); //TODO skrive fornavn/efternavn/begge dele?
                     String titel = input.next();
 
                     System.out.println("Tilføj disciplin");
@@ -235,7 +243,7 @@ public class UserInterface {
                         String userInput = input.next();
 
                         if (userInput.matches("0[1-9]|1[0-2]")) {
-                            monthOfTraining= Integer.parseInt(userInput);
+                            monthOfTraining = Integer.parseInt(userInput);
                             if (monthOfTraining >= 1 && monthOfTraining <= 12) {
                                 break;
                             }
@@ -243,7 +251,7 @@ public class UserInterface {
                         System.out.println("Input er ikke accepteret, tast venligst en godkendt måned mellem 01-12.");
                     }
 
-                    int yearOfTraining= -1;
+                    int yearOfTraining = -1;
 
                     int currentYear = Year.now().getValue();
                     int minYear = currentYear - 10;
@@ -377,7 +385,7 @@ public class UserInterface {
 
         if (memberType.equals("Motionssvømmer")) {
             controller.addExerciseMember(new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
-        }else if (memberType.equals("Konkurrencesvømmer")) {
+        } else if (memberType.equals("Konkurrencesvømmer")) {
             controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
         }
 
@@ -471,7 +479,7 @@ public class UserInterface {
         if (memberIndex >= 0 && memberIndex < matchingMembers.size()) {
             Member targetMember = matchingMembers.get(memberIndex);
 
-           // int menuOption = -1;
+            // int menuOption = -1;
             while (menuOption != 0) {
                 System.out.println("Skriv 1 for at ændre fornavnet" + "\n" +
                         "Skriv 2 for at ændre efternavnet" + "\n" +

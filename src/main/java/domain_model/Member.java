@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 
-//TODO - Hvordan håndterer vi member type? String metoden vs. enums?
 public abstract class Member {
     private String memberFirstName;
     private String memberLastName;
