@@ -159,6 +159,7 @@ public class UserInterface {
                 case 1 -> {
                     //TODO se holdliste efter træner
                     System.out.println("Søg efter træner som du gerne vil se en medlemsliste over");
+                    System.out.println(controller.getCoachList());
                     searchCoach();
 
                     // Coach coach = controller.findSpecificCoach(trænerSøgning);

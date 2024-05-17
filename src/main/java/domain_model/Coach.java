@@ -1,6 +1,8 @@
 package domain_model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 public class Coach {
@@ -43,6 +45,7 @@ public class Coach {
         memberListForCoach.remove(member);
     }
 
+    Member member = new CompetitionMember("Josefine", "Røes", LocalDate.of(1994,11,11), 0, true);
 
 
     //***METHODS***-----------------------------------------------------------------------------------------------------

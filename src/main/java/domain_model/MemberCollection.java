@@ -11,9 +11,9 @@ public class MemberCollection {
     private ArrayList<Member> memberList;
     private SaveToFile fileHandler = new SaveToFile();
     private FileLoader fileLoader = new FileLoader();
-    private ArrayList<Coach> coachList;
 
-    //CONSTRUCTOR
+
+    //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public MemberCollection(){
         this.memberList = fileLoader.getMembers();
      //   this.coachList = new ArrayList<>();

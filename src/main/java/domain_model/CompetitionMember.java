@@ -48,6 +48,13 @@ public class CompetitionMember extends Member {
         return bestTrainingRecord;
     }
 
+    public ArrayList<TrainingRecord> getTrainingRecords() {
+        return trainingRecords;
+    }
+
+    public ArrayList<CompetitionRecord> getCompetitionRecords() {
+        return competitionRecords;
+    }
 
     public String getTeamsForSpecificMember() {
         ArrayList<String> memberTeams = new ArrayList<>();
@@ -97,11 +104,6 @@ public class CompetitionMember extends Member {
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
 
-
-
-
-
-
     public ArrayList<String> findDisciplines(){
         for(Record record : memberRecords){
             if(!activeDisciplines.contains(record.getDiscipline())){
@@ -142,15 +144,15 @@ public class CompetitionMember extends Member {
 
         return  "***Medlemsinformation konkurrencesvømmer***\n" +
                 "Navn: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
-                "Fødselsdag: "              + getDateOfBirth()            + '\n'     +
-                "Medlemsstatus: "              + medlemsStatus                  + '\n'     +
+                "Fødselsdag: "                 + getDateOfBirth()            + '\n'     +
+                "Medlemsstatus: "              + medlemsStatus               + '\n'     +
                 "Medlemstype: "                + getMemberShipType()         + '\n'     +
-                "Årligt kontigent: "      + getMembershipFee()          + " DKK\n" +
-                "Restance: "                       + getDebt()                   + " DKK\n" +
-                                        getTeamsForSpecificMember() + '\n' ;
-                //"Discipliner: "                       + findDisciplines() + '\n' ;
-//                "Competition records: "        + competitionRecord           + '\n' +
-//                "Training records: "           + trainingRecord              + '\n' ;
+                "Årligt kontigent: "           + getMembershipFee()          + " DKK\n" +
+                "Restance: "                   + getDebt()                   + " DKK\n" +
+                "Teams "                       + getTeamsForSpecificMember() + '\n'     +
+                "Competition records: "        + getCompetitionRecords()     + '\n'     +
+                "Training records: "           + getTrainingRecords()        + '\n'     ;
+                //"Discipliner: "              + findDisciplines()           + '\n' ;
     }
 
     //------------------------------------------------------------------------------------------------------------------
