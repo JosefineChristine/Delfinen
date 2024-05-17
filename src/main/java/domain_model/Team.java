@@ -22,7 +22,6 @@ public class Team {
         this.teamDiscipline = teamDiscipline.toLowerCase(); // ex. " Crawl"
         this.coach = coach;
         this.isTeamSenior = isTeamSenior;
-       // this.teamMemberList = new ArrayList<>();
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -30,9 +29,9 @@ public class Team {
         return teamDiscipline;
     }
 
-//    public String getIsTeamSenior(){
-//        return (true) ? "Senior" : "Junior";
-//    }
+    public String getIsTeamSenior(){
+        return (true) ? "Senior" : "Junior";
+    }
 
     public String getCoach() {
         return coach.getCoachFirstName() + ' ' + coach.getCoachLastName();
@@ -86,7 +85,7 @@ public class Team {
                 "Team name: " + teamDiscipline + '\n' +
                 "Team coach: " + getCoach() + '\n' +
 
-//                "Team type "  + getIsTeamSenior() + '\n' +
+                "Team type "  + getIsTeamSenior() + '\n' +
                 "Team members: \n"         +
                 getTeamListAsString();
     }

@@ -6,6 +6,7 @@ public class TeamCollection {
 
 
     ArrayList<Team> allTheTeams = new ArrayList<>();
+    MemberCollection memberCollection = new MemberCollection();
 
     //************COACHES********--------
     Coach coach1 = new Coach("Vahab", "Lotfyyekta");
@@ -31,7 +32,6 @@ public class TeamCollection {
     public TeamCollection() {
         teamsArrayList();
         generateTeams();
-       // showTeams();
 
     }
 
@@ -45,7 +45,6 @@ public class TeamCollection {
 
 
     public void generateTeams(){
-        MemberCollection memberCollection = new MemberCollection();
         ArrayList<Member> members;
         members = memberCollection.getMemberList();
         for (Member member : members) {
@@ -55,13 +54,15 @@ public class TeamCollection {
                 addExerciseMember((ExerciseMember) member);
             }
 
+
         }
+
     }
 
 
     // make a methode for competition member
     public void addCompetitionMember(CompetitionMember memberToAdd){
-        ArrayList<String> memberDisciplines = memberToAdd.getActiveDisciplines();
+        ArrayList<String> memberDisciplines = memberToAdd.findDisciplines();
         if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")) {
             for (String memberDiscipline : memberDisciplines) {
                 switch (memberDiscipline) {
@@ -125,9 +126,6 @@ public class TeamCollection {
 }
 
     //------------------------------------------------------------------------------------------------------------------
-
-
-
 
 
 

@@ -33,6 +33,7 @@ public class CompetitionMember extends Member {
         return memberRecords;
     }
 
+    //TODO this methode does not work. must fixe
     public ArrayList<String> getActiveDisciplines() {
         return activeDisciplines;
     }
