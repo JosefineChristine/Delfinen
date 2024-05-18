@@ -23,6 +23,15 @@ public class Controller {
 
     //***COACH MENU***--------------------------------------------------------------------------------------------------
 
+    public void addRecord(Record record) {
+        record.addRecord(record);
+    }
+
+
+    public CompetitionMember[] getTeamTopFive(String discipline, String age) {
+        return teamCollection.findTopFives(discipline, age);
+
+    }
 
     //***ADMIN MENU***--------------------------------------------------------------------------------------------------
     public void addCompetitionMember(CompetitionMember competitionMember) {
@@ -87,13 +96,13 @@ public class Controller {
         return coach.getMemberListForCoach();
     }
 
-//    public ArrayList<Coach> searchCoach(String input) {
-//        return teamCollection.searchCoach(input);
-//    }
-//
-//    public ArrayList<Coach> getCoachList() { //TODO skal virke
-//        return teamCollection.getCoachList();
-//    }
+    public ArrayList<Coach> searchCoach(String input) {
+        return teamCollection.searchCoach(input);
+    }
+
+    public ArrayList<Coach> getCoachList() { //TODO skal virke
+        return teamCollection.getCoachList();
+    }
 
 
     //------------------------------------------------------------------------------------------------------------------
