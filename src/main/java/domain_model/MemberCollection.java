@@ -5,6 +5,7 @@ import data_handler.SaveToFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
 public class MemberCollection {
 
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
@@ -14,9 +15,9 @@ public class MemberCollection {
 
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public MemberCollection(){
+    public MemberCollection() {
         this.memberList = fileLoader.getMembers();
-     //   this.coachList = new ArrayList<>();
+        //   this.coachList = new ArrayList<>();
 
     }
 
@@ -72,6 +73,7 @@ public class MemberCollection {
         fileHandler.saveToFile(memberList);
         return memberToEdit;
     }
+
     public Member findSpecificMember(String specificMemberSearched) {
         Member targetMember = null;
         for (Member memberToEdit : memberList) {
@@ -96,9 +98,9 @@ public class MemberCollection {
         return false;
     }
 
-    public double calculateAnnualIncome(){
+    public double calculateAnnualIncome() {
         double annualIncome = 0;
-        for(Member members : memberList){
+        for (Member members : memberList) {
             annualIncome += members.calculateMembershipFee();
         }
         return annualIncome;
@@ -147,7 +149,6 @@ public class MemberCollection {
     }
 
     //***COACH METHODS***-----------------------------------------------------------------------------------------------
-
 
 
 }

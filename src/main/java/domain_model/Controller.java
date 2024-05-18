@@ -16,23 +16,20 @@ public class Controller {
     public Controller() {
         memberCollection = new MemberCollection();
         teamCollection = new TeamCollection();
-        }
-
+    }
 
 
     //***KASSERERMENU***------------------------------------------------------------------------------------------------
 
     //***COACH MENU***--------------------------------------------------------------------------------------------------
-//    public void addRecord(Record record){
-//        record.addRecord(record);
-//    }
+
 
     //***ADMIN MENU***--------------------------------------------------------------------------------------------------
-    public void addCompetitionMember(CompetitionMember competitionMember){
+    public void addCompetitionMember(CompetitionMember competitionMember) {
         memberCollection.addCompetitionMember(competitionMember);
     }
 
-    public void addExerciseMember(ExerciseMember exerciseMember){
+    public void addExerciseMember(ExerciseMember exerciseMember) {
         memberCollection.addExerciseMember(exerciseMember);
     }
 
@@ -43,6 +40,7 @@ public class Controller {
     public Member findSpecificMember(String specificMemberSearched) {
         return memberCollection.findSpecificMember(specificMemberSearched);
     }
+
     public ArrayList<Member> searchMemberDebt() {
         return memberCollection.searchMemberDebt();
     }
@@ -60,11 +58,11 @@ public class Controller {
         return memberCollection.getMemberList();
     }
 
-    public double calculateAnnualIncome(){
+    public double calculateAnnualIncome() {
         return memberCollection.calculateAnnualIncome();
     }
 
-    public double calculateTotalDebt(){
+    public double calculateTotalDebt() {
         return memberCollection.calculateTotalDebt();
     }
 
@@ -77,27 +75,25 @@ public class Controller {
     }
 
     //***COACH MENU***--------------------------------------------------------------------------------------------------
-    public void addTrainingRecordToMember(TrainingRecord record){
+    public void addTrainingRecordToMember(TrainingRecord record) {
         competitionMember.addTrainingRecordToMember(record);
     }
 
-    public void addCompetitionRecordToMember(CompetitionRecord record){
+    public void addCompetitionRecordToMember(CompetitionRecord record) {
         competitionMember.addCompetitionRecordToMember(record);
     }
 
-    public ArrayList<Member>getCompetitionMemberListForCoach(){
+    public ArrayList<Member> getCompetitionMemberListForCoach() {
         return coach.getMemberListForCoach();
     }
 
-    public ArrayList<Coach> searchCoach(String input){
+    public ArrayList<Coach> searchCoach(String input) {
         return teamCollection.searchCoach(input);
     }
 
     public ArrayList<Coach> getCoachList() { //TODO skal virke
         return teamCollection.getCoachList();
     }
-
-
 
 
     //------------------------------------------------------------------------------------------------------------------

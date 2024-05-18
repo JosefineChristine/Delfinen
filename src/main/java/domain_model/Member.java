@@ -2,7 +2,7 @@ package domain_model;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
+
 
 public abstract class Member {
     private String memberFirstName;
@@ -98,27 +98,28 @@ public abstract class Member {
         if (age < 18) {
             membersShipType = "junior";
         } else {
-             membersShipType= "senior";
+            membersShipType = "senior";
         }
         setMemberShipType(membersShipType);
         return membersShipType;
     }
 
-        public double calculateMembershipFee() {
-            LocalDate currentDate = LocalDate.now();
-            int age = Period.between(dateOfBirth, currentDate).getYears();
-            double yearlyMembershipFee = 500;
+    public double calculateMembershipFee() {
+        LocalDate currentDate = LocalDate.now();
+        int age = Period.between(dateOfBirth, currentDate).getYears();
+        double yearlyMembershipFee = 500;
 
-            if (isActive) {
-                if (age < 18) {
-                    yearlyMembershipFee = 1000;
-                } else if (age > 60) {
-                    yearlyMembershipFee = (1600 * 0.75);
-                } else {
-                    yearlyMembershipFee = 1600;
-                }
-            } return yearlyMembershipFee;
+        if (isActive) {
+            if (age < 18) {
+                yearlyMembershipFee = 1000;
+            } else if (age > 60) {
+                yearlyMembershipFee = (1600 * 0.75);
+            } else {
+                yearlyMembershipFee = 1600;
+            }
         }
+        return yearlyMembershipFee;
+    }
 
     @Override
     public String toString() {

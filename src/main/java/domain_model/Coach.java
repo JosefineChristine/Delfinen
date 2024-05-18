@@ -2,7 +2,6 @@ package domain_model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 
 public class Coach {
@@ -15,8 +14,9 @@ public class Coach {
     private String coachLastName;
 
     private ArrayList<Member> memberListForCoach;
+
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public Coach(String coachFirstName, String coachLastName){
+    public Coach(String coachFirstName, String coachLastName) {
         this.coachFirstName = coachFirstName;
         this.coachLastName = coachLastName;
         this.memberListForCoach = new ArrayList<>();
@@ -24,11 +24,11 @@ public class Coach {
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
-    public String getCoachFirstName(){
+    public String getCoachFirstName() {
         return coachFirstName;
     }
 
-    public String getCoachLastName(){
+    public String getCoachLastName() {
         return coachLastName;
     }
 
@@ -37,15 +37,15 @@ public class Coach {
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-    public void addMemberToCoach(Member member){
+    public void addMemberToCoach(Member member) {
         memberListForCoach.add(member);
     }
 
-    public void removeMemberToCoach(Member member){
+    public void removeMemberToCoach(Member member) {
         memberListForCoach.remove(member);
     }
 
-    Member member = new CompetitionMember("Josefine", "Røes", LocalDate.of(1994,11,11), 0, true);
+    Member member = new CompetitionMember("Josefine", "Røes", LocalDate.of(1994, 11, 11), 0, true);
 
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
@@ -53,20 +53,10 @@ public class Coach {
         return memberListForCoach;
     }
 
-//    public ArrayList<Coach> printCoachList() { /TODO måske slet
-//        ArrayList<Coach> foundCoaches = new ArrayList<>();
-//        for (Coach coach : coachList) {
-//            if (coach.getDebt() > 0) {
-//                foundMembersDebt.add(member);
-//            }
-//        }
-//        return ;
-//    }
-
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     @Override
-    public String toString(){
+    public String toString() {
         return "\n" + getCoachFirstName() + " " + getCoachLastName();
     }
 

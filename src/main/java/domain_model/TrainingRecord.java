@@ -6,8 +6,8 @@ public class TrainingRecord extends Record {
 
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public TrainingRecord(String title, String discipline ,double result, LocalDate date) {
-        super(title,discipline,result,date);
+    public TrainingRecord(String title, String discipline, double result, LocalDate date) {
+        super(title, discipline, result, date);
 
     }
 
@@ -15,12 +15,12 @@ public class TrainingRecord extends Record {
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     @Override
-    public String toString(){
+    public String toString() {
         return
                 "Træningsresultet: \n" +
-                "Disciplin: "        + getDiscipline() + '\n' +
-                "Tidsresultat: " + getResult() + " minutter"    + '\n' +
-                "Dato: "              + getDate()       + '\n' ;
+                        "Disciplin: " + getDiscipline() + '\n' +
+                        "Tidsresultat: " + getResult() + " minutter" + '\n' +
+                        "Dato: " + getDate() + '\n';
     }
 
     //------------------------------------------------------------------------------------------------------------------

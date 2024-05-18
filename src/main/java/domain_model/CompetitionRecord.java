@@ -1,8 +1,7 @@
 package domain_model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
+
 
 public class CompetitionRecord extends Record {
 
@@ -10,8 +9,8 @@ public class CompetitionRecord extends Record {
     private String placeAchieved;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public CompetitionRecord(String title, String discipline , double result, LocalDate date, String place ) {
-        super(title,discipline,result,date);
+    public CompetitionRecord(String title, String discipline, double result, LocalDate date, String place) {
+        super(title, discipline, result, date);
         this.placeAchieved = place;
     }
 
@@ -30,13 +29,13 @@ public class CompetitionRecord extends Record {
 
     //*****************************************TO-STRING****************************************************************
     @Override
-    public String toString(){
+    public String toString() {
         return
                 "Konkurrenceresultat: \n" +
-                "Disciplin: "        + getDiscipline()    + '\n' +
-                "Tidsresultat: " + getResult() +  " minutter"      + '\n' +
-                "Dato: "              + getDate()          + '\n' +
-                "Placering : "             + getPlaceAchieved() + '\n' +
-                "Begivenhed: "             + getEventName()     + '\n';
+                        "Disciplin: " + getDiscipline() + '\n' +
+                        "Tidsresultat: " + getResult() + " minutter" + '\n' +
+                        "Dato: " + getDate() + '\n' +
+                        "Placering : " + getPlaceAchieved() + '\n' +
+                        "Begivenhed: " + getEventName() + '\n';
     }
 }

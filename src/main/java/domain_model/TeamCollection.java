@@ -22,28 +22,15 @@ public class TeamCollection {
     Team team5 = new Team("crawl", coach1, false);
     Team team6 = new Team("butterfly", coach2, false);
     Team team7 = new Team("backstroke", coach3, false);
-    Team team8 = new Team("breaststroke",coach4, false);
+    Team team8 = new Team("breaststroke", coach4, false);
     Team team9 = new Team("exercise senior", coach5, true);
-    Team team10 = new Team("exercise junior", coach5, false );
+    Team team10 = new Team("exercise junior", coach5, false);
 
     public TeamCollection() {
         teamsArrayList();
         populateTeams();
         initializeCoaches();
     }
-
-
-//    public ArrayList<Coach> searchCoach(String input) { //TODO Måske slet?
-//        ArrayList<Coach> foundCoaches = new ArrayList<>();
-//        for (Coach coach : coachList) {
-//            if (coach.getCoachFirstName().equalsIgnoreCase(input) ||
-//                    coach.getCoachLastName().equalsIgnoreCase(input)) {
-//                foundCoaches.add(coach);
-//            }
-//        }
-//        return foundCoaches;
-//    }
-
 
 
     //************METHODS********---------
@@ -61,11 +48,11 @@ public class TeamCollection {
     }
 
 
-    public void populateTeams(){ //Sætter medlemmer ind fra CSV filen til arraylister som enten CompetitionMember eller ExerciseMember
+    public void populateTeams() { //Sætter medlemmer ind fra CSV filen til arraylister som enten CompetitionMember eller ExerciseMember
         ArrayList<Member> members;
         members = memberCollection.getMemberList();
         for (Member member : members) {
-            if(member instanceof CompetitionMember){
+            if (member instanceof CompetitionMember) {
                 addCompetitionMember((CompetitionMember) member);
             } else {
                 addExerciseMember((ExerciseMember) member);
@@ -74,7 +61,7 @@ public class TeamCollection {
         }
     }
 
-    public void addCompetitionMember(CompetitionMember memberToAdd){
+    public void addCompetitionMember(CompetitionMember memberToAdd) {
         ArrayList<String> memberDisciplines = memberToAdd.findDisciplines();
         if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")) {
             for (String memberDiscipline : memberDisciplines) {
@@ -90,9 +77,9 @@ public class TeamCollection {
             for (String memberDiscipline : memberDisciplines) {
                 switch (memberDiscipline) {
                     case "crawl" -> team1.addMemberToTeam(memberToAdd);
-                    case "butterfly"-> team2.addMemberToTeam(memberToAdd);
-                    case "backstroke"-> team3.addMemberToTeam(memberToAdd);
-                    case "breaststroke"->team4.addMemberToTeam(memberToAdd);
+                    case "butterfly" -> team2.addMemberToTeam(memberToAdd);
+                    case "backstroke" -> team3.addMemberToTeam(memberToAdd);
+                    case "breaststroke" -> team4.addMemberToTeam(memberToAdd);
                 }
             }
 
@@ -100,15 +87,15 @@ public class TeamCollection {
 
     }
 
-    public void addExerciseMember(ExerciseMember memberToAdd){
-        if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")){
+    public void addExerciseMember(ExerciseMember memberToAdd) {
+        if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")) {
             team9.addMemberToTeam(memberToAdd);
         } else if (memberToAdd.getAgeGroup().equalsIgnoreCase("senior")) {
             team10.addMemberToTeam(memberToAdd);
         }
     }
 
-    public void teamsArrayList(){
+    public void teamsArrayList() {
 
         allTheTeams.add(team1);
         allTheTeams.add(team2);
@@ -124,16 +111,6 @@ public class TeamCollection {
     }
 
 
-    public void showTeams() { //TODO deal with it
-
-        for (Team team : allTheTeams) {
-            System.out.println(team.getTeamListAsString());
-            System.out.println(team.getTeamMemberList().size());
-
-        }
-    }
-
-
     public ArrayList<Coach> searchCoach(String input) { //TODO Virker ikke endnu
         ArrayList<Coach> foundCoaches = new ArrayList<>();
         for (Coach coach : getCoachList()) {
@@ -145,7 +122,7 @@ public class TeamCollection {
         return foundCoaches;
     }
 
-    public void addCoachToCoachList(Coach coach){
+    public void addCoachToCoachList(Coach coach) {
         coachList.add(coach);
     }
 
@@ -156,7 +133,7 @@ public class TeamCollection {
 
 }
 
-    //------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------
 
 
 
