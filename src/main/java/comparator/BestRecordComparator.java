@@ -1,15 +1,3 @@
-//package comparator;
-//
-//import domain_model.CompetitionMember;
-//
-//
-//import java.util.Comparator;
-//
-//public class BestRecordComparator {
-//    public  Comparator<CompetitionMember> BEST_TRAINING_RECORD =
-//            Comparator.comparing(CompetitionMember::getBestTrainingRecord);
-//}
-
 package comparator;
 
 import domain_model.CompetitionMember;

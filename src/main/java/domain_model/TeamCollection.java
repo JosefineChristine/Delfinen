@@ -5,6 +5,7 @@ public class TeamCollection {
 
     ArrayList<Team> allTheTeams = new ArrayList<>();
     MemberCollection memberCollection = new MemberCollection();
+    private ArrayList<Coach> coachList = new ArrayList<>();
 
     //************COACHES********--------
     Coach coach1 = new Coach("Vahab", "Lotfyyekta");
@@ -21,43 +22,45 @@ public class TeamCollection {
     Team team5 = new Team("crawl", coach1, false);
     Team team6 = new Team("butterfly", coach2, false);
     Team team7 = new Team("backstroke", coach3, false);
-    Team team8 = new Team("breaststroke",coach4, false);
+    Team team8 = new Team("breaststroke", coach4, false);
     Team team9 = new Team("exercise senior", coach5, true);
-    Team team10 = new Team("exercise junior", coach5, false );
-
-
+    Team team10 = new Team("exercise junior", coach5, false);
 
     public TeamCollection() {
         teamsArrayList();
-        generateTeams();
-
+        populateTeams();
+        initializeCoaches();
     }
 
     //************METHODS********---------
-
     public ArrayList<Team> getAllTheTeams() {
         return allTheTeams;
     }
 
 
-    public void generateTeams(){
+    private void initializeCoaches() {
+        addCoachToCoachList(coach1);
+        addCoachToCoachList(coach2);
+        addCoachToCoachList(coach3);
+        addCoachToCoachList(coach4);
+        addCoachToCoachList(coach5);
+    }
+
+
+    public void populateTeams() { //Sætter medlemmer ind fra CSV filen til arraylister som enten CompetitionMember eller ExerciseMember
         ArrayList<Member> members;
         members = memberCollection.getMemberList();
         for (Member member : members) {
-            if(member instanceof CompetitionMember){
+            if (member instanceof CompetitionMember) {
                 addCompetitionMember((CompetitionMember) member);
             } else {
                 addExerciseMember((ExerciseMember) member);
             }
 
-
         }
-
     }
 
-
-    // make a methode for competition member
-    public void addCompetitionMember(CompetitionMember memberToAdd){
+    public void addCompetitionMember(CompetitionMember memberToAdd) {
         ArrayList<String> memberDisciplines = memberToAdd.findDisciplines();
         if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")) {
             for (String memberDiscipline : memberDisciplines) {
@@ -73,9 +76,9 @@ public class TeamCollection {
             for (String memberDiscipline : memberDisciplines) {
                 switch (memberDiscipline) {
                     case "crawl" -> team1.addMemberToTeam(memberToAdd);
-                    case "butterfly"-> team2.addMemberToTeam(memberToAdd);
-                    case "backstroke"-> team3.addMemberToTeam(memberToAdd);
-                    case "breaststroke"->team4.addMemberToTeam(memberToAdd);
+                    case "butterfly" -> team2.addMemberToTeam(memberToAdd);
+                    case "backstroke" -> team3.addMemberToTeam(memberToAdd);
+                    case "breaststroke" -> team4.addMemberToTeam(memberToAdd);
                 }
             }
 
@@ -83,17 +86,15 @@ public class TeamCollection {
 
     }
 
-
-    // make a method for exercise member
-    public void addExerciseMember(ExerciseMember memberToAdd){
-        if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")){
+    public void addExerciseMember(ExerciseMember memberToAdd) {
+        if (memberToAdd.getAgeGroup().equalsIgnoreCase("junior")) {
             team9.addMemberToTeam(memberToAdd);
         } else if (memberToAdd.getAgeGroup().equalsIgnoreCase("senior")) {
             team10.addMemberToTeam(memberToAdd);
         }
     }
 
-    public void teamsArrayList(){
+    public void teamsArrayList() {
 
         allTheTeams.add(team1);
         allTheTeams.add(team2);
@@ -134,10 +135,26 @@ public class TeamCollection {
         return topFive;
     }
 
+    public void addCoachToCoachList(Coach coach) {
+        coachList.add(coach);
+    }
+    public ArrayList<Coach> getCoachList() {
+        return coachList;
+    }
 
+    public ArrayList<Coach> searchCoach(String input) { //TODO Virker ikke endnu
+        ArrayList<Coach> foundCoaches = new ArrayList<>();
+        for (Coach coach : getCoachList()) {
+            if (coach.getCoachFirstName().equalsIgnoreCase(input) ||
+                    coach.getCoachLastName().equalsIgnoreCase(input)) {
+                foundCoaches.add(coach);
+            }
+        }
+        return foundCoaches;
+    }
 }
 
-    //------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------
 
 
 

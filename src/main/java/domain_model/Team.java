@@ -4,7 +4,7 @@ import comparator.BestRecordComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+
 
 public class Team {
 
@@ -17,20 +17,20 @@ public class Team {
     private boolean isTeamSenior;
     Coach coach;
 
-
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public Team(String teamDiscipline, Coach coach, boolean isTeamSenior){
+    public Team(String teamDiscipline, Coach coach, boolean isTeamSenior) {
         this.teamDiscipline = teamDiscipline.toLowerCase(); // ex. " Crawl"
         this.coach = coach;
         this.isTeamSenior = isTeamSenior;
+        initialiseCompetitionMemberToCoach();
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
-    public String getTeamDiscipline(){
+    public String getTeamDiscipline() {
         return teamDiscipline;
     }
 
-    public String getIsTeamSenior(){
+    public String getIsTeamSenior() {
         return (true) ? "Senior" : "Junior";
     }
 
@@ -38,11 +38,11 @@ public class Team {
         return coach.getCoachFirstName() + ' ' + coach.getCoachLastName();
     }
 
-    public ArrayList<Member> getTeamMemberList(){
+    public ArrayList<Member> getTeamMemberList() {
         return teamMemberList;
     }
 
-    
+
     public String getTeamListAsString() {
         String teamMembers = "";
         for (Member member : teamMemberList) {
@@ -51,21 +51,26 @@ public class Team {
         return teamMembers;
     }
 
+    //***METHODS***----------------------------------------------------------------------------------------
+    public void initialiseCompetitionMemberToCoach() {
+        coach.setMemberListForCoach(getTeamMemberList());
+    }
+
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
 
-    public void addMemberToTeam(Member member){
+    public void addMemberToTeam(Member member) {
         teamMemberList.add(member);
 
     }
 
-    public CompetitionMember[] getTopFive(){
+    public CompetitionMember[] getTopFive() {
         CompetitionMember[] topFive = new CompetitionMember[5];
         ArrayList<CompetitionMember> membersToSort = new ArrayList<>();
 
         for (Member member : teamMemberList) {
 
-                membersToSort.add((CompetitionMember) member);
+            membersToSort.add((CompetitionMember) member);
         }
         Collections.sort(membersToSort, new BestRecordComparator());
 
@@ -79,7 +84,7 @@ public class Team {
         return null;
     }
 
-    public void removeMemberofTeam(Member member){
+    public void removeMemberofTeam(Member member) {
         this.teamMemberList.remove(member);
     }
 
@@ -90,8 +95,8 @@ public class Team {
                 "Team name: " + teamDiscipline + '\n' +
                 "Team coach: " + getCoach() + '\n' +
 
-                "Team type "  + getIsTeamSenior() + '\n' +
-                "Team members: \n"         +
+                "Team type " + getIsTeamSenior() + '\n' +
+                "Team members: \n" +
                 getTeamListAsString();
     }
 

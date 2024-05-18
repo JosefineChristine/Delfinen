@@ -58,8 +58,8 @@ public abstract class Record {
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
 
-    public void addRecord(Record record){
-    recordList.add(record);
+    public void addRecord(Record record) {
+        recordList.add(record);
     }
 
 

@@ -13,14 +13,14 @@ public class SaveToFile {
         try (PrintStream saveFile = new PrintStream("Delfin-members.csv")) {
             for (Member member : memberList) {
                 String csvLine;
-                    csvLine = String.format("%s,%s,%s,%.2f,%b,%s",
-                            member.getMemberFirstName(),
-                            member.getMemberLastName(),
-                            member.getDateOfBirth(),
-                            member.getDebt(),
-                            member.isActive(),
-                            member.getMemberShipType());
-                if (!member.getMemberShipType().equalsIgnoreCase("exerciser"))  {
+                csvLine = String.format("%s,%s,%s,%.2f,%b,%s",
+                        member.getMemberFirstName(),
+                        member.getMemberLastName(),
+                        member.getDateOfBirth(),
+                        member.getDebt(),
+                        member.isActive(),
+                        member.getMemberShipType());
+                if (!member.getMemberShipType().equalsIgnoreCase("exerciser")) {
                     String[] memberRecords = competitionMemberHandler((CompetitionMember) member);
                     for (String record : memberRecords) {
                         csvLine = csvLine + "," + record;
@@ -38,17 +38,17 @@ public class SaveToFile {
         ArrayList<Record> memberRecords = member.getMemberRecords();
         for (Record memberRecord : memberRecords) {
             String recordLine = "";
-                recordLine = String.format("%s,%s,%.2f,%s",
-                        memberRecord.getEventName(),
-                        memberRecord.getDiscipline(),
-                        memberRecord.getResult(),
-                        memberRecord.getDate());
+            recordLine = String.format("%s,%s,%.2f,%s",
+                    memberRecord.getEventName(),
+                    memberRecord.getDiscipline(),
+                    memberRecord.getResult(),
+                    memberRecord.getDate());
 
-          if (memberRecord instanceof CompetitionRecord) {
-               String rank= String.format("%s",
+            if (memberRecord instanceof CompetitionRecord) {
+                String rank = String.format("%s",
                         ((CompetitionRecord) memberRecord).getPlaceAchieved());
-              recordLine = recordLine + "," + rank;
-          }
+                recordLine = recordLine + "," + rank;
+            }
             recordValues.add(recordLine);
         }
         return recordValues.toArray(new String[0]);
