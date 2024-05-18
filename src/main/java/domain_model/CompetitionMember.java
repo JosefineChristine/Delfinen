@@ -5,7 +5,7 @@ import comparator.RecordComparator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+
 
 public class CompetitionMember extends Member {
 
@@ -15,7 +15,7 @@ public class CompetitionMember extends Member {
     private ArrayList<CompetitionRecord> competitionRecords;
     private ArrayList<Team> teams;
     private Team team;
-    private ArrayList<String> activeDisciplines =new ArrayList<>();
+    private ArrayList<String> activeDisciplines = new ArrayList<>();
     private double bestTrainingRecord;
 
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
@@ -23,9 +23,9 @@ public class CompetitionMember extends Member {
                              double debt, boolean isActive) {
         super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
-        this.teams= new ArrayList<>();
+        this.teams = new ArrayList<>();
         setActiveDisciplines();
-//        findBestTrainingRecord();
+
 
         teams = new ArrayList<>();
         trainingRecords = new ArrayList<>();
@@ -86,11 +86,11 @@ public class CompetitionMember extends Member {
         memberRecords.add(record);
     }
 
-    public void addTrainingRecordToMember(TrainingRecord record){
+    public void addTrainingRecordToMember(TrainingRecord record) {
         trainingRecords.add(record);
     }
 
-    public void addCompetitionRecordToMember(CompetitionRecord record){
+    public void addCompetitionRecordToMember(CompetitionRecord record) {
         competitionRecords.add(record);
     }
 
@@ -98,13 +98,9 @@ public class CompetitionMember extends Member {
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
 
 
-
-
-
-
-    public ArrayList<String> findDisciplines(){
-        for(Record record : memberRecords){
-            if(!activeDisciplines.contains(record.getDiscipline())){
+    public ArrayList<String> findDisciplines() {
+        for (Record record : memberRecords) {
+            if (!activeDisciplines.contains(record.getDiscipline())) {
                 activeDisciplines.add(record.getDiscipline());
             }
         }
@@ -112,43 +108,44 @@ public class CompetitionMember extends Member {
         return activeDisciplines;
     }
 
-    public Record findBestTrainingRecord(){
+    public Record findBestTrainingRecord() {
         ArrayList<Record> trainingRecordList = new ArrayList<>();
         for (Record record : getMemberRecords()) {
             if (record instanceof TrainingRecord) {
                 trainingRecordList.add(record);
             }
-        } Collections.sort(trainingRecordList, new RecordComparator()); //sorterer
+        }
+        Collections.sort(trainingRecordList, new RecordComparator()); //sorterer
         //TODO could refactor this methode and added attributes
         setBestTrainingRecord(trainingRecordList.get(0).getResult());
         return (trainingRecordList.get(0)); //henter index 0 og retunerer den
     }
 
-    public Record findBestCompetetionRecord(){
+    public Record findBestCompetetionRecord() {
         ArrayList<Record> competetionRecordList = new ArrayList<>();
         for (Record record : memberRecords) {
             if (record instanceof CompetitionRecord) {
                 competetionRecordList.add(record);
             }
-        } Collections.sort(competetionRecordList, new RecordComparator()); //sorterer
+        }
+        Collections.sort(competetionRecordList, new RecordComparator()); //sorterer
         return (competetionRecordList.get(0)); //henter index 0 og retunerer den
     }
 
 
-
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     public String toString() {
-        String medlemsStatus = isActive() ?  "Aktiv" : "Passiv";
+        String medlemsStatus = isActive() ? "Aktiv" : "Passiv";
 
-        return  "***Medlemsinformation***\n" +
-                "Navn: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
-                "Fødselsdag: "              + getDateOfBirth()            + '\n'     +
-                "Medlemsstatus: "              + medlemsStatus                  + '\n'     +
-                "Medlemstype: "                + getMemberShipType()         + '\n'     +
-                "Årligt kontigent: "      + getMembershipFee()          + " DKK\n" +
-                "Restance: "                       + getDebt()                   + " DKK\n" +
-                                        getTeamsForSpecificMember() + '\n' +
-                "Discipliner: "                       + findDisciplines() + '\n' ;
+        return "***Medlemsinformation***\n" +
+                "Navn: " + getMemberFirstName() + " " + getMemberLastName() + '\n' +
+                "Fødselsdag: " + getDateOfBirth() + '\n' +
+                "Medlemsstatus: " + medlemsStatus + '\n' +
+                "Medlemstype: " + getMemberShipType() + '\n' +
+                "Årligt kontigent: " + getMembershipFee() + " DKK\n" +
+                "Restance: " + getDebt() + " DKK\n" +
+                getTeamsForSpecificMember() + '\n' +
+                "Discipliner: " + findDisciplines() + '\n';
 //                "Competition records: "        + competitionRecord           + '\n' +
 //                "Training records: "           + trainingRecord              + '\n' ;
     }

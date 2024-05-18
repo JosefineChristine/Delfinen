@@ -1,10 +1,7 @@
 package domain_model;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TeamCollection {
-
 
     ArrayList<Team> allTheTeams = new ArrayList<>();
     MemberCollection memberCollection = new MemberCollection();
@@ -36,10 +33,7 @@ public class TeamCollection {
 
     }
 
-
-
     //************METHODS********---------
-
 
     public ArrayList<Team> getAllTheTeams() {
         return allTheTeams;
@@ -115,44 +109,29 @@ public class TeamCollection {
     }
 
 
-    public void showTeams() {
 
-        for (Team team : allTheTeams) {
-            System.out.println(team.getTeamListAsString());
-            System.out.println(team.getTeamMemberList().size());
-
-        }
-    }
 
 
 
     // Top 5 **************
 
-    public void showTop5(Team team){
-        int memberPlace = 1;
-        System.out.println(team.getTeamDiscipline());
-        System.out.println(team.getIsTeamSenior());
-        for (Member member : team.getTopFive()){
-            if(team.getTopFive() != null){
-                System.out.println(memberPlace);
-                System.out.println(member);
-                memberPlace++;
-            }
-
-        }
-//        System.out.println(Arrays.toString(team.getTopFive()));
-    }
-
-    public void printTopFives(){
+//
+    public CompetitionMember[] findTopFives(String discipline, String age){
+        CompetitionMember[] topFive = new CompetitionMember[5];
+        ArrayList<Team> teamsToSearch = new ArrayList<>();
 
         for (Team team : allTheTeams) {
             // Filter out exercise teams and empty teams
             if (!team.getTeamDiscipline().contains("exercise") && !team.getTeamMemberList().isEmpty()){
-                System.out.println(team.getTeamDiscipline());
-                showTop5(team);
+                teamsToSearch.add(team);
             }
-
         }
+        for (Team team : teamsToSearch) {
+            if (team.getTeamDiscipline().equalsIgnoreCase(discipline) && team.getIsTeamSenior().equalsIgnoreCase(age)){
+               topFive =  team.getTopFive();
+            }
+        }
+        return topFive;
     }
 
 

@@ -70,7 +70,8 @@ public class Team {
         Collections.sort(membersToSort, new BestRecordComparator());
 
         if (!membersToSort.isEmpty()) {
-            for (int i = 0; i < 4 ; i++ ){
+            int helperNumber = (membersToSort.size() < 5 ) ? membersToSort.size() : 5;  ;
+            for (int i = 0; i < helperNumber ; i++ ){
                 topFive[i] = membersToSort.get(i);
             }
             return topFive;

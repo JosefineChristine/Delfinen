@@ -14,8 +14,9 @@ public class Coach {
 
     private ArrayList<Coach> coachList;
     private ArrayList<CompetitionMember> competitionMemberListForCoach;
+
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public Coach(String coachFirstName, String coachLastName){
+    public Coach(String coachFirstName, String coachLastName) {
         this.coachFirstName = coachFirstName;
         this.coachLastName = coachLastName;
 
@@ -23,20 +24,20 @@ public class Coach {
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
-    public String getCoachFirstName(){
+    public String getCoachFirstName() {
         return coachFirstName;
     }
 
-    public String getCoachLastName(){
+    public String getCoachLastName() {
         return coachLastName;
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-    public void addCompetitionMemberToCoach(CompetitionMember competitionMember){
+    public void addCompetitionMemberToCoach(CompetitionMember competitionMember) {
         competitionMemberListForCoach.add(competitionMember);
     }
 
-    public void removeCompetitionMemberToCoach(CompetitionMember competitionMember){
+    public void removeCompetitionMemberToCoach(CompetitionMember competitionMember) {
         competitionMemberListForCoach.remove(competitionMember);
     }
 
@@ -62,7 +63,7 @@ public class Coach {
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     @Override
-    public String toString(){
+    public String toString() {
         return "Coach name: " + getCoachFirstName() + " " + getCoachLastName();
     }
 

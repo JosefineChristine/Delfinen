@@ -10,8 +10,8 @@ public class CompetitionRecord extends Record {
     private String placeAchieved;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public CompetitionRecord(String title, String discipline , double result, LocalDate date, String place ) {
-        super(title,discipline,result,date);
+    public CompetitionRecord(String title, String discipline, double result, LocalDate date, String place) {
+        super(title, discipline, result, date);
         this.placeAchieved = place;
     }
 
@@ -30,12 +30,12 @@ public class CompetitionRecord extends Record {
 
     //*****************************************TO-STRING****************************************************************
     @Override
-    public String toString(){
+    public String toString() {
         return
-                "Discipline: "        + getDiscipline()    + '\n' +
-                "Time result (min): " + getResult()        + '\n' +
-                "Date: "              + getDate()          + '\n' +
-                "Rank : "             + getPlaceAchieved() + '\n' +
-                "Event: "             + getEventName()     + '\n';
+                "Discipline: " + getDiscipline() + '\n' +
+                        "Time result (min): " + getResult() + '\n' +
+                        "Date: " + getDate() + '\n' +
+                        "Rank : " + getPlaceAchieved() + '\n' +
+                        "Event: " + getEventName() + '\n';
     }
 }

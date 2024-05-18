@@ -159,7 +159,7 @@ public class UserInterface {
 
                 }
                 case 2 -> {
-                    //TODO top 5 -> venter på Vahab
+                    showTopFive();
                 }
                 case 3 -> {
                     System.out.println("Du har valgt at tilføje et konkurrenceresultat");
@@ -547,6 +547,29 @@ public class UserInterface {
         }
          */
     }
+    public void showTopFive(){
+        CompetitionMember[] topFiveMembers = new CompetitionMember[5];
+
+        System.out.println("Here there will be a list of top5");
+        System.out.println("Valge disipline for at se 5 hurtigeste svømmer");
+        input.nextLine();
+        String chosenDiscipline = input.nextLine().trim();
+        System.out.println("valge aldersgroupe ");
+        String ageGroup = input.nextLine().trim();
+        topFiveMembers = controller.getTeamTopFive(chosenDiscipline, ageGroup);
+
+        for (Member member : topFiveMembers) {
+            if (member!=null){
+                System.out.println(member.toString());
+            }
+
+        }
+
+    }
+
+
+
+
 
 }
 

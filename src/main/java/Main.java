@@ -17,16 +17,17 @@ public class Main {
 //        FileLoader fileLoader = new FileLoader();
 //        SaveToFile saveToFile = new SaveToFile();
 
-//        UserInterface ui = new UserInterface();
-//        ui.startProgram();
-        TeamCollection teamCollection = new TeamCollection();
-        MemberCollection memberCollection = new MemberCollection();
+        UserInterface ui = new UserInterface();
+        ui.startProgram();
+
+//        TeamCollection teamCollection = new TeamCollection();
+//        MemberCollection memberCollection = new MemberCollection();
 //        for (Member member : memberCollection.getMemberList()){
 //            if(member instanceof CompetitionMember){
 //                System.out.println(((CompetitionMember) member).getMemberRecords());
 //            }
 //        }
-        teamCollection.printTopFives();
+      //  teamCollection.printTopFives();
 
 
 //        for (Member member : memberCollection.getMemberList()) {
