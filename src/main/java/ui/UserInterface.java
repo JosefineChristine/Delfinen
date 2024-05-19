@@ -161,7 +161,8 @@ public class UserInterface {
                     //TODO se holdliste efter træner
                     System.out.println("Søg efter træner som du gerne vil se en medlemsliste over");
                     System.out.println(controller.getCoachList());
-                    searchCoach();
+//                    searchCoach();
+                    selectCoach();
 
                     // Coach coach = controller.findSpecificCoach(trænerSøgning);
                     // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
@@ -459,7 +460,7 @@ public class UserInterface {
 
     public void editMember() {
 
-        int menuOption = -1;
+//        int menuOption = -1;
         System.out.println("Skriv navnet på det medlem du vil redigere stamoplysningerne for: ");
         input.nextLine(); // Consume leftover newline
         String memberName = input.nextLine().trim();
@@ -482,7 +483,7 @@ public class UserInterface {
         if (memberIndex >= 0 && memberIndex < matchingMembers.size()) {
             Member targetMember = matchingMembers.get(memberIndex);
 
-            // int menuOption = -1;
+             int menuOption = -1;
             while (menuOption != 0) {
                 System.out.println("Skriv 1 for at ændre fornavnet" + "\n" +
                         "Skriv 2 for at ændre efternavnet" + "\n" +
@@ -534,6 +535,7 @@ public class UserInterface {
 //        }
 //    }
 
+    //TODO : SKAL VI IKKE SLETTE DEN METHOD?
     public void searchCoach() {
         //2. Søge efter coach
         System.out.println("Søg træner");
@@ -541,7 +543,7 @@ public class UserInterface {
         String search = input.nextLine();
         ArrayList<Coach> printCoachList = controller.searchCoach(search);
         for (Coach coach : printCoachList) {
-            System.out.println(coach.getMemberListForCoach());
+            System.out.println(coach);
         }
     }
 
@@ -565,16 +567,17 @@ public class UserInterface {
         System.out.println("Vælg det nummer på det af træner, du vil se medlemmer for:");
         int memberIndex = Integer.parseInt(input.nextLine()) - 1;
 
-        if (memberIndex >= 0 && memberIndex < matchingCoaches.size()) {
+        if (memberIndex >= 0 && memberIndex <= matchingCoaches.size()) {
             System.out.println("Print holdliste for træner");
-//            boolean output = controller.(matchingCoaches.get(memberIndex).getCoachFirstName());
-//            if (!output) {
-//                System.out.println("Der blev ikke fundet en træner med det navn.\n");
-//            } else {
-//                System.out.println("Print medlemsliste"); //TODO print holdliste for træner
-//            }
-//        } else {
-//            System.out.println("Ugyldigt valg.");
+            Coach output = matchingCoaches.get(memberIndex);
+            if (output == null) {
+                System.out.println("Der blev ikke fundet en træner med det navn.\n");
+            } else {
+                System.out.println("Print medlemsliste");
+                System.out.println(output.getMemberListForCoach());
+            }
+        } else {
+            System.out.println("Ugyldigt valg.");
         }
 
     }
@@ -591,7 +594,7 @@ public class UserInterface {
 
         for (Member member : topFiveMembers) {
             if (member!=null){
-                System.out.println(member.toString());
+                System.out.println(member);
             }
 
         }

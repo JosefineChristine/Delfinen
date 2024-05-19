@@ -1,10 +1,6 @@
-import data_handler.FileLoader;
-import data_handler.SaveToFile;
-import domain_model.*;
-import domain_model.Record;
+
 import ui.UserInterface;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 public class Main {
@@ -15,10 +11,13 @@ public class Main {
 
 
 
+
         UserInterface ui = new UserInterface();
         ui.startProgram();
 
+
     }
+
 
 }
 

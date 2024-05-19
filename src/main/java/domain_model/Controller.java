@@ -21,17 +21,7 @@ public class Controller {
 
     //***KASSERERMENU***------------------------------------------------------------------------------------------------
 
-    //***COACH MENU***--------------------------------------------------------------------------------------------------
 
-    public void addRecord(Record record) {
-        record.addRecord(record);
-    }
-
-
-    public CompetitionMember[] getTeamTopFive(String discipline, String age) {
-        return teamCollection.findTopFives(discipline, age);
-
-    }
 
     //***ADMIN MENU***--------------------------------------------------------------------------------------------------
     public void addCompetitionMember(CompetitionMember competitionMember) {
@@ -100,9 +90,22 @@ public class Controller {
         return teamCollection.searchCoach(input);
     }
 
-    public ArrayList<Coach> getCoachList() { //TODO skal virke
+    public ArrayList<Coach> getCoachList() {
         return teamCollection.getCoachList();
     }
+
+
+    public void addRecord(Record record) {
+        record.addRecord(record);
+    }
+
+
+    public CompetitionMember[] getTeamTopFive(String discipline, String age) {
+        return teamCollection.findTopFives(discipline, age);
+    }
+
+
+
 
 
     //------------------------------------------------------------------------------------------------------------------
