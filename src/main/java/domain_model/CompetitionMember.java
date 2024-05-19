@@ -25,14 +25,14 @@ public class CompetitionMember extends Member {
                 dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
 
-        setActiveDisciplines();
-        recordInitializer();
-
         memberRecords = new ArrayList<>();
         activeDisciplines = new ArrayList<>();
         teams = new ArrayList<>();
         trainingRecords = new ArrayList<>();
         competitionRecords = new ArrayList<>();
+
+        setActiveDisciplines();
+        recordInitializer();
 
     }
 
@@ -132,7 +132,6 @@ public class CompetitionMember extends Member {
             }
         }
         Collections.sort(trainingRecordList, new RecordComparator()); //sorterer
-        //TODO could refactor this methode and added attributes
         setBestTrainingRecord(trainingRecordList.get(0).getResult());
         return (trainingRecordList.get(0)); //henter index 0 og retunerer den
     }
