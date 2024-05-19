@@ -6,6 +6,8 @@ import data_handler.SaveToFile;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+// REFAKTORERET
+
 public class MemberCollection {
 
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
@@ -16,8 +18,7 @@ public class MemberCollection {
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public MemberCollection() {
-        this.memberList = fileLoader.getMembers();
-        //   this.coachList = new ArrayList<>();
+        memberList = fileLoader.getMembers();
 
     }
 

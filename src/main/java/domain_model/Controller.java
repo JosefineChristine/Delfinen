@@ -2,9 +2,11 @@ package domain_model;
 
 import java.util.ArrayList;
 
+//DELVIST REFAKTORERET (SE TODOS)
+
 public class Controller {
 
-    //OBJEKTER
+    //OBJEKTER //TODO: Tjek om grå objekter skal bruges
     private MemberCollection memberCollection;
     private Member member;
     private CompetitionMember competitionMember;
@@ -23,14 +25,28 @@ public class Controller {
 
     //***COACH MENU***--------------------------------------------------------------------------------------------------
 
-    public void addRecord(Record record) {
-        record.addRecord(record);
-    }
-
-
     public CompetitionMember[] getTeamTopFive(String discipline, String age) {
         return teamCollection.findTopFives(discipline, age);
 
+    }
+    public void addTrainingRecordToMember(TrainingRecord record) {
+        competitionMember.addTrainingRecordToMember(record);
+    }
+
+    public void addCompetitionRecordToMember(CompetitionRecord record) {
+        competitionMember.addCompetitionRecordToMember(record);
+    }
+
+    public ArrayList<Member> getCompetitionMemberListForCoach() {
+        return coach.getMemberListForCoach();
+    }
+
+    public ArrayList<Coach> searchCoach(String input) {
+        return teamCollection.searchCoach(input);
+    }
+
+    public ArrayList<Coach> getCoachList() { //TODO skal virke
+        return teamCollection.getCoachList();
     }
 
     //***ADMIN MENU***--------------------------------------------------------------------------------------------------
@@ -82,28 +98,6 @@ public class Controller {
     public int inActiveMembersCount() {
         return memberCollection.inactiveMembersCount();
     }
-
-    //***COACH MENU***--------------------------------------------------------------------------------------------------
-    public void addTrainingRecordToMember(TrainingRecord record) {
-        competitionMember.addTrainingRecordToMember(record);
-    }
-
-    public void addCompetitionRecordToMember(CompetitionRecord record) {
-        competitionMember.addCompetitionRecordToMember(record);
-    }
-
-    public ArrayList<Member> getCompetitionMemberListForCoach() {
-        return coach.getMemberListForCoach();
-    }
-
-    public ArrayList<Coach> searchCoach(String input) {
-        return teamCollection.searchCoach(input);
-    }
-
-    public ArrayList<Coach> getCoachList() { //TODO skal virke
-        return teamCollection.getCoachList();
-    }
-
 
     //------------------------------------------------------------------------------------------------------------------
 }

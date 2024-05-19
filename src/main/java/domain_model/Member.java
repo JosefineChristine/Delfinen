@@ -3,16 +3,17 @@ package domain_model;
 import java.time.LocalDate;
 import java.time.Period;
 
+// REFAKTORERET
 
 public abstract class Member {
-    private String memberFirstName;
-    private String memberLastName;
-    private LocalDate dateOfBirth;
-    private double debt;
-    private boolean isActive;
-    private String memberShipType;
-    private String ageGroup;
-    private double membershipFee;
+    protected String memberFirstName;
+    protected String memberLastName;
+    protected LocalDate dateOfBirth;
+    protected double debt;
+    protected boolean isActive;
+    protected String memberShipType;
+    protected String ageGroup;
+    protected double membershipFee;
 
 
     public Member(String memberFirstName, String memberLastName, LocalDate dateOfBirth, double debt, boolean isActive) {
@@ -21,8 +22,8 @@ public abstract class Member {
         this.dateOfBirth = dateOfBirth;
         this.debt = debt;
         this.isActive = isActive;
-        this.membershipFee = calculateMembershipFee();
-        this.ageGroup = calculateMembershipType();
+        membershipFee = calculateMembershipFee();
+        ageGroup = calculateMembershipType();
 
     }
 
@@ -55,18 +56,17 @@ public abstract class Member {
         return membershipFee;
     }
 
-
     public String getAgeGroup() {
         return ageGroup;
     }
 
     //************SETTERS********-------------------------------------------------------------------------------------------
     public void setFirstName(String firstName) {
-        this.memberFirstName = firstName;
+        memberFirstName = firstName;
     }
 
     public void setLastName(String lastName) {
-        this.memberLastName = lastName;
+        memberLastName = lastName;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
@@ -87,7 +87,7 @@ public abstract class Member {
 
 
     public void setAgeGroup(String ageGroup) {
-        this.ageGroup = ageGroup;
+        this.ageGroup = ageGroup; // TODO: Skal denne bruges til noget?
     }
 
     //************METHODS********---------------------------------------------------------------------------------------
@@ -124,8 +124,12 @@ public abstract class Member {
     @Override
     public String toString() {
         String result = "";
-        result += "Medlem: " + memberFirstName + memberLastName + "\n" + "Fødselsdag: " + dateOfBirth + "\n" + "Restance: " + debt + "\n"
+
+        result += "Medlem: " + memberFirstName + memberLastName + "\n"
+                + "Fødselsdag: " + dateOfBirth + "\n"
+                + "Restance: " + debt + "\n"
                 + "Pris for medlemsskab: " + calculateMembershipFee();
+
         if (isActive) {
             result += "\n" + "Aktivitetsstatus: Aktiv";
         } else {

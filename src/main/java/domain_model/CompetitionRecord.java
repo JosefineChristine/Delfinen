@@ -2,6 +2,7 @@ package domain_model;
 
 import java.time.LocalDate;
 
+// DELVIST REFAKTORERET (SE TODOS)
 
 public class CompetitionRecord extends Record {
 
@@ -9,9 +10,10 @@ public class CompetitionRecord extends Record {
     private String placeAchieved;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
-    public CompetitionRecord(String title, String discipline, double result, LocalDate date, String place) {
-        super(title, discipline, result, date);
-        this.placeAchieved = place;
+    public CompetitionRecord(String eventName, String discipline, double result,
+                             LocalDate date, String place) {
+        super(eventName, discipline, result, date);
+        placeAchieved = place;
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -21,6 +23,7 @@ public class CompetitionRecord extends Record {
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
 
+    //TODO: Skal denne bruges?
     public void setPlaceAchieved(String placeAchieved) {
         this.placeAchieved = placeAchieved;
     }
@@ -32,10 +35,10 @@ public class CompetitionRecord extends Record {
     public String toString() {
         return
                 "Konkurrenceresultat: \n" +
-                        "Disciplin: " + getDiscipline() + '\n' +
-                        "Tidsresultat: " + getResult() + " minutter" + '\n' +
-                        "Dato: " + getDate() + '\n' +
-                        "Placering : " + getPlaceAchieved() + '\n' +
-                        "Begivenhed: " + getEventName() + '\n';
+                        "Disciplin: " + discipline + '\n' +
+                        "Tidsresultat: " + result + " minutter" + '\n' +
+                        "Dato: " + date + '\n' +
+                        "Placering : " + placeAchieved + '\n' +
+                        "Begivenhed: " + eventName + '\n';
     }
 }
