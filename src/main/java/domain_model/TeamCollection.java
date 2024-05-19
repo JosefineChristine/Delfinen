@@ -1,8 +1,8 @@
 package domain_model;
-
 import java.util.ArrayList;
 
 public class TeamCollection {
+
     ArrayList<Team> allTheTeams = new ArrayList<>();
     MemberCollection memberCollection = new MemberCollection();
     private ArrayList<Coach> coachList = new ArrayList<>();
@@ -14,7 +14,7 @@ public class TeamCollection {
     Coach coach4 = new Coach("Sommer", "Dahl");
     Coach coach5 = new Coach("Arne", "Falk");
 
-    //************TEAMS************-------------------------------------------------------------------------------------
+    //************TEAMS********-----
     Team team1 = new Team("crawl", coach1, true);
     Team team2 = new Team("butterfly", coach2, true);
     Team team3 = new Team("backstroke", coach3, true);
@@ -31,7 +31,6 @@ public class TeamCollection {
         populateTeams();
         initializeCoaches();
     }
-
 
     //************METHODS********---------
     public ArrayList<Team> getAllTheTeams() {
@@ -111,6 +110,38 @@ public class TeamCollection {
     }
 
 
+
+
+
+
+    // Top 5 **************
+
+//
+    public CompetitionMember[] findTopFives(String discipline, String age){
+        CompetitionMember[] topFive = new CompetitionMember[5];
+        ArrayList<Team> teamsToSearch = new ArrayList<>();
+
+        for (Team team : allTheTeams) {
+            // Filter out exercise teams and empty teams
+            if (!team.getTeamDiscipline().contains("exercise") && !team.getTeamMemberList().isEmpty()){
+                teamsToSearch.add(team);
+            }
+        }
+        for (Team team : teamsToSearch) {
+            if (team.getTeamDiscipline().equalsIgnoreCase(discipline) && team.getIsTeamSenior().equalsIgnoreCase(age)){
+               topFive =  team.getTopFive();
+            }
+        }
+        return topFive;
+    }
+
+    public void addCoachToCoachList(Coach coach) {
+        coachList.add(coach);
+    }
+    public ArrayList<Coach> getCoachList() {
+        return coachList;
+    }
+
     public ArrayList<Coach> searchCoach(String input) { //TODO Virker ikke endnu
         ArrayList<Coach> foundCoaches = new ArrayList<>();
         for (Coach coach : getCoachList()) {
@@ -121,16 +152,6 @@ public class TeamCollection {
         }
         return foundCoaches;
     }
-
-    public void addCoachToCoachList(Coach coach) {
-        coachList.add(coach);
-    }
-
-    public ArrayList<Coach> getCoachList() {
-        return coachList;
-    }
-
-
 }
 
 //------------------------------------------------------------------------------------------------------------------

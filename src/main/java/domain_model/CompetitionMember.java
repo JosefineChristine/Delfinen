@@ -45,6 +45,7 @@ public class CompetitionMember extends Member {
     }
 
     public double getBestTrainingRecord() {
+        findBestTrainingRecord();
         return bestTrainingRecord;
     }
 
@@ -120,12 +121,13 @@ public class CompetitionMember extends Member {
                 activeDisciplines.add(record.getDiscipline());
             }
         }
+
         return activeDisciplines;
     }
 
     public Record findBestTrainingRecord() {
         ArrayList<Record> trainingRecordList = new ArrayList<>();
-        for (Record record : memberRecords) {
+        for (Record record : getMemberRecords()) {
             if (record instanceof TrainingRecord) {
                 trainingRecordList.add(record);
             }
@@ -146,6 +148,7 @@ public class CompetitionMember extends Member {
         Collections.sort(competetionRecordList, new RecordComparator()); //sorterer
         return (competetionRecordList.get(0)); //henter index 0 og retunerer den
     }
+
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     public String toString() {

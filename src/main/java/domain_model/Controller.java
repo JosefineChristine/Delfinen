@@ -23,6 +23,15 @@ public class Controller {
 
     //***COACH MENU***--------------------------------------------------------------------------------------------------
 
+    public void addRecord(Record record) {
+        record.addRecord(record);
+    }
+
+
+    public CompetitionMember[] getTeamTopFive(String discipline, String age) {
+        return teamCollection.findTopFives(discipline, age);
+
+    }
 
     //***ADMIN MENU***--------------------------------------------------------------------------------------------------
     public void addCompetitionMember(CompetitionMember competitionMember) {

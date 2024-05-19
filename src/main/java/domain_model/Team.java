@@ -67,17 +67,21 @@ public class Team {
     public CompetitionMember[] getTopFive() {
         CompetitionMember[] topFive = new CompetitionMember[5];
         ArrayList<CompetitionMember> membersToSort = new ArrayList<>();
+
         for (Member member : teamMemberList) {
 
             membersToSort.add((CompetitionMember) member);
         }
         Collections.sort(membersToSort, new BestRecordComparator());
-        topFive[0] = membersToSort.get(0);
-        topFive[1] = membersToSort.get(1);
-        topFive[2] = membersToSort.get(2);
-        topFive[3] = membersToSort.get(3);
-        topFive[4] = membersToSort.get(4);
-        return topFive;
+
+        if (!membersToSort.isEmpty()) {
+            int helperNumber = (membersToSort.size() < 5 ) ? membersToSort.size() : 5;  ;
+            for (int i = 0; i < helperNumber ; i++ ){
+                topFive[i] = membersToSort.get(i);
+            }
+            return topFive;
+        }
+        return null;
     }
 
     public void removeMemberofTeam(Member member) {
