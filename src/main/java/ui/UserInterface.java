@@ -582,7 +582,7 @@ public class UserInterface {
 
     }
     public void showTopFive(){
-        CompetitionMember[] topFiveMembers = new CompetitionMember[5];
+        CompetitionMember[] topFiveMembers ;
 
         System.out.println("Here there will be a list of top5");
         System.out.println("Valge disipline for at se 5 hurtigeste svømmer");
