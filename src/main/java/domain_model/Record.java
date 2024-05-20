@@ -3,15 +3,17 @@ package domain_model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public abstract class Record {
-    // Title is either training or event name.
-    //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
-    private String eventName;
-    private String discipline;
-    private double result;
-    private LocalDate date;
+// DELVIST REFAKTORERET (SE TODOS)
 
-    private ArrayList<Record> recordList = new ArrayList<>();
+public abstract class Record {
+
+    //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
+    protected String eventName;
+    protected String discipline;
+    protected double result;
+    protected LocalDate date;
+
+    protected ArrayList<Record> recordList;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Record(String eventName, String discipline, double result, LocalDate date) {
@@ -19,6 +21,8 @@ public abstract class Record {
         this.discipline = discipline.toLowerCase();
         this.result = result;
         this.date = date;
+
+        recordList = new ArrayList<>();
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -40,6 +44,7 @@ public abstract class Record {
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
 
+    // TODO: Skal disse bruges?
     public void setEventName(String eventName) {
         this.eventName = eventName;
     }

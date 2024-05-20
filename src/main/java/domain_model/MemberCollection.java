@@ -6,6 +6,8 @@ import data_handler.SaveToFile;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+// REFAKTORERET
+
 public class MemberCollection {
 
     //***OBJECTS***-----------------------------------------------------------------------------------------------------
@@ -16,8 +18,7 @@ public class MemberCollection {
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public MemberCollection() {
-        this.memberList = fileLoader.getMembers();
-        //   this.coachList = new ArrayList<>();
+        memberList = fileLoader.getMembers();
 
     }
 
@@ -67,6 +68,19 @@ public class MemberCollection {
                 memberToEdit.setActive(Boolean.parseBoolean(newValue));
                 break;
 
+            case 0: //exit
+                break;
+        }
+        fileHandler.saveToFile(memberList);
+        return memberToEdit;
+    }
+
+    public Member editDebt(Member memberToEdit, int partToEdit, String newValue) {
+
+        switch (partToEdit) {
+            case 1: //debt
+                memberToEdit.setDebt(Double.parseDouble(newValue));
+                break;
             case 0: //exit
                 break;
         }
@@ -150,5 +164,15 @@ public class MemberCollection {
 
     //***COACH METHODS***-----------------------------------------------------------------------------------------------
 
+
+//    public void addRecordForMember(String name,Record record) {
+//        CompetitionMember member =(CompetitionMember) findSpecificMember(name);
+//        ArrayList<Record> memberRecords = member.getMemberRecords();
+//        if (member != null) {
+//            memberRecords.add(record);
+//        }
+//        fileHandler.saveToFile(memberList);
+//
+//    }
 
 }

@@ -10,7 +10,7 @@ Brandon,Hall,1999-01-23,2829.00,true,exerciser
 Rachel,Moore,1993-05-01,3031.00,true,exerciser
 Jane,Doe,2000-05-20,0.00,true,Competition,Jutland-open,crawl,2.35,2023-10-20,1st,Training,crawl,2.55,2024-01-20,DM,crawl,2.10,2024-03-05,2nd
 Michael,Smith,1995-09-15,1234.00,true,Competition,Championship,crawl,2.40,2023-11-18,4th,Training,backstroke,2.30,2024-01-22,DM,butterfly,2.15,2024-03-10,3rd
-Daniel,Williams,1992-03-28,91011.00,true,Competition,Open,crawl,2.38,2023-09-25,5th,Training,breaststroke,2.25,2024-01-28,Championship,crawl,2.05,2024-03-15,2nd
+Daniel,Williams,1992-03-28,1000.00,true,Competition,Open,crawl,2.38,2023-09-25,5th,Training,breaststroke,2.25,2024-01-28,Championship,crawl,2.05,2024-03-15,2nd
 James,Jones,1994-04-08,1415.00,true,Competition,Invitational,crawl,2.42,2023-08-30,3rd,Training,butterfly,2.28,2024-02-02,DM,breaststroke,2.20,2024-03-20,1st
 William,Miller,1990-10-17,1819.00,true,Competition,Regional,backstroke,2.37,2023-10-05,1st,Training,crawl,2.45,2024-02-10,Championship,backstroke,2.18,2024-03-25,3rd
 Lauren,Anderson,1996-06-22,3637.00,true,Competition,Invitational,backstroke,2.39,2023-09-22,1st,Training,butterfly,2.20,2024-01-25,DM,crawl,2.08,2024-03-18,3rd
@@ -30,4 +30,4 @@ Josefine,Kodal,1995-07-23,200.00,false,exerciser
 Josefine,Røes,1995-07-23,0.00,true,Competition
 Fri,Røes,2022-05-03,0.00,false,Competition
 Fri,Kodal,2022-05-03,0.00,true,Competition
-ajo,ajo,1990-12-12,1000.00,true,exerciser
+Ajo Ajo,Sylvester,1990-12-12,1000.00,false,exerciser
