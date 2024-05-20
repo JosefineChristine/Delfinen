@@ -83,8 +83,6 @@ public class CompetitionMember extends Member {
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-
-    //TODO: Tjek om disse metoder skal bruges
     public void addTeamForSpecificMember(Team team) {
         this.teams.add(team);
     }
@@ -148,6 +146,7 @@ public class CompetitionMember extends Member {
 
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
+    @Override
     public String toString() {
         String membershipStatus = isActive() ? "Aktiv" : "Passiv";
 
@@ -160,6 +159,20 @@ public class CompetitionMember extends Member {
                 "Restance: " + getDebt() + " DKK\n" +
                 "Hold " + getTeamsForSpecificMember() + '\n';
 
+    }
+
+    public String printMemberForTopFive(Member member) {
+        if (member == null) {
+            return "Medlemmet blev ikke fundet.";
+        }
+
+        String result = "";
+
+        result += "Medlem: " + memberFirstName + " " + memberLastName + "\n"
+                + "Træningsresultat i minutter: " + bestTrainingRecord + "\n"
+                + "Svømmedisciplin: " + findBestTrainingRecord().discipline;
+
+        return result;
     }
 
     //------------------------------------------------------------------------------------------------------------------
