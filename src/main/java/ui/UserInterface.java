@@ -123,6 +123,7 @@ public class UserInterface {
             System.out.println("Valgmuligheder: ");
             System.out.println("1. Søg efter medlem\n" +
                                 "2. Se liste af medlemmer med restance\n" +
+                                "3. Rediger restance for medlem\n" +
                                 "0. Tilbage til startmenu");
 
             userChoice = Integer.parseInt(input.next());
@@ -135,6 +136,9 @@ public class UserInterface {
                 }
                 case 2 -> {
                     allMembersWithDebtList();
+                }
+                case 3 -> {
+                    editDebt();
                 }
                 default -> System.out.println("Forkert input");
             }
@@ -160,13 +164,17 @@ public class UserInterface {
                     startProgram();
                 }
                 case 1 -> {
+                    //TODO fix se medlemsliste for træner
+                    //searchCoach();
+                    //searchCoach() = Coach coach;
+                    //coach.printlisteblalba...
                     selectCoach();
                 }
                 case 2 -> {
-                    showTopFive();
+                    showTopFive(); //TODO: ændr toString, så den printer træningsresultat ud
                 }
                 case 3 -> {
-                    // Tilføj konkurrenceresultat
+                    // Tilføj konkurrenceresultat //TODO fungerer ikke
                     System.out.println("Du har valgt at tilføje et konkurrenceresultat.");
                     CompetitionMember competitionMember = findAndValidateMember();
                     if (competitionMember == null) return;
@@ -178,7 +186,7 @@ public class UserInterface {
                 }
 
                 case 4 -> {
-                    // Tilføj træningsresultat
+                    // Tilføj træningsresultat //TODO fungerer ikke
                     System.out.println("Du har valgt at tilføje et træningsresultat.");
                     CompetitionMember competitionMember = findAndValidateMember();
                     if (competitionMember == null) return;
@@ -189,7 +197,7 @@ public class UserInterface {
                     System.out.println("Rekorden er tilføjet til medlemmet.");
                 }
                 case 5 -> {
-                    //TODO søg og se medlems rekorder
+                    searchMember();
                 }
                 default -> System.out.println("Forkert input");
             }
@@ -216,7 +224,7 @@ public class UserInterface {
         int debt = Integer.parseInt(input.next());
         input.nextLine();
 
-        System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')");
+        System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')"); //TODO skal man skrive aktiv, passiv, ja eller nej?
         String active = input.nextLine();
         boolean isActive = active.equalsIgnoreCase("Aktiv");
         String memberStatus = isActive ? "Ja" : "Nej";
@@ -352,6 +360,58 @@ public class UserInterface {
         }
     }
 
+    private void editDebt() {
+        System.out.println("Skriv navnet på det medlem du vil redigere restance for: ");
+        input.nextLine();
+        String memberName = input.nextLine().trim();
+
+        ArrayList<Member> matchingMembers = controller.searchMember(memberName);
+
+        if (matchingMembers.isEmpty()) {
+            System.out.println("Der blev ikke fundet noget medlem med det navn.");
+            return;
+        }
+
+        System.out.println("Fundne medlemmer:");
+        for (int i = 0; i < matchingMembers.size(); i++) {
+            System.out.println((i + 1) + ": " + matchingMembers.get(i).toString());
+        }
+
+        System.out.println("Vælg nummeret på det medlem, du vil redigere:");
+        int memberIndex;
+        try {
+            memberIndex = Integer.parseInt(input.nextLine().trim()) - 1;
+        } catch (NumberFormatException e) {
+            System.out.println("Ugyldigt valg.");
+            return;
+        }
+
+        if (memberIndex >= 0 && memberIndex < matchingMembers.size()) {
+            Member targetMember = matchingMembers.get(memberIndex);
+            int menuOption = -1;
+            while (menuOption != 0) {
+                System.out.println("Skriv 1 for at ændre restancen for det valgte medlem" + "\n" +
+                        "Skriv 0 for at forlade redigeringen:" + "\n");
+                try {
+                    menuOption = Integer.parseInt(input.nextLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Ugyldig input. Prøv igen.");
+                }
+                if (menuOption == 0)
+                    break;
+
+                System.out.println("Skriv hvad du vil ændre det til: ");
+                String newValue = input.nextLine().trim();
+
+                Member editedMember = controller.editDebt(targetMember, menuOption, newValue);
+                System.out.println("Opdateret medlem:");
+                System.out.println(editedMember.toString());
+            }
+        } else {
+            System.out.println("Ugyldigt valg.");
+        }
+    }
+
     private void printMemberList() {
 
         System.out.println("Liste over alle medlemmer:");
@@ -437,6 +497,7 @@ public class UserInterface {
 
         System.out.println("*******TOP 5*********" + "\n");
         System.out.println("Vælg disciplin for at se de 5 hurtigeste svømmere:");
+        System.out.println("Crawl, butterfly, ");
         input.nextLine();
         String chosenDiscipline = input.nextLine().trim();
         System.out.println("Vælg aldersgruppe: ");
