@@ -26,6 +26,7 @@ public class TeamCollection {
     Team team9 = new Team("exercise senior", coach5, true);
     Team team10 = new Team("exercise junior", coach5, false);
 
+
     public TeamCollection() {
         teamsArrayList();
         populateTeams();
@@ -109,7 +110,6 @@ public class TeamCollection {
         allTheTeams.add(team10);
 
     }
-
 
     // Top 5 **************
 

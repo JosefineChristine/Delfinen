@@ -78,6 +78,10 @@ public class Controller {
         return memberCollection.editMember(memberToEdit, partToEdit, newValue);
     }
 
+    public Member editDebt(Member memberToEdit, int partToEdit, String newValue) {
+        return memberCollection.editDebt(memberToEdit, partToEdit, newValue);
+    }
+
 
     public ArrayList<Member> getMemberCollection() {
         return memberCollection.getMemberList();

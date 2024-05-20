@@ -84,7 +84,6 @@ public class CompetitionMember extends Member {
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
 
-    //TODO: Tjek om disse metoder skal bruges
     public void addTeamForSpecificMember(Team team) {
         this.teams.add(team);
     }
