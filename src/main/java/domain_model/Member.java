@@ -125,7 +125,7 @@ public abstract class Member {
     public String toString() {
         String result = "";
 
-        result += "Medlem: " + memberFirstName + memberLastName + "\n"
+        result += "Medlem: " + memberFirstName + " " + memberLastName + "\n"
                 + "Fødselsdag: " + dateOfBirth + "\n"
                 + "Restance: " + debt + "\n"
                 + "Pris for medlemsskab: " + calculateMembershipFee();

@@ -168,7 +168,7 @@ public class UserInterface {
                 case 3 -> {
                     // Tilføj konkurrenceresultat
                     System.out.println("Du har valgt at tilføje et konkurrenceresultat.");
-                    CompetitionMember competitionMember = findAndValidateMember();
+                    CompetitionMember competitionMember = findAndValidateCompetitionMember();
                     if (competitionMember == null) return;
 
                     CompetitionRecord competitionRecord = createCompetitionRecord(competitionMember);
@@ -180,7 +180,7 @@ public class UserInterface {
                 case 4 -> {
                     // Tilføj træningsresultat
                     System.out.println("Du har valgt at tilføje et træningsresultat.");
-                    CompetitionMember competitionMember = findAndValidateMember();
+                    CompetitionMember competitionMember = findAndValidateCompetitionMember();
                     if (competitionMember == null) return;
 
                     TrainingRecord trainingRecord = createTrainingRecord(competitionMember);
@@ -295,60 +295,41 @@ public class UserInterface {
     }
 
     private void editMember() {
-        System.out.println("Skriv navnet på det medlem du vil redigere stamoplysningerne for: ");
-        input.nextLine();
-        String memberName = input.nextLine().trim();
+        System.out.println("Ændring af stamplysninger.");
+        Member targetMember = searchMembers();
 
-        ArrayList<Member> matchingMembers = controller.searchMember(memberName);
-
-        if (matchingMembers.isEmpty()) {
-            System.out.println("Der blev ikke fundet noget medlem med det navn.");
+        if (targetMember == null) {
             return;
         }
 
-        System.out.println("Fundne medlemmer:");
-        for (int i = 0; i < matchingMembers.size(); i++) {
-            System.out.println((i + 1) + ": " + matchingMembers.get(i).toString());
-        }
+        int menuOption = -1;
+        while (menuOption != 0) {
+            System.out.println("Skriv 1 for at ændre fornavnet" + "\n" +
+                    "Skriv 2 for at ændre efternavnet" + "\n" +
+                    "Skriv 3 for at ændre fødselsdatoen" + "\n" +
+                    "Skriv 4 for at ændre medlemmets gæld" + "\n" +
+                    "Skriv 5 for at ændre medlemmets aktivitetsstatus. Skriv 'aktiv' eller 'passiv'" + "\n" +
+                    "Skriv 0 for at forlade redigeringen:" + "\n");
 
-        System.out.println("Vælg nummeret på det medlem, du vil redigere:");
-        int memberIndex;
-        try {
-            memberIndex = Integer.parseInt(input.nextLine().trim()) - 1;
-        } catch (NumberFormatException e) {
-            System.out.println("Ugyldigt valg.");
-            return;
-        }
+            try {
+                menuOption = Integer.parseInt(input.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("Ugyldig input. Prøv igen.");
+            }
 
-        if (memberIndex >= 0 && memberIndex < matchingMembers.size()) {
-            Member targetMember = matchingMembers.get(memberIndex);
-            int menuOption = -1;
-            while (menuOption != 0) {
-                System.out.println("Skriv 1 for at ændre fornavnet" + "\n" +
-                                    "Skriv 2 for at ændre efternavnet" + "\n" +
-                                    "Skriv 3 for at ændre fødselsdatoen" + "\n" +
-                                    "Skriv 4 for at ændre medlemmets gæld" + "\n" +
-                                    "Skriv 5 for at ændre medlemmet aktivitetsstatus. Skriv 'aktiv' eller 'passiv'" + "\n" +
-                                    "Skriv 0 for at forlade redigeringen:" + "\n");
+            if (menuOption == 0)
+                break;
 
-                try {
-                    menuOption = Integer.parseInt(input.nextLine().trim());
-                } catch (NumberFormatException e) {
-                    System.out.println("Ugyldig input. Prøv igen.");
-                }
+            System.out.println("Skriv hvad du vil ændre det til:");
+            String newValue = input.nextLine().trim();
 
-                if (menuOption == 0)
-                    break;
-
-                System.out.println("Skriv hvad du vil ændre det til: ");
-                String newValue = input.nextLine().trim();
-
-                Member editedMember = controller.editMember(targetMember, menuOption, newValue);
+            Member editedMember = controller.editMember(targetMember, menuOption, newValue);
+            if (editedMember != null) {
                 System.out.println("Opdateret medlem:");
                 System.out.println(editedMember.toString());
+            } else {
+                System.out.println("Kunne ikke redigere medlem.");
             }
-        } else {
-            System.out.println("Ugyldigt valg.");
         }
     }
 
@@ -443,12 +424,15 @@ public class UserInterface {
         String ageGroup = input.nextLine().trim();
         topFiveMembers = controller.getTeamTopFive(chosenDiscipline, ageGroup);
 
-        for (Member member : topFiveMembers) {
+        for (CompetitionMember member : topFiveMembers) {
             if (member != null){
-                System.out.println(member.toString());
+                System.out.println("Navn: " + member.getMemberFirstName() + " " + member.getMemberLastName());
+                System.out.println(member.findBestTrainingRecord());
+
             }
         }
     }
+
 
     private LocalDate inputDate(String dateType) {
         System.out.println("Tilføj dato for " + dateType);
@@ -511,23 +495,15 @@ public class UserInterface {
         return year;
     }
 
-    private CompetitionMember findAndValidateMember() {
-        System.out.println("Søg svømmer som skal have et resultat:");
-        String searchMember = input.nextLine();
-        input.next();
-        Member member = controller.findSpecificMember(searchMember);
+    private CompetitionMember findAndValidateCompetitionMember() {
+        Member selectedMember = searchMembers();
 
-        if (member == null) {
-            System.out.println("Medlem ikke fundet.");
-            return null;
-        }
-
-        if (!(member instanceof CompetitionMember)) {
+        if (!(selectedMember instanceof CompetitionMember)) {
             System.out.println("Medlemmet er ikke en konkurrencemedlem.");
             return null;
         }
 
-        return (CompetitionMember) member;
+        return (CompetitionMember) selectedMember;
     }
 
     private CompetitionRecord createCompetitionRecord(CompetitionMember member) {
@@ -563,6 +539,39 @@ public class UserInterface {
         return new TrainingRecord(title, discipline, result, trainingDate);
     }
 
+    private Member searchMembers() {
+        input.nextLine();
+        System.out.println("Søg efter medlem:");
+        String searchMember = input.nextLine().trim();
+
+        ArrayList<Member> matchingMembers = controller.searchMember(searchMember);
+
+        if (matchingMembers.isEmpty()) {
+            System.out.println("Der blev ikke fundet noget medlem med det navn.");
+            return null;
+        }
+
+        System.out.println("Fundne medlemmer:");
+        for (int i = 0; i < matchingMembers.size(); i++) {
+            System.out.println((i + 1) + ": " + matchingMembers.get(i).toString());
+        }
+
+        System.out.println("Vælg nummeret på det medlem, du vil redigere:");
+        int memberIndex;
+        try {
+            memberIndex = Integer.parseInt(input.nextLine().trim()) - 1;
+        } catch (NumberFormatException e) {
+            System.out.println("Ugyldigt valg.");
+            return null;
+        }
+
+        if (memberIndex < 0 || memberIndex >= matchingMembers.size()) {
+            System.out.println("Ugyldigt valg.");
+            return null;
+        }
+
+        return matchingMembers.get(memberIndex);
+    }
 
 }
 

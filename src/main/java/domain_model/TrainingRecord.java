@@ -20,9 +20,9 @@ public class TrainingRecord extends Record {
     @Override
     public String toString() {
         return
-                "Træningsresultat: \n" +
+                        "Træningsresultat: \n" +
                         "Disciplin: " + discipline + '\n' +
-                        "Tidsresultat: " + result + " minutter" + '\n' +
+                        "Tid: " + result + " minutter" + '\n' +
                         "Dato: " + date + '\n';
     }
 
