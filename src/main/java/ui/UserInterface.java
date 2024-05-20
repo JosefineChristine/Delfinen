@@ -511,6 +511,25 @@ public class UserInterface {
         return year;
     }
 
+    private CompetitionMember findAndValidateMember() {
+        System.out.println("Søg svømmer som skal have et resultat:");
+        String searchMember = input.nextLine();
+        input.next();
+        Member member = controller.findSpecificMember(searchMember);
+
+        if (member == null) {
+            System.out.println("Medlem ikke fundet.");
+            return null;
+        }
+
+        if (!(member instanceof CompetitionMember)) {
+            System.out.println("Medlemmet er ikke en konkurrencemedlem.");
+            return null;
+        }
+
+        return (CompetitionMember) member;
+    }
+
     private CompetitionRecord createCompetitionRecord(CompetitionMember member) {
         System.out.println("Tilføj eventnavn");
         String eventName = input.next();
@@ -529,24 +548,6 @@ public class UserInterface {
         return new CompetitionRecord(eventName, discipline, result, competitionDate, place);
     }
 
-    private CompetitionMember findAndValidateMember() {
-        System.out.println("Søg svømmer som skal have et resultat:");
-
-        String searchMember = input.nextLine();
-        Member member = controller.findSpecificMember(searchMember);
-
-        if (member == null) {
-            System.out.println("Medlem ikke fundet.");
-            return null;
-        }
-
-        if (!(member instanceof CompetitionMember)) {
-            System.out.println("Medlemmet er ikke en konkurrencemedlem.");
-            return null;
-        }
-
-        return (CompetitionMember) member;
-    }
     private TrainingRecord createTrainingRecord(CompetitionMember member) {
         System.out.println("Tilføj titel");
         String title = input.next();

@@ -11,7 +11,7 @@ import java.util.Collections;
 public class CompetitionMember extends Member {
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
-    private ArrayList<Record> memberRecords;
+    private ArrayList<Record> memberRecords = new ArrayList<>();
     private ArrayList<TrainingRecord> trainingRecords;
     private ArrayList<CompetitionRecord> competitionRecords;
     private ArrayList<Team> teams;
@@ -28,7 +28,6 @@ public class CompetitionMember extends Member {
         setActiveDisciplines();
         recordInitializer();
 
-        memberRecords = new ArrayList<>();
         activeDisciplines = new ArrayList<>();
         teams = new ArrayList<>();
         trainingRecords = new ArrayList<>();
