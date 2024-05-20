@@ -30,7 +30,7 @@ public class TeamCollection {
     public TeamCollection() {
         teamsArrayList();
         populateTeams();
-        AddCoachesToList();
+        initializeCoaches();
         initializeMembersForCoaches();
     }
 
@@ -118,7 +118,6 @@ public class TeamCollection {
         ArrayList<Team> teamsToSearch = new ArrayList<>();
 
         for (Team team : allTheTeams) {
-            // Filter out exercise teams and empty teams
             if (!team.getTeamDiscipline().contains("exercise") && !team.getTeamMemberList().isEmpty()){
                 teamsToSearch.add(team);
             }

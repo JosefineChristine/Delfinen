@@ -1,4 +1,7 @@
+
 import ui.UserInterface;
+
+
 import java.util.Locale;
 
 // REFAKTORERET
@@ -13,6 +16,10 @@ public class Main {
         UserInterface ui = new UserInterface();
         ui.startProgram();
 
+
+
     }
 
 }
+
+
