@@ -22,11 +22,6 @@ public class Controller {
 
     //***KASSERERMENU***------------------------------------------------------------------------------------------------
 
-    //***COACH MENU***--------------------------------------------------------------------------------------------------
-//    public void addRecord(Record record){
-//        record.addRecord(record);
-//    }
-
     //***ADMIN MENU***--------------------------------------------------------------------------------------------------
     public void addCompetitionMember(CompetitionMember competitionMember){
         memberCollection.addCompetitionMember(competitionMember);
@@ -96,6 +91,10 @@ public class Controller {
     public ArrayList<Coach> getCoachList() { //TODO skal virke
         return teamCollection.getCoachList();
     }
+
+    //    public void addRecord(Record record){
+//        record.addRecord(record);
+//    }
 
 
 

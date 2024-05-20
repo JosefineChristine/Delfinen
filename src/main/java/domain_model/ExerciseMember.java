@@ -21,11 +21,11 @@ public class ExerciseMember extends Member {
 
         return  "***Medlemsinformation motionssvømmer***\n" +
                 "Navn: "                       + getMemberFirstName() + " "  + getMemberLastName() + '\n' +
-                "Fødselsdag: "              + getDateOfBirth()            + '\n'     +
-                "Medlemsstatus: "              + medlemsStatus                  + '\n'     +
+                "Fødselsdag: "                 + getDateOfBirth()            + '\n'     +
+                "Medlemsstatus: "              + medlemsStatus               + '\n'     +
                 "Medlemstype: "                + getMemberShipType()         + '\n'     +
-                "Årligt kontigent: "      + getMembershipFee()          + " DKK\n" +
-                "Restance: "                       + getDebt()                   + " DKK\n";
+                "Årligt kontigent: "           + getMembershipFee()          + " DKK\n" +
+                "Restance: "                   + getDebt()                   + " DKK\n" ;
     }
 
     //------------------------------------------------------------------------------------------------------------------
