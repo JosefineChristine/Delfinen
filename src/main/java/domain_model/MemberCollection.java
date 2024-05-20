@@ -126,6 +126,8 @@ public class MemberCollection {
     }
 
     public ArrayList<Member> getMemberList() {
+        for (Member member : memberList)
+            (CompetitionMember) member.g
         return memberList;
     }
 

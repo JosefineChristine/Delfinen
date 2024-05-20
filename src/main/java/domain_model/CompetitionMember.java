@@ -66,12 +66,12 @@ public class CompetitionMember extends Member {
                 memberTeams.add(team.getTeamDiscipline());
             }
         }
-        //TODO Navn getter måske slettes hvis vi ikke bruger metoden udover i de fulde stamoplysningsprint (Og "hold for" tilføjes i toString)
-        return " for " + memberFirstName + " " + memberLastName + ":\n" + memberTeams;
+        String teamsString = String.join(", ", memberTeams);
+        return " for " + memberFirstName + " " + memberLastName + ":\n" + teamsString;
     }
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
-    public void setMemberRecords(ArrayList<Record> memberRecords) {
+    public void setMemberRecords(ArrayList<Record> memberRecords) { //TODO: HVad skal disse metoder ift. add metoderne nedenuder?
         this.memberRecords = memberRecords;
     }
 
@@ -85,7 +85,6 @@ public class CompetitionMember extends Member {
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
 
-    //TODO: Tjek om disse metoder skal bruges
     public void addTeamForSpecificMember(Team team) {
         this.teams.add(team);
     }
@@ -151,12 +150,12 @@ public class CompetitionMember extends Member {
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     public String toString() {
-        String medlemsStatus = isActive() ? "Aktiv" : "Passiv";
+        String membershipStatus = isActive() ? "Aktiv" : "Passiv";
 
         return "***Medlemsinformation konkurrencesvømmer***\n" +
                 "Navn: " + getMemberFirstName() + " " + getMemberLastName() + '\n' +
                 "Fødselsdag: " + getDateOfBirth() + '\n' +
-                "Medlemsstatus: " + medlemsStatus + '\n' +
+                "Medlemsstatus: " + membershipStatus + '\n' +
                 "Medlemstype: " + getMemberShipType() + '\n' +
                 "Årligt kontigent: " + getMembershipFee() + " DKK\n" +
                 "Restance: " + getDebt() + " DKK\n" +

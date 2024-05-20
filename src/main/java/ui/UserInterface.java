@@ -59,8 +59,6 @@ public class UserInterface {
         System.out.println("|______________________________________|");
     }
 
-    //TODO sørg for man kan komme tilbage til menuen, i stedet for at skulle stoppe programmet for at gøre noget nyt
-
     public void adminMenu() {
 
         while (userChoice != 0) {
@@ -70,16 +68,16 @@ public class UserInterface {
             System.out.println("________________________________________________________");
             System.out.println("Valgmuligheder: ");
             System.out.println("1. Tilføj nye medlemmer\n" +
-                    "2. Søg efter medlem\n" +
-                    "3. Slet medlem\n" +
-                    "4. Rediger stamoplysning for medlem\n" +
-                    "5. Se alle medlemmer i klubben \n" +
-                    "0. Tilbage til startmenu");
+                                "2. Søg efter medlem\n" +
+                                "3. Slet medlem\n" +
+                                "4. Rediger stamoplysning for medlem\n" +
+                                "5. Se alle medlemmer i klubben \n" +
+                                "0. Tilbage til startmenu");
 
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
                 case 0 -> {
-                    startMenu();
+                    startProgram();
                 }
                 case 1 -> {
                     System.out.println("Vil du tilføje en motionssvømmer eller en konkurrencesvømmer?");
@@ -130,7 +128,7 @@ public class UserInterface {
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
                 case 0 -> {
-                    startMenu();
+                    startProgram();
                 }
                 case 1 -> {
                     searchMember();
@@ -159,192 +157,33 @@ public class UserInterface {
 
             switch (userChoice) {
                 case 0 -> {
-                    startMenu();
+                    startProgram();
                 }
                 case 1 -> {
-                    //TODO se holdliste efter træner
-                    System.out.println("Søg efter træner som du gerne vil se en medlemsliste over");
-                    System.out.println(controller.getCoachList());
-                    searchCoach();
-
-                    // Coach coach = controller.findSpecificCoach(trænerSøgning);
-                    // System.out.println("For træner " + coach.getCoachFirstName() + " " + coach.getCoachLastName());
-                    //System.out.println("liste af konkurrencemedlemmer");
-                    // coach.getCompetitionMemberListForCoach();
-
+                    selectCoach();
                 }
                 case 2 -> {
                     showTopFive();
                 }
                 case 3 -> {
-                    System.out.println("Du har valgt at tilføje et konkurrenceresultat");
-                    System.out.println("Søg svømmer som skal have et konkurrenceresultat");
+                    // Tilføj konkurrenceresultat
+                    System.out.println("Du har valgt at tilføje et konkurrenceresultat.");
+                    CompetitionMember competitionMember = findAndValidateMember();
+                    if (competitionMember == null) return;
 
-                    String searchMember = input.nextLine();
-                    Member member = controller.findSpecificMember(searchMember);
+                    CompetitionRecord competitionRecord = createCompetitionRecord(competitionMember);
+                    competitionRecord.addRecord(competitionRecord);
 
-                    if (member == null) {
-                        System.out.println("Medlem ikke fundet.");
-                        return;
-                    }
-
-                    if (!(member instanceof CompetitionMember)) {
-                        System.out.println("Medlemmet er ikke en konkurrencemedlem.");
-                        return;
-                    }
-
-                    CompetitionMember competitionMember = (CompetitionMember) member;
-
-                    System.out.println("Tilføj eventnavn");
-                    String eventName = input.next();
-
-                    System.out.println("Tilføj disciplin");
-                    String discipline = input.next();
-
-                    System.out.println("Tilføj resultat (fx. 5.08)");
-                    double result = input.nextDouble();
-
-                    System.out.println("Tilføj dato for konkurrenceresultat");
-                    int dayOfCompetition = -1;
-
-                    while (dayOfCompetition < 1 || dayOfCompetition > 31) {
-                        System.out.println("Tilføj dag (DD)");
-                        String userInput = input.next();
-
-                        if (userInput.matches("0[1-9]|[1-2][0-9]|3[0-1]")) {
-                            dayOfCompetition = Integer.parseInt(userInput);
-                            if (dayOfCompetition >= 1 && dayOfCompetition <= 31) {
-                                break;
-                            }
-                        }
-                        System.out.println("Input er ikke accepteret, tast venligst en godkendt dag mellem 01-31.");
-                    }
-
-                    int monthOfCompetition = -1;
-
-                    while (monthOfCompetition < 1 || monthOfCompetition > 12) {
-                        System.out.println("Tilføj måned (MM)");
-                        String userInput = input.next();
-
-                        if (userInput.matches("0[1-9]|1[0-2]")) {
-                            monthOfCompetition = Integer.parseInt(userInput);
-                            if (monthOfCompetition >= 1 && monthOfCompetition <= 12) {
-                                break;
-                            }
-                        }
-                        System.out.println("Input er ikke accepteret, tast venligst en godkendt måned mellem 01-12.");
-                    }
-
-                    int yearOfCompetition = -1;
-
-                    int currentYear = Year.now().getValue();
-                    int minYear = currentYear - 10;
-
-                    while (yearOfCompetition < minYear || yearOfCompetition > currentYear) {
-                        System.out.println("Tilføj årstal (YYYY)");
-                        String userInput = input.next();
-
-                        if (userInput.matches("\\d{4}")) {
-                            yearOfCompetition = Integer.parseInt(userInput);
-                            if (yearOfCompetition >= minYear && yearOfCompetition <= currentYear) {
-                                break;
-                            }
-                        }
-                        System.out.println("Input er ikke accepteret, tast venligst et godkendt årstal.");
-                    }
-                    LocalDate competitionDate = LocalDate.of(yearOfCompetition, monthOfCompetition, dayOfCompetition);
-
-                    System.out.println("Tilføj sted");
-                    String place = input.next();
-
-                   CompetitionRecord competitionRecord = new CompetitionRecord(eventName, discipline, result, competitionDate, place);
-                   competitionRecord.addRecord(competitionRecord);
-
-                   System.out.println("Rekorden er tilføjet til medlemmet.");
-
+                    System.out.println("Rekorden er tilføjet til medlemmet.");
                 }
 
                 case 4 -> {
-                    //tilføj træningsresultat
-                    System.out.println("Du har valgt at tilføje et træningsresultat");
-                    System.out.println("Skriv navnet på det medlem du vil tilføje resultatet til:"); //TODO skrive fornavn/efternavn/begge dele?
+                    // Tilføj træningsresultat
+                    System.out.println("Du har valgt at tilføje et træningsresultat.");
+                    CompetitionMember competitionMember = findAndValidateMember();
+                    if (competitionMember == null) return;
 
-                    String searchMember = input.nextLine();
-                    Member member = controller.findSpecificMember(searchMember);
-
-                    if (member == null) {
-                        System.out.println("Medlem ikke fundet.");
-                        return;
-                    }
-
-                    if (!(member instanceof CompetitionMember)) {
-                        System.out.println("Medlemmet er ikke en konkurrencemedlem.");
-                        return;
-                    }
-
-                    CompetitionMember competitionMember = (CompetitionMember) member;
-
-                    String title = input.next();
-
-                    System.out.println("Tilføj disciplin");
-                    String discipline = input.next();
-
-                    System.out.println("Tilføj resultat (fx. 5.08)");
-                    double result = input.nextDouble();
-
-                    System.out.println("Tilføj dato for træningsresultat");
-
-                    int dayOfTraining = -1;
-                    while (dayOfTraining < 1 || dayOfTraining > 31) {
-                        System.out.println("Tilføj dag (DD)");
-                        String userInput = input.next();
-
-                        if (userInput.matches("0[1-9]|[1-2][0-9]|3[0-1]")) {
-                            dayOfTraining = Integer.parseInt(userInput);
-                            if (dayOfTraining >= 1 && dayOfTraining <= 31) {
-                                break;
-                            }
-                        }
-                        System.out.println("Input er ikke accepteret, tast venligst en godkendt dag mellem 01-31.");
-                    }
-
-                    int monthOfTraining = -1;
-
-                    while (monthOfTraining < 1 || monthOfTraining > 12) {
-                        System.out.println("Tilføj måned (MM)");
-                        String userInput = input.next();
-
-                        if (userInput.matches("0[1-9]|1[0-2]")) {
-                            monthOfTraining = Integer.parseInt(userInput);
-                            if (monthOfTraining >= 1 && monthOfTraining <= 12) {
-                                break;
-                            }
-                        }
-                        System.out.println("Input er ikke accepteret, tast venligst en godkendt måned mellem 01-12.");
-                    }
-
-                    int yearOfTraining = -1;
-
-                    int currentYear = Year.now().getValue();
-                    int minYear = currentYear - 10;
-
-                    while (yearOfTraining < minYear || yearOfTraining > currentYear) {
-                        System.out.println("Tilføj årstal (YYYY)");
-                        String userInput = input.next();
-
-                        if (userInput.matches("\\d{4}")) {
-                            yearOfTraining = Integer.parseInt(userInput);
-                            if (yearOfTraining >= minYear && yearOfTraining <= currentYear) {
-                                break;
-                            }
-                        }
-                        System.out.println("Input er ikke accepteret, tast venligst et godkendt årstal.");
-                    }
-
-                    LocalDate trainingDate = LocalDate.of(yearOfTraining, monthOfTraining, dayOfTraining);
-                    input.nextLine();
-
-                    TrainingRecord trainingRecord = new TrainingRecord(title, discipline, result, trainingDate);
+                    TrainingRecord trainingRecord = createTrainingRecord(competitionMember);
                     trainingRecord.addRecord(trainingRecord);
 
                     System.out.println("Rekorden er tilføjet til medlemmet.");
@@ -360,22 +199,7 @@ public class UserInterface {
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
 
-    public String getUserString() {
-        String userInput;
-        do {
-            userInput = input.nextLine();
-            input.nextLine();
-            if (userInput.trim().isEmpty()) {
-                System.out.println("Forkert input. Prøv igen.");
-            }
-
-        } while (userInput.trim().isEmpty());
-
-        return userInput;
-    }
-
-
-    public void addMember(String memberType) {
+    private void addMember(String memberType) {
         input.nextLine();
         System.out.println("Tilføj medlemmets fornavn");
         String memberFirstName = input.nextLine();
@@ -385,55 +209,7 @@ public class UserInterface {
         String memberLastName = input.nextLine();
         System.out.println(memberLastName);
 
-        int dayOfBirth = -1;
-
-        while (dayOfBirth < 1 || dayOfBirth > 31) {
-            System.out.println("Tilføj fødselsdag (DD)");
-            String userInput = input.next();
-
-            if (userInput.matches("0[1-9]|[1-2][0-9]|3[0-1]")) {
-                dayOfBirth = Integer.parseInt(userInput);
-                if (dayOfBirth >= 1 && dayOfBirth <= 31) {
-                    break;
-                }
-            }
-            System.out.println("Input er ikke accepteret, tast venligst en godkendt fødselsdag mellem 01-31.");
-        }
-
-        int monthOfBirth = -1;
-
-        while (monthOfBirth < 1 || monthOfBirth > 12) {
-            System.out.println("Tilføj fødselsmåned (MM)");
-            String userInput = input.next();
-
-            if (userInput.matches("0[1-9]|1[0-2]")) {
-                monthOfBirth = Integer.parseInt(userInput);
-                if (monthOfBirth >= 1 && monthOfBirth <= 12) {
-                    break;
-                }
-            }
-            System.out.println("Input er ikke accepteret, tast venligst en godkendt fødselsmåned mellem 01-12.");
-        }
-
-        int yearOfBirth = -1;
-
-        int currentYear = Year.now().getValue();
-        int minYear = currentYear - 120;
-
-        while (yearOfBirth < minYear || yearOfBirth > currentYear) {
-            System.out.println("Tilføj fødselsår (YYYY)");
-            String userInput = input.next();
-
-            if (userInput.matches("\\d{4}")) {
-                yearOfBirth = Integer.parseInt(userInput);
-                if (yearOfBirth >= minYear && yearOfBirth <= currentYear) {
-                    break;
-                }
-            }
-            System.out.println("Input er ikke accepteret, tast venligst et godkendt fødselsår.");
-        }
-
-        LocalDate userBirthday = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+        LocalDate userBirthday = inputDate("fødselsdag");
         System.out.println(userBirthday);
 
         System.out.println("Tilføj medlemmets restance");
@@ -460,7 +236,7 @@ public class UserInterface {
         System.out.println("...................................");
     }
 
-    public void searchMember() {
+    private void searchMember() {
         System.out.println("Indtast fornavn eller efternavn på det medlem du vil søge efter: ");
         input.nextLine();
         String search = input.nextLine();
@@ -470,7 +246,7 @@ public class UserInterface {
         }
     }
 
-    public void allMembersWithDebtList() {
+    private void allMembersWithDebtList() {
         ArrayList<Member> membersWithDebt = controller.searchMemberDebt();
 
         if (membersWithDebt.isEmpty()) {
@@ -483,7 +259,7 @@ public class UserInterface {
         }
     }
 
-    public void deleteMember() {
+    private void deleteMember() {
 
         System.out.println("Skriv navnet på det medlem du vil slette");
         input.nextLine();
@@ -518,7 +294,7 @@ public class UserInterface {
         }
     }
 
-    public void editMember() {
+    private void editMember() {
         System.out.println("Skriv navnet på det medlem du vil redigere stamoplysningerne for: ");
         input.nextLine();
         String memberName = input.nextLine().trim();
@@ -576,8 +352,7 @@ public class UserInterface {
         }
     }
 
-    public void printMemberList() {
-        //TODO printMemberList() har [] fra Arraylisten med teams?
+    private void printMemberList() {
 
         System.out.println("Liste over alle medlemmer:");
 
@@ -593,28 +368,27 @@ public class UserInterface {
                 }
             }
         }
-//
     }
 
-//    public void printCoachList () { //TODO ret så den passer på coach
-//        //3. Overblik over hele filmsamlingen
-//        System.out.println("Overview of your Movie Collection");
-//        for (Movie movie : controller.getMovieCollection()) {
-//            System.out.println(movie.toString());
-//        }
-//    }
+    private void printCoachList () {
+        System.out.println("Liste over alle trænere:");
 
-    public void searchCoach() {
+        for (Coach coach : controller.getCoachList()) {
+        System.out.println(coach.toString());
+
+        //TODO: Skal vi printe mere end navn?
+        }
+    }
+
+
+    private void searchCoach() {
         System.out.println("Søg efter træner:");
         input.nextLine();
         String search = input.nextLine();
         ArrayList<Coach> coachList = controller.searchCoach(search);
-        for (Coach coach : coachList) {
-            System.out.println(coach.getMemberListForCoach());
-        }
     }
 
-    public void selectCoach() {
+    private void selectCoach() {
         System.out.println("Skriv navnet på den træner, du ønsker at se medlemmer for:");
         input.nextLine();
         String userInput = input.nextLine().trim();
@@ -632,22 +406,33 @@ public class UserInterface {
         }
 
         System.out.println("Vælg nummeret på den træner, du vil se medlemmer for:");
-        int memberIndex = Integer.parseInt(input.nextLine()) - 1;
-
-        if (memberIndex >= 0 && memberIndex < matchingCoaches.size()) {
-            System.out.println("Print holdliste for træner");
-//            boolean output = controller.(matchingCoaches.get(memberIndex).getCoachFirstName());
-//            if (!output) {
-//                System.out.println("Der blev ikke fundet en træner med det navn.\n");
-//            } else {
-//                System.out.println("Print medlemsliste"); //TODO print holdliste for træner
-//            }
-//        } else {
-//            System.out.println("Ugyldigt valg.");
+        int coachIndex;
+        try {
+            coachIndex = Integer.parseInt(input.nextLine()) - 1;
+        } catch (NumberFormatException e) {
+            System.out.println("Ugyldigt valg.");
+            return;
         }
 
+        if (coachIndex >= 0 && coachIndex < matchingCoaches.size()) {
+            Coach selectedCoach = matchingCoaches.get(coachIndex);
+            System.out.println("Se holdliste for træner " + selectedCoach.getCoachFirstName() + " " + selectedCoach.getCoachLastName() + ":");
+
+            ArrayList<Member> teamMembers = controller.getMemberListForCoach(selectedCoach);
+
+            if (teamMembers.isEmpty()) {
+                System.out.println("Der blev ikke fundet nogle medlemmer for denne træner.\n");
+            } else {
+                System.out.println("Medlemsliste:");
+                for (Member member : teamMembers) {
+                    System.out.println(member.toString());
+                }
+            }
+        } else {
+            System.out.println("Ugyldigt valg.");
+        }
     }
-    public void showTopFive(){
+    private void showTopFive(){
         CompetitionMember[] topFiveMembers = new CompetitionMember[5];
 
         System.out.println("*******TOP 5*********" + "\n");
@@ -664,5 +449,119 @@ public class UserInterface {
             }
         }
     }
+
+    private LocalDate inputDate(String dateType) {
+        System.out.println("Tilføj dato for " + dateType);
+
+        int day = inputDay(dateType);
+        int month = inputMonth(dateType);
+        int year = inputYear(dateType);
+
+        return LocalDate.of(year, month, day);
+    }
+
+    private int inputDay(String dateType) {
+        int day = -1;
+        while (day < 1 || day > 31) {
+            System.out.println("Tilføj dag (DD) for " + dateType);
+            String userInput = input.next();
+
+            if (userInput.matches("0[1-9]|[1-2][0-9]|3[0-1]")) {
+                day = Integer.parseInt(userInput);
+            }
+            if (day < 1 || day > 31) {
+                System.out.println("Input er ikke accepteret, tast venligst en godkendt dag mellem 01-31.");
+            }
+        }
+        return day;
+    }
+
+    private int inputMonth(String dateType) {
+        int month = -1;
+        while (month < 1 || month > 12) {
+            System.out.println("Tilføj måned (MM) for " + dateType);
+            String userInput = input.next();
+
+            if (userInput.matches("0[1-9]|1[0-2]")) {
+                month = Integer.parseInt(userInput);
+            }
+            if (month < 1 || month > 12) {
+                System.out.println("Input er ikke accepteret, tast venligst en godkendt måned mellem 01-12.");
+            }
+        }
+        return month;
+    }
+
+    private int inputYear(String dateType) {
+        int year = -1;
+        int currentYear = Year.now().getValue();
+        int minYear = currentYear - 120;
+
+        while (year < minYear || year > currentYear) {
+            System.out.println("Tilføj årstal (YYYY) for " + dateType);
+            String userInput = input.next();
+
+            if (userInput.matches("\\d{4}")) {
+                year = Integer.parseInt(userInput);
+            }
+            if (year < minYear || year > currentYear) {
+                System.out.println("Input er ikke accepteret, tast venligst et godkendt årstal.");
+            }
+        }
+        return year;
+    }
+
+    private CompetitionRecord createCompetitionRecord(CompetitionMember member) {
+        System.out.println("Tilføj eventnavn");
+        String eventName = input.next();
+
+        System.out.println("Tilføj disciplin");
+        String discipline = input.next();
+
+        System.out.println("Tilføj resultat (fx. 5.08)");
+        double result = input.nextDouble();
+
+        LocalDate competitionDate = inputDate("konkurrenceresultat");
+
+        System.out.println("Tilføj sted");
+        String place = input.next();
+
+        return new CompetitionRecord(eventName, discipline, result, competitionDate, place);
+    }
+
+    private CompetitionMember findAndValidateMember() {
+        System.out.println("Søg svømmer som skal have et resultat:");
+
+        String searchMember = input.nextLine();
+        Member member = controller.findSpecificMember(searchMember);
+
+        if (member == null) {
+            System.out.println("Medlem ikke fundet.");
+            return null;
+        }
+
+        if (!(member instanceof CompetitionMember)) {
+            System.out.println("Medlemmet er ikke en konkurrencemedlem.");
+            return null;
+        }
+
+        return (CompetitionMember) member;
+    }
+    private TrainingRecord createTrainingRecord(CompetitionMember member) {
+        System.out.println("Tilføj titel");
+        String title = input.next();
+
+        System.out.println("Tilføj disciplin");
+        String discipline = input.next();
+
+        System.out.println("Tilføj resultat (fx. 5.08)");
+        double result = input.nextDouble();
+
+        LocalDate trainingDate = inputDate("træningsresultat");
+
+        return new TrainingRecord(title, discipline, result, trainingDate);
+    }
+
+
 }
 
