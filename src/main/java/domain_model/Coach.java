@@ -2,7 +2,7 @@ package domain_model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
+// DELVIST REFAKTORERET (SE TODOS)
 
 public class Coach {
 
@@ -19,7 +19,7 @@ public class Coach {
     public Coach(String coachFirstName, String coachLastName) {
         this.coachFirstName = coachFirstName;
         this.coachLastName = coachLastName;
-        this.memberListForCoach = new ArrayList<>();
+        memberListForCoach = new ArrayList<>();
 
     }
 
@@ -33,7 +33,7 @@ public class Coach {
     }
 
     public void setMemberListForCoach(ArrayList<Member> memberListForCoach) {
-        this.memberListForCoach = memberListForCoach;
+        this.memberListForCoach = memberListForCoach; //TODO: Hvad skal denne metode ift. add/remove metoderne?
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
@@ -45,11 +45,10 @@ public class Coach {
         memberListForCoach.remove(member);
     }
 
-    Member member = new CompetitionMember("Josefine", "Røes", LocalDate.of(1994, 11, 11), 0, true);
-
-
     //***METHODS***-----------------------------------------------------------------------------------------------------
-    public ArrayList<Member> getMemberListForCoach() {
+    public ArrayList<Member> getMemberListForCoach(Coach coach) {
+        for (Member member : memberListForCoach)
+            member.toString();
         return memberListForCoach;
     }
 
@@ -57,7 +56,7 @@ public class Coach {
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     @Override
     public String toString() {
-        return "\n" + getCoachFirstName() + " " + getCoachLastName();
+        return "\n" + coachFirstName + " " + coachLastName;
     }
 
     //------------------------------------------------------------------------------------------------------------------

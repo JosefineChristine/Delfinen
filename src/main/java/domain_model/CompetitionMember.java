@@ -6,28 +6,29 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// DELVIST REFAKTORERET (SE TODOS)
 
 public class CompetitionMember extends Member {
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private ArrayList<Record> memberRecords = new ArrayList<>();
-    private ArrayList<TrainingRecord> trainingRecords = new ArrayList<>();
-    private ArrayList<CompetitionRecord> competitionRecords = new ArrayList<>();
+    private ArrayList<TrainingRecord> trainingRecords;
+    private ArrayList<CompetitionRecord> competitionRecords;
     private ArrayList<Team> teams;
-    private Team team;
-    private ArrayList<String> activeDisciplines = new ArrayList<>();
+    private ArrayList<String> activeDisciplines;
     private double bestTrainingRecord;
 
     //***CONSTRUCTOR****------------------------------------------------------------------------------------------------
-    public CompetitionMember(String memberFirstName, String memberLastName, LocalDate dateOfBirth,
-                             double debt, boolean isActive) {
-        super(memberFirstName, memberLastName, dateOfBirth, debt, isActive);
+    public CompetitionMember(String memberFirstName, String memberLastName,
+                             LocalDate dateOfBirth, double debt, boolean isActive) {
+        super(memberFirstName, memberLastName,
+                dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
-        this.teams = new ArrayList<>();
+
         setActiveDisciplines();
         recordInitializer();
 
-
+        activeDisciplines = new ArrayList<>();
         teams = new ArrayList<>();
         trainingRecords = new ArrayList<>();
         competitionRecords = new ArrayList<>();
@@ -64,12 +65,12 @@ public class CompetitionMember extends Member {
                 memberTeams.add(team.getTeamDiscipline());
             }
         }
-        //TODO Navn getter måske slettes hvis vi ikke bruger metoden udover i de fulde stamoplysningsprint (Og "hold for" tilføjes i toString)
-        return " for " + getMemberFirstName() + " " + getMemberLastName() + ":\n" + memberTeams;
+        String teamsString = String.join(", ", memberTeams);
+        return " for " + memberFirstName + " " + memberLastName + ":\n" + teamsString;
     }
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
-    public void setMemberRecords(ArrayList<Record> memberRecords) {
+    public void setMemberRecords(ArrayList<Record> memberRecords) { //TODO: HVad skal disse metoder ift. add metoderne nedenuder?
         this.memberRecords = memberRecords;
     }
 
@@ -82,16 +83,14 @@ public class CompetitionMember extends Member {
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
+
+    //TODO: Tjek om disse metoder skal bruges
     public void addTeamForSpecificMember(Team team) {
         this.teams.add(team);
     }
 
     public void removeTeamForSpecificMember(Team team) {
         this.teams.remove(team);
-    }
-
-    public void addRecord(Record record) {
-        memberRecords.add(record);
     }
 
     public void addTrainingRecordToMember(TrainingRecord record) {
@@ -104,12 +103,12 @@ public class CompetitionMember extends Member {
 
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
-    public void recordInitializer() {
+    public void recordInitializer() { //TODO: Hvorfor har vi denne metode når de to foregående kan præcis det samme?
         for (Record record : getMemberRecords()) {
             if (record instanceof CompetitionRecord) {
-                addCompetitionRecordToMember((CompetitionRecord) record);
+                competitionRecords.add((CompetitionRecord) record);
             } else {
-                addTrainingRecordToMember((TrainingRecord) record);
+                trainingRecords.add((TrainingRecord) record);
             }
 
         }
@@ -121,7 +120,6 @@ public class CompetitionMember extends Member {
                 activeDisciplines.add(record.getDiscipline());
             }
         }
-
         return activeDisciplines;
     }
 
@@ -133,7 +131,6 @@ public class CompetitionMember extends Member {
             }
         }
         Collections.sort(trainingRecordList, new RecordComparator()); //sorterer
-        //TODO could refactor this methode and added attributes
         setBestTrainingRecord(trainingRecordList.get(0).getResult());
         return (trainingRecordList.get(0)); //henter index 0 og retunerer den
     }
@@ -152,12 +149,12 @@ public class CompetitionMember extends Member {
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     public String toString() {
-        String medlemsStatus = isActive() ? "Aktiv" : "Passiv";
+        String membershipStatus = isActive() ? "Aktiv" : "Passiv";
 
         return "***Medlemsinformation konkurrencesvømmer***\n" +
                 "Navn: " + getMemberFirstName() + " " + getMemberLastName() + '\n' +
                 "Fødselsdag: " + getDateOfBirth() + '\n' +
-                "Medlemsstatus: " + medlemsStatus + '\n' +
+                "Medlemsstatus: " + membershipStatus + '\n' +
                 "Medlemstype: " + getMemberShipType() + '\n' +
                 "Årligt kontigent: " + getMembershipFee() + " DKK\n" +
                 "Restance: " + getDebt() + " DKK\n" +

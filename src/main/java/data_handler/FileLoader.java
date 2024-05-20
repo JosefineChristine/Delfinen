@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+// REFAKTORERET
+
 public class FileLoader {
     File memberList = new File("Delfin-members.csv");
     ArrayList<Member> members = new ArrayList<>();
@@ -48,7 +50,6 @@ public class FileLoader {
     public ArrayList<Record> competitorHandler(String[] values) {
 
         ArrayList<Record> memberRecordList = new ArrayList<>();
-        // create an arrayList from our array of String
 
         ArrayList<String> memberRecords = new ArrayList<>();
         for (int i = 0; i < values.length; i++) {

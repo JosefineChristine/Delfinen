@@ -5,6 +5,7 @@ import comparator.BestRecordComparator;
 import java.util.ArrayList;
 import java.util.Collections;
 
+// DELVIST REFAKTORERET (SE TODOS)
 
 public class Team {
 
@@ -14,12 +15,12 @@ public class Team {
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String teamDiscipline;
     private ArrayList<Member> teamMemberList = new ArrayList<>();
-    private boolean isTeamSenior;
+    private boolean isTeamSenior; //TODO: Skal denne bruges?
     Coach coach;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Team(String teamDiscipline, Coach coach, boolean isTeamSenior) {
-        this.teamDiscipline = teamDiscipline.toLowerCase(); // ex. " Crawl"
+        this.teamDiscipline = teamDiscipline.toLowerCase();
         this.coach = coach;
         this.isTeamSenior = isTeamSenior;
         initialiseCompetitionMemberToCoach();
@@ -85,7 +86,7 @@ public class Team {
     }
 
     public void removeMemberofTeam(Member member) {
-        this.teamMemberList.remove(member);
+        this.teamMemberList.remove(member); //TODO: Skal denne bruges?
     }
 
     //***TO STRING METHOD***-----------------------------------------------------------------------------------------------
@@ -95,9 +96,8 @@ public class Team {
                 "Team name: " + teamDiscipline + '\n' +
                 "Team coach: " + getCoach() + '\n' +
 
-                "Team type " + getIsTeamSenior() + '\n' +
-                "Team members: \n" +
-                getTeamListAsString();
+                "Team type " + isTeamSenior + '\n' +
+                "Team members: \n" + getTeamListAsString();
     }
 
 
