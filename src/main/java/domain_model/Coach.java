@@ -37,7 +37,7 @@ public class Coach {
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-    public void addMemberToCoach(Member member) { //TODO: Skal disse bruges?
+    public void addMemberToCoach(Member member) {
         memberListForCoach.add(member);
     }
 
@@ -46,7 +46,9 @@ public class Coach {
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
-    public ArrayList<Member> getMemberListForCoach() {
+    public ArrayList<Member> getMemberListForCoach(Coach coach) {
+        for (Member member : memberListForCoach)
+            member.toString();
         return memberListForCoach;
     }
 

@@ -37,8 +37,8 @@ public class Controller {
         competitionMember.addCompetitionRecordToMember(record);
     }
 
-    public ArrayList<Member> getCompetitionMemberListForCoach() {
-        return coach.getMemberListForCoach();
+    public ArrayList<Member> getMemberListForCoach(Coach coach) {
+        return coach.getMemberListForCoach(coach);
     }
 
     public ArrayList<Coach> searchCoach(String input) {

@@ -11,7 +11,7 @@ import java.util.Collections;
 public class CompetitionMember extends Member {
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
-    private ArrayList<Record> memberRecords;
+    private ArrayList<Record> memberRecords = new ArrayList<>();
     private ArrayList<TrainingRecord> trainingRecords;
     private ArrayList<CompetitionRecord> competitionRecords;
     private ArrayList<Team> teams;
@@ -25,14 +25,13 @@ public class CompetitionMember extends Member {
                 dateOfBirth, debt, isActive);
         super.setMemberShipType("Competition");
 
-        memberRecords = new ArrayList<>();
+        setActiveDisciplines();
+        recordInitializer();
+
         activeDisciplines = new ArrayList<>();
         teams = new ArrayList<>();
         trainingRecords = new ArrayList<>();
         competitionRecords = new ArrayList<>();
-
-        setActiveDisciplines();
-        recordInitializer();
 
     }
 
@@ -66,12 +65,12 @@ public class CompetitionMember extends Member {
                 memberTeams.add(team.getTeamDiscipline());
             }
         }
-        //TODO Navn getter måske slettes hvis vi ikke bruger metoden udover i de fulde stamoplysningsprint (Og "hold for" tilføjes i toString)
-        return " for " + memberFirstName + " " + memberLastName + ":\n" + memberTeams;
+        String teamsString = String.join(", ", memberTeams);
+        return " for " + memberFirstName + " " + memberLastName + ":\n" + teamsString;
     }
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
-    public void setMemberRecords(ArrayList<Record> memberRecords) {
+    public void setMemberRecords(ArrayList<Record> memberRecords) { //TODO: HVad skal disse metoder ift. add metoderne nedenuder?
         this.memberRecords = memberRecords;
     }
 
@@ -150,12 +149,12 @@ public class CompetitionMember extends Member {
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     public String toString() {
-        String medlemsStatus = isActive() ? "Aktiv" : "Passiv";
+        String membershipStatus = isActive() ? "Aktiv" : "Passiv";
 
         return "***Medlemsinformation konkurrencesvømmer***\n" +
                 "Navn: " + getMemberFirstName() + " " + getMemberLastName() + '\n' +
                 "Fødselsdag: " + getDateOfBirth() + '\n' +
-                "Medlemsstatus: " + medlemsStatus + '\n' +
+                "Medlemsstatus: " + membershipStatus + '\n' +
                 "Medlemstype: " + getMemberShipType() + '\n' +
                 "Årligt kontigent: " + getMembershipFee() + " DKK\n" +
                 "Restance: " + getDebt() + " DKK\n" +
