@@ -26,12 +26,14 @@ public class CompetitionMember extends Member {
         super.setMemberShipType("Competition");
 
         setActiveDisciplines();
+
         recordInitializer();
 
         activeDisciplines = new ArrayList<>();
         teams = new ArrayList<>();
         trainingRecords = new ArrayList<>();
         competitionRecords = new ArrayList<>();
+
 
     }
 
@@ -40,13 +42,12 @@ public class CompetitionMember extends Member {
         return memberRecords;
     }
 
-    //TODO this methode does not work. must fixe
+
     public ArrayList<String> getActiveDisciplines() {
         return activeDisciplines;
     }
 
     public double getBestTrainingRecord() {
-        findBestTrainingRecord();
         return bestTrainingRecord;
     }
 
@@ -101,7 +102,7 @@ public class CompetitionMember extends Member {
 
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
-    public void recordInitializer() { //TODO: Hvorfor har vi denne metode når de to foregående kan præcis det samme?
+    public void recordInitializer() {
         for (Record record : getMemberRecords()) {
             if (record instanceof CompetitionRecord) {
                 competitionRecords.add((CompetitionRecord) record);
@@ -121,18 +122,7 @@ public class CompetitionMember extends Member {
         return activeDisciplines;
     }
 
-    public Record findBestTrainingRecord() {
-        ArrayList<Record> trainingRecordList = new ArrayList<>();
-        for (Record record : getMemberRecords()) {
-            if (record instanceof TrainingRecord) {
-                trainingRecordList.add(record);
-            }
-        }
-        Collections.sort(trainingRecordList, new RecordComparator()); //sorterer
-        //TODO could refactor this methode and added attributes
-        setBestTrainingRecord(trainingRecordList.get(0).getResult());
-        return (trainingRecordList.get(0)); //henter index 0 og retunerer den
-    }
+
 
     public Record findBestCompetetionRecord() {
         ArrayList<Record> competetionRecordList = new ArrayList<>();
@@ -170,11 +160,13 @@ public class CompetitionMember extends Member {
         String result = "";
 
         result += "Medlem: " + memberFirstName + " " + memberLastName + "\n"
-                + "Træningsresultat i minutter: " + bestTrainingRecord + "\n"
-                + "Svømmedisciplin: " + findBestTrainingRecord().discipline;
+                + "Træningsresultat i minutter: " + bestTrainingRecord + "\n";
+//                + "Svømmedisciplin: " + findBestTrainingRecord().discipline;// TODO: "findBestTrainingRecord" IS DELETED.
 
         return result;
     }
 
     //------------------------------------------------------------------------------------------------------------------
 }
+
+

@@ -31,6 +31,7 @@ public class TeamCollection {
         teamsArrayList();
         populateTeams();
         initializeCoaches();
+        initializeMembersForCoaches();
     }
 
     //************METHODS********---------
@@ -112,13 +113,11 @@ public class TeamCollection {
 
     // Top 5 **************
 
-//
     public CompetitionMember[] findTopFives(String discipline, String age){
         CompetitionMember[] topFive = new CompetitionMember[5];
         ArrayList<Team> teamsToSearch = new ArrayList<>();
 
         for (Team team : allTheTeams) {
-            // Filter out exercise teams and empty teams
             if (!team.getTeamDiscipline().contains("exercise") && !team.getTeamMemberList().isEmpty()){
                 teamsToSearch.add(team);
             }
@@ -147,6 +146,17 @@ public class TeamCollection {
             }
         }
         return foundCoaches;
+    }
+
+
+    public void initializeMembersForCoaches(){
+
+        for (Team team : getAllTheTeams()){
+            if(!team.getTeamMemberList().isEmpty()){
+                team.initialiseCompetitionMemberToCoach();
+            }
+        }
+
     }
 }
 

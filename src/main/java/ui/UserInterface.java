@@ -485,13 +485,15 @@ public class UserInterface {
         String ageGroup = input.nextLine().trim();
         topFiveMembers = controller.getTeamTopFive(chosenDiscipline, ageGroup);
 
+
         for (CompetitionMember member : topFiveMembers) {
             if (member != null){
                 System.out.println("Navn: " + member.getMemberFirstName() + " " + member.getMemberLastName());
-                System.out.println(member.findBestTrainingRecord());
+                System.out.println(member.getBestTrainingRecord());
 
             }
         }
+
     }
 
 

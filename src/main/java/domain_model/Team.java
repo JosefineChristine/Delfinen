@@ -1,6 +1,7 @@
 package domain_model;
 
 import comparator.BestRecordComparator;
+import comparator.RecordComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +16,7 @@ public class Team {
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String teamDiscipline;
     private ArrayList<Member> teamMemberList = new ArrayList<>();
-    private boolean isTeamSenior; //TODO: Skal denne bruges?
+    private boolean isTeamSenior;
     Coach coach;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
@@ -69,10 +70,33 @@ public class Team {
         CompetitionMember[] topFive = new CompetitionMember[5];
         ArrayList<CompetitionMember> membersToSort = new ArrayList<>();
 
+        //loop through members of the team
         for (Member member : teamMemberList) {
 
-            membersToSort.add((CompetitionMember) member);
+            // assign member to a temporary variable
+            CompetitionMember teamMember = (CompetitionMember) member;
+
+            // assign member training records to an array list
+            ((CompetitionMember) member).recordInitializer();
+           ArrayList<TrainingRecord> memberTrainingRecords = teamMember.getTrainingRecords();
+           // sort training records by time
+            Collections.sort(memberTrainingRecords, new RecordComparator());
+
+            // loop through sorted training records
+            for (TrainingRecord memberTrainingRecord : memberTrainingRecords) {
+
+                //Check if training record is in same discipline as the team discipline.
+                if(memberTrainingRecord.getDiscipline().equalsIgnoreCase(teamDiscipline)) {
+                    // Set record's result as member's best training result.
+                    teamMember.setBestTrainingRecord(memberTrainingRecord.getResult());
+                    //add member to the list of members to sort.
+                    membersToSort.add(teamMember);
+                    break;
+                }
+            }
+
         }
+        // Sort list of members whom best training result's discipline is same as team discipline.
         Collections.sort(membersToSort, new BestRecordComparator());
 
         if (!membersToSort.isEmpty()) {
@@ -103,3 +127,5 @@ public class Team {
 
     //------------------------------------------------------------------------------------------------------------------
 }
+
+

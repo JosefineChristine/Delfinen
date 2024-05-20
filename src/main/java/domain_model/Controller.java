@@ -49,6 +49,7 @@ public class Controller {
         return teamCollection.getCoachList();
     }
 
+
     //***ADMIN MENU***--------------------------------------------------------------------------------------------------
     public void addCompetitionMember(CompetitionMember competitionMember) {
         memberCollection.addCompetitionMember(competitionMember);
