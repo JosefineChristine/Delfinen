@@ -75,6 +75,19 @@ public class MemberCollection {
         return memberToEdit;
     }
 
+    public Member editDebt(Member memberToEdit, int partToEdit, String newValue) {
+
+        switch (partToEdit) {
+            case 1: //debt
+                memberToEdit.setDebt(Double.parseDouble(newValue));
+                break;
+            case 0: //exit
+                break;
+        }
+        fileHandler.saveToFile(memberList);
+        return memberToEdit;
+    }
+
     public Member findSpecificMember(String specificMemberSearched) {
         Member targetMember = null;
         for (Member memberToEdit : memberList) {
