@@ -152,7 +152,7 @@ public class UserInterface {
             System.out.println("Valgmuligheder: ");
             System.out.println("1. Se liste af medlemmer efter træner  \n" +
                                 "2. Se top fem træningstider efter svømmedisciplin \n" +
-                                "3. Tilføj Rekord                                  \n" +
+                                "3. Tilføj resultat                                \n" +
                                 "4. Søg efter medlem                               \n" +
                                 "0. Tilbage til startmenu                          \n");
 
@@ -175,7 +175,6 @@ public class UserInterface {
                 default -> System.out.println("Forkert input");
             }
         }
-
     }
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------
@@ -202,10 +201,13 @@ public class UserInterface {
         boolean isActive = active.equalsIgnoreCase("ja");
         String memberStatus = isActive ? "Ja" : "Nej";
 
+        Member memberToAdd = null;
         if (memberType.equals("Motionssvømmer")) {
-            controller.addExerciseMember(new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+            memberToAdd  = (new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+            controller.addExerciseMember((ExerciseMember) memberToAdd);
         } else if (memberType.equals("Konkurrencesvømmer")) {
-            controller.addCompetitionMember(new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+             memberToAdd = (new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+            controller.addCompetitionMember((CompetitionMember) memberToAdd);
         }
 
         System.out.println("Medlemmet er nu blevet tilføjet til databasen.");
@@ -214,6 +216,7 @@ public class UserInterface {
         System.out.println("Fødselsdag: " + userBirthday);
         System.out.println("Restance: " + debt);
         System.out.println("Er brugeren aktiv: " + memberStatus);
+        System.out.println("Medlemskontingent: " + memberToAdd.calculateMembershipFee());
         System.out.println("...................................");
     }
 
@@ -452,10 +455,10 @@ public class UserInterface {
 
         System.out.println("*******TOP 5*********" + "\n");
         System.out.println("Vælg disciplin for at se de 5 hurtigeste svømmere:");
-        System.out.println("Crawl, butterfly, ");
+        System.out.println("Crawl, butterfly, breaststroke eller backstroke"); //TODO kan vi lave dem på dansk?
         input.nextLine();
         String chosenDiscipline = input.nextLine().trim();
-        System.out.println("Vælg aldersgruppe: ");
+        System.out.println("Vælg aldersgruppe (junior/senior): ");
         String ageGroup = input.nextLine().trim();
         topFiveMembers = controller.getTeamTopFive(chosenDiscipline, ageGroup);
 
@@ -549,19 +552,19 @@ public class UserInterface {
         if (competitionMember == null) return null;
 
         System.out.println("Vil du tilføje et konkurrenceresultat eller træningsresultat?");
-        input.nextLine();
+        //input.nextLine();
         System.out.println("1. Konkurrenceresultat");
         System.out.println("2. Træningsresultat");
         int recordTypeChoice = Integer.parseInt(input.next());
         String dateType = (recordTypeChoice == 1)? "konkurrenceresultat"  : "træningsresultat";
-
-            System.out.println("Tilføj eventnavn");
+            input.nextLine();
+            System.out.println("Tilføj eventnavn"); //TODO eventnavnet skal altid codes som "Training" evt. hardcode?
             String eventName = input.nextLine();
 
             System.out.println("Tilføj disciplin");
             String discipline = input.nextLine();
 
-            System.out.println("Tilføj resultat (fx. 5.08)");
+            System.out.println("Tilføj resultat i minutter og sekunder (fx. 5.08)");
             double result = input.nextDouble();
 
             LocalDate RecordDate = inputDate(dateType);
