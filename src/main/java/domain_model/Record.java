@@ -1,9 +1,7 @@
 package domain_model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-// DELVIST REFAKTORERET (SE TODOS)
 
 public abstract class Record {
 
@@ -13,9 +11,6 @@ public abstract class Record {
     protected double result;
     protected LocalDate date;
 
-    //todo oprydning remove not needed codes:
-    // not oprydning needed
-//    protected ArrayList<Record> recordList;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Record(String eventName, String discipline, double result, LocalDate date) {
@@ -24,8 +19,7 @@ public abstract class Record {
         this.result = result;
         this.date = date;
 
-        //not needed
-        //recordList = new ArrayList<>();
+
     }
 
     //***GETTER METHODS***----------------------------------------------------------------------------------------------
@@ -44,32 +38,6 @@ public abstract class Record {
     public LocalDate getDate() {
         return date;
     }
-
-    //***SETTER METHODS***----------------------------------------------------------------------------------------------
-
-//    // TODO: oprydning måske laver edit method, Skal disse bruges?
-//    public void setEventName(String eventName) {
-//        this.eventName = eventName;
-//    }
-//
-//    public void setDiscipline(String discipline) {
-//        this.discipline = discipline;
-//    }
-//
-//    public void setResult(double result) {
-//        this.result = result;
-//    }
-//
-//    public void setDate(LocalDate date) {
-//        this.date = date;
-//    }
-
-    //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-
-    // not needed
-//    public void addRecord(Record record) {
-//        recordList.add(record);
-//    }
 
 
 }

@@ -2,7 +2,6 @@ package domain_model;
 
 import java.time.LocalDate;
 
-//REFAKTORERET
 
 public class TrainingRecord extends Record {
 
@@ -14,13 +13,12 @@ public class TrainingRecord extends Record {
 
     }
 
-    //***METHODS***-----------------------------------------------------------------------------------------------------
 
     //***TO STRING METHOD***--------------------------------------------------------------------------------------------
     @Override
     public String toString() {
         return
-                        "Træningsresultat: \n" +
+                "Træningsresultat: \n" +
                         "Disciplin: " + discipline + '\n' +
                         "Tid: " + result + " minutter" + '\n' +
                         "Dato: " + date + '\n';

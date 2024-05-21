@@ -1,4 +1,5 @@
 package domain_model;
+
 import java.util.ArrayList;
 
 public class TeamCollection {
@@ -49,7 +50,7 @@ public class TeamCollection {
     }
 
 
-    public void populateTeams() { //Sætter medlemmer ind fra CSV filen til arraylister som enten CompetitionMember eller ExerciseMember
+    public void populateTeams() {
         ArrayList<Member> members;
         members = memberCollection.getMemberList();
         for (Member member : members) {
@@ -113,18 +114,18 @@ public class TeamCollection {
 
     // Top 5 **************
 
-    public CompetitionMember[] findTopFives(String discipline, String age){
+    public CompetitionMember[] findTopFives(String discipline, String age) {
         CompetitionMember[] topFive = new CompetitionMember[5];
         ArrayList<Team> teamsToSearch = new ArrayList<>();
 
         for (Team team : allTheTeams) {
-            if (!team.getTeamDiscipline().contains("exercise") && !team.getTeamMemberList().isEmpty()){
+            if (!team.getTeamDiscipline().contains("exercise") && !team.getTeamMemberList().isEmpty()) {
                 teamsToSearch.add(team);
             }
         }
         for (Team team : teamsToSearch) {
-            if (team.getTeamDiscipline().equalsIgnoreCase(discipline) && team.getIsTeamSenior().equalsIgnoreCase(age)){
-               topFive =  team.getTopFive();
+            if (team.getTeamDiscipline().equalsIgnoreCase(discipline) && team.getIsTeamSenior().equalsIgnoreCase(age)) {
+                topFive = team.getTopFive();
             }
         }
         return topFive;
@@ -133,11 +134,12 @@ public class TeamCollection {
     public void addCoachToCoachList(Coach coach) {
         coachList.add(coach);
     }
+
     public ArrayList<Coach> getCoachList() {
         return coachList;
     }
 
-    public ArrayList<Coach> searchCoach(String input) { //TODO: Vahab check if it works.  Virker ikke endnu
+    public ArrayList<Coach> searchCoach(String input) {
         ArrayList<Coach> foundCoaches = new ArrayList<>();
         for (Coach coach : getCoachList()) {
             if (coach.getCoachFirstName().equalsIgnoreCase(input) ||
@@ -149,10 +151,10 @@ public class TeamCollection {
     }
 
 
-    public void initializeMembersForCoaches(){
+    public void initializeMembersForCoaches() {
 
-        for (Team team : getAllTheTeams()){
-            if(!team.getTeamMemberList().isEmpty()){
+        for (Team team : getAllTheTeams()) {
+            if (!team.getTeamMemberList().isEmpty()) {
                 team.initialiseCompetitionMemberToCoach();
             }
         }

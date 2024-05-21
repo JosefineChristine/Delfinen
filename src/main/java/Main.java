@@ -4,7 +4,6 @@ import ui.UserInterface;
 
 import java.util.Locale;
 
-// REFAKTORERET
 
 public class Main {
     public static void main(String[] args) {
@@ -15,7 +14,6 @@ public class Main {
 
         UserInterface ui = new UserInterface();
         ui.startProgram();
-
 
 
     }

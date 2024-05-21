@@ -2,7 +2,6 @@ package domain_model;
 
 import java.util.ArrayList;
 
-//DELVIST REFAKTORERET (SE TODOS)
 
 public class Controller {
 
@@ -15,19 +14,18 @@ public class Controller {
     }
 
 
-    //***KASSERERMENU***------------------------------------------------------------------------------------------------
-
     //***COACH MENU***--------------------------------------------------------------------------------------------------
 
     public CompetitionMember[] getTeamTopFive(String discipline, String age) {
         return teamCollection.findTopFives(discipline, age);
 
     }
-    public void addTrainingRecordToMember(CompetitionMember competitionMember,TrainingRecord record) {
+
+    public void addTrainingRecordToMember(CompetitionMember competitionMember, TrainingRecord record) {
         memberCollection.addRecordToCompetitionMember(competitionMember, record);
     }
 
-    public void addCompetitionRecordToMember(CompetitionMember competitionMember,CompetitionRecord record) {
+    public void addCompetitionRecordToMember(CompetitionMember competitionMember, CompetitionRecord record) {
         memberCollection.addRecordToCompetitionMember(competitionMember, record);
     }
 
@@ -57,9 +55,6 @@ public class Controller {
         return memberCollection.searchMember(input);
     }
 
-    public Member findSpecificMember(String specificMemberSearched) {
-        return memberCollection.findSpecificMember(specificMemberSearched);
-    }
 
     public ArrayList<Member> searchMemberDebt() {
         return memberCollection.searchMemberDebt();

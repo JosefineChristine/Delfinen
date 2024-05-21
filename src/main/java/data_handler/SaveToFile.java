@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-// REFAKTORERET
 
 public class SaveToFile {
     public void saveToFile(ArrayList<Member> memberList) {
