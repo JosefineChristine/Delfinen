@@ -14,7 +14,7 @@ public abstract class Record {
     protected LocalDate date;
 
     //todo oprydning remove not needed codes:
-    // not needed
+    // not oprydning needed
 //    protected ArrayList<Record> recordList;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
