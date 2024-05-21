@@ -539,7 +539,9 @@ public class UserInterface {
 
         if (!(selectedMember instanceof CompetitionMember)) {
             System.out.println("Medlemmet er ikke en konkurrencemedlem.");
-            return null;
+            //return null;
+            System.out.println("Tryk enter for at søge igen"); //TODO fix hvis muligt
+            searchMembers();
         }
 
         return (CompetitionMember) selectedMember;
@@ -570,9 +572,10 @@ public class UserInterface {
 
 
             if(recordTypeChoice ==1 ){
-                System.out.println("Tilføj sted");
-                String place = input.nextLine();
-                CompetitionRecord recordToAdd = new CompetitionRecord(eventName, discipline, result, RecordDate, place);
+                System.out.println("Tilføj placering");
+                input.nextLine();
+                String placement = input.nextLine();
+                CompetitionRecord recordToAdd = new CompetitionRecord(eventName, discipline, result, RecordDate, placement);
                 controller.addCompetitionRecordToMember(competitionMember,recordToAdd);
                 return recordToAdd;
             }
