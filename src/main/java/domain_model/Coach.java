@@ -32,11 +32,11 @@ public class Coach {
     }
 
     public void setMemberListForCoach(ArrayList<Member> memberListForCoach) {
-        this.memberListForCoach = memberListForCoach; //TODO: OPrydning Hvad skal denne metode ift. add/remove metoderne?
+        this.memberListForCoach = memberListForCoach; //TODO Vahab --> Oprydning Hvad skal denne metode ift. add/remove metoderne?
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-//    public void addMemberToCoach(Member member) {
+//    public void addMemberToCoach(Member member) { //TODO Vahab sletter hvis det ikke skal bruges
 //        memberListForCoach.add(member);
 //    }
 //

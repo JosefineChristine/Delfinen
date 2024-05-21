@@ -392,8 +392,6 @@ public class UserInterface {
 
         for (Coach coach : controller.getCoachList()) {
         System.out.println(coach.toString());
-
-        //TODO: Skal vi printe mere end navn?
         }
     }
 

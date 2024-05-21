@@ -5,14 +5,7 @@ import comparator.RecordComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-// DELVIST REFAKTORERET (SE TODOS)
-
 public class Team {
-
-    //**TO DO***--------------------------------------------------------------------------------------------------------
-
-
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String teamDiscipline;
     private ArrayList<Member> teamMemberList = new ArrayList<>();
@@ -121,7 +114,7 @@ public class Team {
                 "Hold navn: " + teamDiscipline + '\n' +
                 "Træner: " + getCoach() + '\n' +
                 "Holdtype " + isTeamSenior + '\n' +
-                "Holdmedlemmer: \n" + getTeamListAsString(); //TODO måske slet - Josefine og Tobias
+                "Holdmedlemmer: \n" + getTeamListAsString();
 
 
         //------------------------------------------------------------------------------------------------------------------
