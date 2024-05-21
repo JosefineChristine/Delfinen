@@ -71,7 +71,7 @@ public class CompetitionMember extends Member {
     }
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
-    public void setMemberRecords(ArrayList<Record> memberRecords) { //TODO: HVad skal disse metoder ift. add metoderne nedenuder?
+    public void setMemberRecords(ArrayList<Record> memberRecords) { //TODO: OPrydning HVad skal disse metoder ift. add metoderne nedenuder?
         this.memberRecords = memberRecords;
     }
 

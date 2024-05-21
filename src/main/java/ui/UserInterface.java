@@ -163,10 +163,10 @@ public class UserInterface {
                     startProgram();
                 }
                 case 1 -> {
-                    //TODO fix toString, navn, rekorder, hold, discipliner
+                    //TODO Ajo fix toString, navn, rekorder, hold, discipliner
                     selectCoach();
                 }
-                case 2 -> showTopFive(); //TODO: ændr toString, så den printer træningsresultat ud
+                case 2 -> showTopFive(); //TODO: Vahab/Monir ændr toString, så den printer træningsresultat ud disciplin
 
                 case 3 -> addRecord();
 
@@ -220,7 +220,6 @@ public class UserInterface {
         System.out.println("...................................");
     }
 
-    // Todo: we could reuse it if we change return type?
     private void searchMember() {
         System.out.println("Indtast fornavn eller efternavn på det medlem du vil søge efter: ");
         input.nextLine();
@@ -455,7 +454,7 @@ public class UserInterface {
 
         System.out.println("*******TOP 5*********" + "\n");
         System.out.println("Vælg disciplin for at se de 5 hurtigeste svømmere:");
-        System.out.println("Crawl, butterfly, breaststroke eller backstroke"); //TODO kan vi lave dem på dansk?
+        System.out.println("Crawl, butterfly, breaststroke eller backstroke"); //TODO Monir/Vahab kan vi lave dem på dansk?
         input.nextLine();
         String chosenDiscipline = input.nextLine().trim();
         System.out.println("Vælg aldersgruppe (junior/senior): ");
@@ -558,7 +557,7 @@ public class UserInterface {
         int recordTypeChoice = Integer.parseInt(input.next());
         String dateType = (recordTypeChoice == 1)? "konkurrenceresultat"  : "træningsresultat";
             input.nextLine();
-            System.out.println("Tilføj eventnavn"); //TODO eventnavnet skal altid codes som "Training" evt. hardcode?
+            System.out.println("Tilføj eventnavn");
             String eventName = input.nextLine();
 
             System.out.println("Tilføj disciplin");
@@ -586,7 +585,6 @@ public class UserInterface {
         return recordToAdd;
 
     }
-    //Todo : check with search member  and findspecificmember in member collection to avoid duplication.
     private Member searchMembers() {
         input.nextLine();
         System.out.println("Søg efter medlem:");

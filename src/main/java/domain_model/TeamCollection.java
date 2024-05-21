@@ -137,7 +137,7 @@ public class TeamCollection {
         return coachList;
     }
 
-    public ArrayList<Coach> searchCoach(String input) { //TODO: check if it works.  Virker ikke endnu
+    public ArrayList<Coach> searchCoach(String input) { //TODO: Vahab check if it works.  Virker ikke endnu
         ArrayList<Coach> foundCoaches = new ArrayList<>();
         for (Coach coach : getCoachList()) {
             if (coach.getCoachFirstName().equalsIgnoreCase(input) ||

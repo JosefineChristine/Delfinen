@@ -32,7 +32,7 @@ public class Coach {
     }
 
     public void setMemberListForCoach(ArrayList<Member> memberListForCoach) {
-        this.memberListForCoach = memberListForCoach; //TODO: Hvad skal denne metode ift. add/remove metoderne?
+        this.memberListForCoach = memberListForCoach; //TODO: OPrydning Hvad skal denne metode ift. add/remove metoderne?
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------

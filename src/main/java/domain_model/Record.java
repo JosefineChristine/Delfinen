@@ -13,7 +13,7 @@ public abstract class Record {
     protected double result;
     protected LocalDate date;
 
-    //todo remove not needed codes:
+    //todo oprydning remove not needed codes:
     // not needed
 //    protected ArrayList<Record> recordList;
 
@@ -47,7 +47,7 @@ public abstract class Record {
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
 
-//    // TODO: måske laver edit method, Skal disse bruges?
+//    // TODO: oprydning måske laver edit method, Skal disse bruges?
 //    public void setEventName(String eventName) {
 //        this.eventName = eventName;
 //    }
