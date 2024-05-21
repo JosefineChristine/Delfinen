@@ -540,7 +540,9 @@ public class UserInterface {
 
         if (!(selectedMember instanceof CompetitionMember)) {
             System.out.println("Medlemmet er ikke en konkurrencemedlem.");
-            return null;
+            //return null;
+            System.out.println("Tryk enter for at søge igen"); //TODO fix hvis muligt
+            searchMembers();
         }
 
         return (CompetitionMember) selectedMember;
@@ -558,7 +560,7 @@ public class UserInterface {
         int recordTypeChoice = Integer.parseInt(input.next());
         String dateType = (recordTypeChoice == 1)? "konkurrenceresultat"  : "træningsresultat";
             input.nextLine();
-            System.out.println("Tilføj eventnavn"); //TODO eventnavnet skal altid codes som "Training" evt. hardcode?
+            System.out.println("Tilføj eventnavn");
             String eventName = input.nextLine();
 
             System.out.println("Tilføj disciplin");
@@ -571,9 +573,10 @@ public class UserInterface {
 
 
             if(recordTypeChoice ==1 ){
-                System.out.println("Tilføj sted");
-                String place = input.nextLine();
-                CompetitionRecord recordToAdd = new CompetitionRecord(eventName, discipline, result, RecordDate, place);
+                System.out.println("Tilføj placering");
+                input.nextLine();
+                String placement = input.nextLine();
+                CompetitionRecord recordToAdd = new CompetitionRecord(eventName, discipline, result, RecordDate, placement);
                 controller.addCompetitionRecordToMember(competitionMember,recordToAdd);
                 return recordToAdd;
             }
@@ -586,7 +589,7 @@ public class UserInterface {
         return recordToAdd;
 
     }
-    //Todo : check with search member  and findspecificmember in member collection to avoid duplication.
+    //Todo : check with search member and findspecificmember in member collection to avoid duplication.
     private Member searchMembers() {
         input.nextLine();
         System.out.println("Søg efter medlem:");
