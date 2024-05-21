@@ -163,7 +163,7 @@ public class UserInterface {
                     startProgram();
                 }
                 case 1 -> {
-                    //TODO fix se medlemsliste for træner
+                    //TODO fix toString, navn, rekorder, hold, discipliner
                     selectCoach();
                 }
                 case 2 -> showTopFive(); //TODO: ændr toString, så den printer træningsresultat ud
@@ -197,9 +197,9 @@ public class UserInterface {
         int debt = Integer.parseInt(input.next());
         input.nextLine();
 
-        System.out.println("Er medlemmet aktiv eller passiv? ('Aktiv' eller 'Passiv')"); //TODO skal man skrive aktiv, passiv, ja eller nej?
+        System.out.println("Er medlemmet aktiv? ('Ja' eller 'Nej')");
         String active = input.nextLine();
-        boolean isActive = active.equalsIgnoreCase("Aktiv");
+        boolean isActive = active.equalsIgnoreCase("ja");
         String memberStatus = isActive ? "Ja" : "Nej";
 
         if (memberType.equals("Motionssvømmer")) {
@@ -217,7 +217,7 @@ public class UserInterface {
         System.out.println("...................................");
     }
 
-    // Todo: we could reuse it if we chage return type?
+    // Todo: we could reuse it if we change return type?
     private void searchMember() {
         System.out.println("Indtast fornavn eller efternavn på det medlem du vil søge efter: ");
         input.nextLine();

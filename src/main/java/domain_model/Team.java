@@ -110,7 +110,7 @@ public class Team {
     }
 
     public void removeMemberofTeam(Member member) {
-        this.teamMemberList.remove(member); //TODO: Skal denne bruges?
+        this.teamMemberList.remove(member);
     }
 
     //***TO STRING METHOD***-----------------------------------------------------------------------------------------------

@@ -155,19 +155,7 @@ public class CompetitionMember extends Member {
 
     }
 
-    public String printMemberForTopFive(Member member) {
-        if (member == null) {
-            return "Medlemmet blev ikke fundet.";
-        }
 
-        String result = "";
-
-        result += "Medlem: " + memberFirstName + " " + memberLastName + "\n"
-                + "Træningsresultat i minutter: " + bestTrainingRecord + "\n";
-//                + "Svømmedisciplin: " + findBestTrainingRecord().discipline;// TODO: "findBestTrainingRecord" IS DELETED.
-
-        return result;
-    }
 
     //------------------------------------------------------------------------------------------------------------------
 }

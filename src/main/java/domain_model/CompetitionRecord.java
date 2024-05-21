@@ -21,14 +21,7 @@ public class CompetitionRecord extends Record {
         return placeAchieved;
     }
 
-    //***SETTER METHODS***----------------------------------------------------------------------------------------------
 
-    //TODO: Skal denne bruges?
-    public void setPlaceAchieved(String placeAchieved) {
-        this.placeAchieved = placeAchieved;
-    }
-
-    //*****************************************METHODS******************************************************************
 
     //*****************************************TO-STRING****************************************************************
     @Override

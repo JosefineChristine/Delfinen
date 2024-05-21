@@ -86,9 +86,9 @@ public abstract class Member {
     }
 
 
-    public void setAgeGroup(String ageGroup) {
-        this.ageGroup = ageGroup; // TODO: Skal denne bruges til noget?
-    }
+//    public void setAgeGroup(String ageGroup) {
+//        this.ageGroup = ageGroup; // TODO: Skal denne bruges til noget?
+//    }
 
     //************METHODS********---------------------------------------------------------------------------------------
     public String calculateMembershipType() {

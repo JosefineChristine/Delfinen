@@ -6,13 +6,7 @@ import java.util.ArrayList;
 
 public class Controller {
 
-    //OBJEKTER //TODO: Tjek om grå objekter skal bruges
     private MemberCollection memberCollection;
-    private Member member;
-    private CompetitionMember competitionMember;
-    private Coach coach;
-    private Record record;
-    private TrainingRecord trainingRecord;
     private TeamCollection teamCollection;
 
     public Controller() {
@@ -45,7 +39,7 @@ public class Controller {
         return teamCollection.searchCoach(input);
     }
 
-    public ArrayList<Coach> getCoachList() { //TODO skal virke
+    public ArrayList<Coach> getCoachList() {
         return teamCollection.getCoachList();
     }
 

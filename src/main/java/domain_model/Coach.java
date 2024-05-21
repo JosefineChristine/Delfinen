@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 public class Coach {
 
-    //***QUESTIONS& MISSING CODE***-------------------------------------------------------------------------------------
-    //TODO Arrayliste til medlemmer? metode hvorpå man kan se listen af medlemmer for hver træner
+
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
     private String coachFirstName;
@@ -37,13 +36,13 @@ public class Coach {
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-    public void addMemberToCoach(Member member) {
-        memberListForCoach.add(member);
-    }
-
-    public void removeMemberToCoach(Member member) {
-        memberListForCoach.remove(member);
-    }
+//    public void addMemberToCoach(Member member) {
+//        memberListForCoach.add(member);
+//    }
+//
+//    public void removeMemberToCoach(Member member) {
+//        memberListForCoach.remove(member);
+//    }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
     public ArrayList<Member> getMemberListForCoach(Coach coach) {
