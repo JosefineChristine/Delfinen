@@ -33,7 +33,7 @@ public class Team {
     }
 
     public String getIsTeamSenior() {
-        return (true) ? "Senior" : "Junior";
+        return (isTeamSenior) ? "Senior" : "Junior";
     }
 
     public String getCoach() {
