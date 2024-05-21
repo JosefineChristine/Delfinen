@@ -71,7 +71,7 @@ public class CompetitionMember extends Member {
     }
 
     //***SETTER METHODS***----------------------------------------------------------------------------------------------
-    public void setMemberRecords(ArrayList<Record> memberRecords) { //TODO: OPrydning HVad skal disse metoder ift. add metoderne nedenuder?
+    public void setMemberRecords(ArrayList<Record> memberRecords) {
         this.memberRecords = memberRecords;
     }
 
@@ -90,14 +90,6 @@ public class CompetitionMember extends Member {
 
     public void removeTeamForSpecificMember(Team team) {
         this.teams.remove(team);
-    }
-
-    public void addTrainingRecordToMember(TrainingRecord record) {
-        trainingRecords.add(record);
-    }
-
-    public void addCompetitionRecordToMember(CompetitionRecord record) {
-        competitionRecords.add(record);
     }
     public void addRecordToMember(Record record) {
         memberRecords.add(record);
@@ -123,19 +115,6 @@ public class CompetitionMember extends Member {
             }
         }
         return activeDisciplines;
-    }
-
-
-
-    public Record findBestCompetetionRecord() {
-        ArrayList<Record> competetionRecordList = new ArrayList<>();
-        for (Record record : memberRecords) {
-            if (record instanceof CompetitionRecord) {
-                competetionRecordList.add(record);
-            }
-        }
-        Collections.sort(competetionRecordList, new RecordComparator()); //sorterer
-        return (competetionRecordList.get(0)); //henter index 0 og retunerer den
     }
 
 

@@ -85,11 +85,6 @@ public abstract class Member {
         this.memberShipType = memberShipType;
     }
 
-
-//    public void setAgeGroup(String ageGroup) {
-//        this.ageGroup = ageGroup; // TODO: Oprydning Skal denne bruges til noget?
-//    }
-
     //************METHODS********---------------------------------------------------------------------------------------
     public String calculateMembershipType() {
         LocalDate currentDate = LocalDate.now();
