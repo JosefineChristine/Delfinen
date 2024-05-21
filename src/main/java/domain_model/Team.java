@@ -78,15 +78,15 @@ public class Team {
 
             // assign member training records to an array list
             ((CompetitionMember) member).recordInitializer();
-           ArrayList<TrainingRecord> memberTrainingRecords = teamMember.getTrainingRecords();
-           // sort training records by time
+            ArrayList<TrainingRecord> memberTrainingRecords = teamMember.getTrainingRecords();
+            // sort training records by time
             Collections.sort(memberTrainingRecords, new RecordComparator());
 
             // loop through sorted training records
             for (TrainingRecord memberTrainingRecord : memberTrainingRecords) {
 
                 //Check if training record is in same discipline as the team discipline.
-                if(memberTrainingRecord.getDiscipline().equalsIgnoreCase(teamDiscipline)) {
+                if (memberTrainingRecord.getDiscipline().equalsIgnoreCase(teamDiscipline)) {
                     // Set record's result as member's best training result.
                     teamMember.setBestTrainingRecord(memberTrainingRecord.getResult());
                     //add member to the list of members to sort.
@@ -100,8 +100,9 @@ public class Team {
         Collections.sort(membersToSort, new BestRecordComparator());
 
         if (!membersToSort.isEmpty()) {
-            int helperNumber = (membersToSort.size() < 5 ) ? membersToSort.size() : 5;  ;
-            for (int i = 0; i < helperNumber ; i++ ){
+            int helperNumber = (membersToSort.size() < 5) ? membersToSort.size() : 5;
+            ;
+            for (int i = 0; i < helperNumber; i++) {
                 topFive[i] = membersToSort.get(i);
             }
             return topFive;
@@ -116,16 +117,15 @@ public class Team {
     //***TO STRING METHOD***-----------------------------------------------------------------------------------------------
     @Override
     public String toString() {
-        return "Team:\n" +
-                "Team name: " + teamDiscipline + '\n' +
-                "Team coach: " + getCoach() + '\n' +
+        return "Hold:\n" +
+                "Hold navn: " + teamDiscipline + '\n' +
+                "Træner: " + getCoach() + '\n' +
+                "Holdtype " + isTeamSenior + '\n' +
+                "Holdmedlemmer: \n" + getTeamListAsString(); //TODO måske slet - Josefine og Tobias
 
-                "Team type " + isTeamSenior + '\n' +
-                "Team members: \n" + getTeamListAsString();
+
+        //------------------------------------------------------------------------------------------------------------------
     }
-
-
-    //------------------------------------------------------------------------------------------------------------------
 }
 
 

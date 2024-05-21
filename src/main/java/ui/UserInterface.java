@@ -166,7 +166,7 @@ public class UserInterface {
                     //TODO Ajo fix toString, navn, rekorder, hold, discipliner
                     selectCoach();
                 }
-                case 2 -> showTopFive(); //TODO: Vahab/Monir ændr toString, så den printer træningsresultat ud disciplin
+                case 2 -> showTopFive();
 
                 case 3 -> addRecord();
 
@@ -452,20 +452,31 @@ public class UserInterface {
     private void showTopFive(){
         CompetitionMember[] topFiveMembers = new CompetitionMember[5];
 
-        System.out.println("*******TOP 5*********" + "\n");
+        System.out.println("*******TOP 5*********");
         System.out.println("Vælg disciplin for at se de 5 hurtigeste svømmere:");
-        System.out.println("Crawl, butterfly, breaststroke eller backstroke"); //TODO Monir/Vahab kan vi lave dem på dansk?
+        System.out.println("Crawl, butterfly, brystsvømning eller rygcrawl");
         input.nextLine();
         String chosenDiscipline = input.nextLine().trim();
+        if (chosenDiscipline.equalsIgnoreCase("rygcrawl")){
+            chosenDiscipline = "backstroke";
+         } else if (chosenDiscipline.equalsIgnoreCase("brystsvømning")){
+            chosenDiscipline = "breaststroke";
+        }
         System.out.println("Vælg aldersgruppe (junior/senior): ");
         String ageGroup = input.nextLine().trim();
         topFiveMembers = controller.getTeamTopFive(chosenDiscipline, ageGroup);
 
+        if (chosenDiscipline.equalsIgnoreCase("backstroke")){
+            chosenDiscipline = "rygcrawl";
+        } else if (chosenDiscipline.equalsIgnoreCase("breaststroke")){
+            chosenDiscipline = "brystsvømning";
+        }
+        System.out.println("\n*****Top 5 svømmeres tider indenfor " + chosenDiscipline + " af " + ageGroup + "-svømmere****");
 
         for (CompetitionMember member : topFiveMembers) {
             if (member != null){
                 System.out.println("Navn: " + member.getMemberFirstName() + " " + member.getMemberLastName());
-                System.out.println(member.getBestTrainingRecord());
+                System.out.println(member.getBestTrainingRecord() + " minutter");
 
             }
         }
@@ -562,8 +573,13 @@ public class UserInterface {
             System.out.println("Tilføj eventnavn");
             String eventName = input.nextLine();
 
-            System.out.println("Tilføj disciplin");
+            System.out.println("Tilføj disciplin (Crawl, butterfly, brystsvømning eller rygcrawl)");
             String discipline = input.nextLine();
+            if (discipline.equalsIgnoreCase("rygcrawl")){
+                discipline = "backstroke";
+            } else if (discipline.equalsIgnoreCase("brystsvømning")){
+                discipline = "breaststroke";
+        }
 
             System.out.println("Tilføj resultat i minutter og sekunder (fx. 5.08)");
             double result = input.nextDouble();
