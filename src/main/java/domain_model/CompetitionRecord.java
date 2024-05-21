@@ -26,6 +26,12 @@ public class CompetitionRecord extends Record {
     //*****************************************TO-STRING****************************************************************
     @Override
     public String toString() {
+        if (discipline.equalsIgnoreCase("backstroke")){
+            discipline = "rygcrawl";
+        } else if (discipline.equalsIgnoreCase("breaststroke")){
+            discipline = "brystsvømning";
+        }
+
         return
                 "Konkurrenceresultat: \n" +
                         "Disciplin: " + discipline + '\n' +
