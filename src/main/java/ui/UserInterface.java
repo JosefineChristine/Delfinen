@@ -8,7 +8,6 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//DELVIST REFAKTORERET (SE TODOS)
 
 public class UserInterface {
 
@@ -68,11 +67,11 @@ public class UserInterface {
             System.out.println("________________________________________________________");
             System.out.println("Valgmuligheder: ");
             System.out.println("1. Tilføj nye medlemmer\n" +
-                                "2. Søg efter medlem\n" +
-                                "3. Slet medlem\n" +
-                                "4. Rediger stamoplysning for medlem\n" +
-                                "5. Se alle medlemmer i klubben \n" +
-                                "0. Tilbage til startmenu");
+                    "2. Søg efter medlem\n" +
+                    "3. Slet medlem\n" +
+                    "4. Rediger stamoplysning for medlem\n" +
+                    "5. Se alle medlemmer i klubben \n" +
+                    "0. Tilbage til startmenu");
 
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
@@ -116,15 +115,15 @@ public class UserInterface {
         while (userChoice != 0) {
             System.out.println("*********************KASSERER*********************");
             System.out.println("Delfinens årlige indtægt: " +
-                                controller.calculateAnnualIncome());
+                    controller.calculateAnnualIncome());
             System.out.println("Klubbens medlemmer har i alt " +
-                                controller.calculateTotalDebt() + " i restance.");
+                    controller.calculateTotalDebt() + " i restance.");
             System.out.println("__________________________________________________");
             System.out.println("Valgmuligheder: ");
             System.out.println("1. Søg efter medlem\n" +
-                                "2. Se liste af medlemmer med restance\n" +
-                                "3. Rediger restance for medlem\n" +
-                                "0. Tilbage til startmenu");
+                    "2. Se liste af medlemmer med restance\n" +
+                    "3. Rediger restance for medlem\n" +
+                    "0. Tilbage til startmenu");
 
             userChoice = Integer.parseInt(input.next());
             switch (userChoice) {
@@ -151,21 +150,18 @@ public class UserInterface {
             System.out.println("**********************TRÆNER**********************");
             System.out.println("Valgmuligheder: ");
             System.out.println("1. Se liste af medlemmer efter træner  \n" +
-                                "2. Se top fem træningstider efter svømmedisciplin \n" +
-                                "3. Tilføj resultat                                \n" +
-                                "4. Søg efter medlem                               \n" +
-                                "0. Tilbage til startmenu                          \n");
+                    "2. Se top fem træningstider efter svømmedisciplin \n" +
+                    "3. Tilføj resultat                                \n" +
+                    "4. Søg efter medlem                               \n" +
+                    "0. Tilbage til startmenu                          \n");
 
             userChoice = Integer.parseInt(input.next());
 
             switch (userChoice) {
-                case 0 -> {
-                    startProgram();
-                }
-                case 1 -> {
-                    //TODO Ajo fix toString, navn, rekorder, hold, discipliner
-                    selectCoach();
-                }
+                case 0 -> startProgram();
+
+                case 1 -> selectCoach();
+
                 case 2 -> showTopFive();
 
                 case 3 -> addRecord();
@@ -203,10 +199,10 @@ public class UserInterface {
 
         Member memberToAdd = null;
         if (memberType.equals("Motionssvømmer")) {
-            memberToAdd  = (new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+            memberToAdd = (new ExerciseMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
             controller.addExerciseMember((ExerciseMember) memberToAdd);
         } else if (memberType.equals("Konkurrencesvømmer")) {
-             memberToAdd = (new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
+            memberToAdd = (new CompetitionMember(memberFirstName, memberLastName, userBirthday, debt, isActive));
             controller.addCompetitionMember((CompetitionMember) memberToAdd);
         }
 
@@ -266,8 +262,8 @@ public class UserInterface {
 
         if (memberIndex >= 0 && memberIndex < matchingMembers.size()) {
             boolean output = controller.deleteMember(matchingMembers.
-                                        get(memberIndex).
-                                        getMemberFirstName());
+                    get(memberIndex).
+                    getMemberFirstName());
             if (!output) {
                 System.out.println("Der blev ikke fundet et medlem med det navn.\n");
             } else {
@@ -310,7 +306,7 @@ public class UserInterface {
             Member editedMember = controller.editMember(targetMember, menuOption, newValue);
             if (editedMember != null) {
                 System.out.println("Opdateret medlem:");
-                System.out.println(editedMember.toString());
+                System.out.println(editedMember);
             } else {
                 System.out.println("Kunne ikke redigere medlem.");
             }
@@ -375,11 +371,11 @@ public class UserInterface {
 
         for (Member member : controller.getMemberCollection()) {
             String memberName = member.getMemberFirstName() + " " + member.getMemberLastName();
-            System.out.println(member.toString());
+            System.out.println(member);
 
-            if (member instanceof CompetitionMember){
+            if (member instanceof CompetitionMember) {
                 ArrayList<Record> memberRecords = ((CompetitionMember) member).getMemberRecords();
-                for (Record memberRecord : memberRecords){
+                for (Record memberRecord : memberRecords) {
                     System.out.println(memberName);
                     System.out.println(memberRecord.toString());
                 }
@@ -387,21 +383,6 @@ public class UserInterface {
         }
     }
 
-    private void printCoachList () {
-        System.out.println("Liste over alle trænere:");
-
-        for (Coach coach : controller.getCoachList()) {
-        System.out.println(coach.toString());
-        }
-    }
-
-
-    private void searchCoach() {
-        System.out.println("Søg efter træner:");
-        input.nextLine();
-        String search = input.nextLine();
-        ArrayList<Coach> coachList = controller.searchCoach(search);
-    }
 
     private void selectCoach() {
         System.out.println("Skriv navnet på den træner, du ønsker at se medlemmer for:");
@@ -447,7 +428,8 @@ public class UserInterface {
             System.out.println("Ugyldigt valg.");
         }
     }
-    private void showTopFive(){
+
+    private void showTopFive() {
         CompetitionMember[] topFiveMembers = new CompetitionMember[5];
 
         System.out.println("*******TOP 5*********");
@@ -455,24 +437,24 @@ public class UserInterface {
         System.out.println("Crawl, butterfly, brystsvømning eller rygcrawl");
         input.nextLine();
         String chosenDiscipline = input.nextLine().trim();
-        if (chosenDiscipline.equalsIgnoreCase("rygcrawl")){
+        if (chosenDiscipline.equalsIgnoreCase("rygcrawl")) {
             chosenDiscipline = "backstroke";
-         } else if (chosenDiscipline.equalsIgnoreCase("brystsvømning")){
+        } else if (chosenDiscipline.equalsIgnoreCase("brystsvømning")) {
             chosenDiscipline = "breaststroke";
         }
         System.out.println("Vælg aldersgruppe (junior/senior): ");
         String ageGroup = input.nextLine().trim();
         topFiveMembers = controller.getTeamTopFive(chosenDiscipline, ageGroup);
 
-        if (chosenDiscipline.equalsIgnoreCase("backstroke")){
+        if (chosenDiscipline.equalsIgnoreCase("backstroke")) {
             chosenDiscipline = "rygcrawl";
-        } else if (chosenDiscipline.equalsIgnoreCase("breaststroke")){
+        } else if (chosenDiscipline.equalsIgnoreCase("breaststroke")) {
             chosenDiscipline = "brystsvømning";
         }
         System.out.println("\n*****Top 5 svømmeres tider indenfor " + chosenDiscipline + " af " + ageGroup + "-svømmere****");
 
         for (CompetitionMember member : topFiveMembers) {
-            if (member != null){
+            if (member != null) {
                 System.out.println("Navn: " + member.getMemberFirstName() + " " + member.getMemberLastName());
                 System.out.println(member.getBestTrainingRecord() + " minutter");
 
@@ -549,7 +531,7 @@ public class UserInterface {
         if (!(selectedMember instanceof CompetitionMember)) {
             System.out.println("Medlemmet er ikke en konkurrencemedlem.");
             //return null;
-            System.out.println("Tryk enter for at søge igen"); //TODO fix hvis muligt
+            System.out.println("Tryk enter for at søge igen");
             searchMembers();
         }
 
@@ -557,7 +539,7 @@ public class UserInterface {
     }
 
 
-    private Record addRecord(){
+    private Record addRecord() {
         CompetitionMember competitionMember = findAndValidateCompetitionMember();
         if (competitionMember == null) return null;
 
@@ -566,42 +548,43 @@ public class UserInterface {
         System.out.println("1. Konkurrenceresultat");
         System.out.println("2. Træningsresultat");
         int recordTypeChoice = Integer.parseInt(input.next());
-        String dateType = (recordTypeChoice == 1)? "konkurrenceresultat"  : "træningsresultat";
-            input.nextLine();
-            System.out.println("Tilføj eventnavn");
-            String eventName = input.nextLine();
+        String dateType = (recordTypeChoice == 1) ? "konkurrenceresultat" : "træningsresultat";
+        input.nextLine();
+        System.out.println("Tilføj eventnavn");
+        String eventName = input.nextLine();
 
-            System.out.println("Tilføj disciplin (Crawl, butterfly, brystsvømning eller rygcrawl)");
-            String discipline = input.nextLine();
-            if (discipline.equalsIgnoreCase("rygcrawl")){
-                discipline = "backstroke";
-            } else if (discipline.equalsIgnoreCase("brystsvømning")){
-                discipline = "breaststroke";
+        System.out.println("Tilføj disciplin (Crawl, butterfly, brystsvømning eller rygcrawl)");
+        String discipline = input.nextLine();
+        if (discipline.equalsIgnoreCase("rygcrawl")) {
+            discipline = "backstroke";
+        } else if (discipline.equalsIgnoreCase("brystsvømning")) {
+            discipline = "breaststroke";
         }
 
-            System.out.println("Tilføj resultat i minutter og sekunder (fx. 5.08)");
-            double result = input.nextDouble();
+        System.out.println("Tilføj resultat i minutter og sekunder (fx. 5.08)");
+        double result = input.nextDouble();
 
-            LocalDate RecordDate = inputDate(dateType);
+        LocalDate RecordDate = inputDate(dateType);
 
 
-            if(recordTypeChoice ==1 ){
-                System.out.println("Tilføj placering");
-                input.nextLine();
-                String placement = input.nextLine();
-                CompetitionRecord recordToAdd = new CompetitionRecord(eventName, discipline, result, RecordDate, placement);
-                controller.addCompetitionRecordToMember(competitionMember,recordToAdd);
-                return recordToAdd;
-            }
+        if (recordTypeChoice == 1) {
+            System.out.println("Tilføj placering");
+            input.nextLine();
+            String placement = input.nextLine();
+            CompetitionRecord recordToAdd = new CompetitionRecord(eventName, discipline, result, RecordDate, placement);
+            controller.addCompetitionRecordToMember(competitionMember, recordToAdd);
+            return recordToAdd;
+        }
 
 
         eventName = "Training";
-            TrainingRecord recordToAdd = new TrainingRecord(eventName, discipline, result, RecordDate);
-            controller.addTrainingRecordToMember(competitionMember,recordToAdd);
+        TrainingRecord recordToAdd = new TrainingRecord(eventName, discipline, result, RecordDate);
+        controller.addTrainingRecordToMember(competitionMember, recordToAdd);
 
         return recordToAdd;
 
     }
+
     private Member searchMembers() {
         input.nextLine();
         System.out.println("Søg efter medlem:");

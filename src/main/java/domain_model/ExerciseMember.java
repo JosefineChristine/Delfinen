@@ -2,7 +2,6 @@ package domain_model;
 
 import java.time.LocalDate;
 
-//REFAKTORERET
 
 public class ExerciseMember extends Member {
 

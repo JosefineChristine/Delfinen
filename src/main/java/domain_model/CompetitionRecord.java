@@ -2,7 +2,6 @@ package domain_model;
 
 import java.time.LocalDate;
 
-// DELVIST REFAKTORERET (SE TODOS)
 
 public class CompetitionRecord extends Record {
 
@@ -22,13 +21,12 @@ public class CompetitionRecord extends Record {
     }
 
 
-
     //*****************************************TO-STRING****************************************************************
     @Override
     public String toString() {
-        if (discipline.equalsIgnoreCase("backstroke")){
+        if (discipline.equalsIgnoreCase("backstroke")) {
             discipline = "rygcrawl";
-        } else if (discipline.equalsIgnoreCase("breaststroke")){
+        } else if (discipline.equalsIgnoreCase("breaststroke")) {
             discipline = "brystsvømning";
         }
 

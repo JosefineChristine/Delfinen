@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-// REFAKTORERET
 
 public class FileLoader {
     File memberList = new File("Delfin-members.csv");

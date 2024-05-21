@@ -1,11 +1,10 @@
 package domain_model;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
-// DELVIST REFAKTORERET (SE TODOS)
+
 
 public class Coach {
-
 
 
     //***ATTRIBUTES***--------------------------------------------------------------------------------------------------
@@ -32,17 +31,9 @@ public class Coach {
     }
 
     public void setMemberListForCoach(ArrayList<Member> memberListForCoach) {
-        this.memberListForCoach = memberListForCoach; //TODO Vahab --> Oprydning Hvad skal denne metode ift. add/remove metoderne?
+        this.memberListForCoach = memberListForCoach;
     }
 
-    //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-//    public void addMemberToCoach(Member member) { //TODO Vahab sletter hvis det ikke skal bruges
-//        memberListForCoach.add(member);
-//    }
-//
-//    public void removeMemberToCoach(Member member) {
-//        memberListForCoach.remove(member);
-//    }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
     public ArrayList<Member> getMemberListForCoach(Coach coach) {

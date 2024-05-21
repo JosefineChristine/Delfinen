@@ -1,12 +1,9 @@
 package domain_model;
 
-import comparator.RecordComparator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 
-// DELVIST REFAKTORERET (SE TODOS)
 
 public class CompetitionMember extends Member {
 
@@ -43,10 +40,6 @@ public class CompetitionMember extends Member {
     }
 
 
-    public ArrayList<String> getActiveDisciplines() {
-        return activeDisciplines;
-    }
-
     public double getBestTrainingRecord() {
         return bestTrainingRecord;
     }
@@ -55,9 +48,6 @@ public class CompetitionMember extends Member {
         return trainingRecords;
     }
 
-    public ArrayList<CompetitionRecord> getCompetitionRecords() {
-        return competitionRecords;
-    }
 
     public String getTeamsForSpecificMember() {
         ArrayList<String> memberTeams = new ArrayList<>();
@@ -84,13 +74,7 @@ public class CompetitionMember extends Member {
     }
 
     //***ADD & REMOVE METHODS***----------------------------------------------------------------------------------------
-    public void addTeamForSpecificMember(Team team) {
-        this.teams.add(team);
-    }
 
-    public void removeTeamForSpecificMember(Team team) {
-        this.teams.remove(team);
-    }
     public void addRecordToMember(Record record) {
         memberRecords.add(record);
     }
@@ -133,7 +117,6 @@ public class CompetitionMember extends Member {
                 "Hold " + getTeamsForSpecificMember() + '\n';
 
     }
-
 
 
     //------------------------------------------------------------------------------------------------------------------

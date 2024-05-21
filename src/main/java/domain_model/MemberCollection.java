@@ -6,7 +6,6 @@ import data_handler.SaveToFile;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-// REFAKTORERET
 
 public class MemberCollection {
 
@@ -89,17 +88,6 @@ public class MemberCollection {
         return memberToEdit;
     }
 
-    public Member findSpecificMember(String specificMemberSearched) {
-        Member targetMember = null;
-        for (Member memberToEdit : memberList) {
-            if (memberToEdit.getMemberFirstName().equalsIgnoreCase(specificMemberSearched) ||
-                    memberToEdit.getMemberLastName().equalsIgnoreCase(specificMemberSearched)) {
-                targetMember = memberToEdit;
-                return targetMember;
-            }
-        }
-        return targetMember;
-    }
 
     public boolean deleteMember(String memberName) {
         for (Member member : memberList) {

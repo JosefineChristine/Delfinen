@@ -3,7 +3,6 @@ package domain_model;
 import java.time.LocalDate;
 import java.time.Period;
 
-// REFAKTORERET
 
 public abstract class Member {
     protected String memberFirstName;
