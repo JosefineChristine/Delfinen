@@ -29,12 +29,12 @@ public class Controller {
         return teamCollection.findTopFives(discipline, age);
 
     }
-    public void addTrainingRecordToMember(TrainingRecord record) {
-        competitionMember.addTrainingRecordToMember(record);
+    public void addTrainingRecordToMember(CompetitionMember competitionMember,TrainingRecord record) {
+        memberCollection.addRecordToCompetitionMember(competitionMember, record);
     }
 
-    public void addCompetitionRecordToMember(CompetitionRecord record) {
-        competitionMember.addCompetitionRecordToMember(record);
+    public void addCompetitionRecordToMember(CompetitionMember competitionMember,CompetitionRecord record) {
+        memberCollection.addRecordToCompetitionMember(competitionMember, record);
     }
 
     public ArrayList<Member> getMemberListForCoach(Coach coach) {

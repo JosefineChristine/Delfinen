@@ -99,6 +99,9 @@ public class CompetitionMember extends Member {
     public void addCompetitionRecordToMember(CompetitionRecord record) {
         competitionRecords.add(record);
     }
+    public void addRecordToMember(Record record) {
+        memberRecords.add(record);
+    }
 
 
     //***OTHER METHODS***-----------------------------------------------------------------------------------------------

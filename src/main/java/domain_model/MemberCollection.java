@@ -20,6 +20,7 @@ public class MemberCollection {
     public MemberCollection() {
         memberList = fileLoader.getMembers();
 
+
     }
 
     //***METHODS***-----------------------------------------------------------------------------------------------------
@@ -164,15 +165,11 @@ public class MemberCollection {
 
     //***COACH METHODS***-----------------------------------------------------------------------------------------------
 
+    public void addRecordToCompetitionMember(CompetitionMember competitionMember, Record record) {
+        competitionMember.addRecordToMember(record);
+        fileHandler.saveToFile(memberList);
 
-//    public void addRecordForMember(String name,Record record) {
-//        CompetitionMember member =(CompetitionMember) findSpecificMember(name);
-//        ArrayList<Record> memberRecords = member.getMemberRecords();
-//        if (member != null) {
-//            memberRecords.add(record);
-//        }
-//        fileHandler.saveToFile(memberList);
-//
-//    }
+    }
+
 
 }

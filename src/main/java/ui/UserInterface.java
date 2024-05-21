@@ -152,9 +152,8 @@ public class UserInterface {
             System.out.println("Valgmuligheder: ");
             System.out.println("1. Se liste af medlemmer efter træner  \n" +
                                 "2. Se top fem træningstider efter svømmedisciplin \n" +
-                                "3. Tilføj konkurrenceresultat                     \n" +
-                                "4. Tilføj træningsresultat                        \n" +
-                                "5. Søg efter medlem                               \n" +
+                                "3. Tilføj Rekord                                  \n" +
+                                "4. Søg efter medlem                               \n" +
                                 "0. Tilbage til startmenu                          \n");
 
             userChoice = Integer.parseInt(input.next());
@@ -165,40 +164,14 @@ public class UserInterface {
                 }
                 case 1 -> {
                     //TODO fix se medlemsliste for træner
-                    //searchCoach();
-                    //searchCoach() = Coach coach;
-                    //coach.printlisteblalba...
                     selectCoach();
                 }
-                case 2 -> {
-                    showTopFive(); //TODO: ændr toString, så den printer træningsresultat ud
-                }
-                case 3 -> {
-                    // Tilføj konkurrenceresultat //TODO fungerer ikke
-                    System.out.println("Du har valgt at tilføje et konkurrenceresultat.");
-                    CompetitionMember competitionMember = findAndValidateCompetitionMember();
-                    if (competitionMember == null) return;
+                case 2 -> showTopFive(); //TODO: ændr toString, så den printer træningsresultat ud
 
-                    CompetitionRecord competitionRecord = createCompetitionRecord(competitionMember);
-                    competitionRecord.addRecord(competitionRecord);
+                case 3 -> addRecord();
 
-                    System.out.println("Rekorden er tilføjet til medlemmet.");
-                }
+                case 4 -> searchMember();
 
-                case 4 -> {
-                    // Tilføj træningsresultat //TODO fungerer ikke
-                    System.out.println("Du har valgt at tilføje et træningsresultat.");
-                    CompetitionMember competitionMember = findAndValidateCompetitionMember();
-                    if (competitionMember == null) return;
-
-                    TrainingRecord trainingRecord = createTrainingRecord(competitionMember);
-                    trainingRecord.addRecord(trainingRecord);
-
-                    System.out.println("Rekorden er tilføjet til medlemmet.");
-                }
-                case 5 -> {
-                    searchMember();
-                }
                 default -> System.out.println("Forkert input");
             }
         }
@@ -244,6 +217,7 @@ public class UserInterface {
         System.out.println("...................................");
     }
 
+    // Todo: we could reuse it if we chage return type?
     private void searchMember() {
         System.out.println("Indtast fornavn eller efternavn på det medlem du vil søge efter: ");
         input.nextLine();
@@ -569,39 +543,47 @@ public class UserInterface {
         return (CompetitionMember) selectedMember;
     }
 
-    private CompetitionRecord createCompetitionRecord(CompetitionMember member) {
-        System.out.println("Tilføj eventnavn");
-        String eventName = input.next();
 
-        System.out.println("Tilføj disciplin");
-        String discipline = input.next();
+    private Record addRecord(){
+        CompetitionMember competitionMember = findAndValidateCompetitionMember();
+        if (competitionMember == null) return null;
 
-        System.out.println("Tilføj resultat (fx. 5.08)");
-        double result = input.nextDouble();
+        System.out.println("Vil du tilføje et konkurrenceresultat eller træningsresultat?");
+        input.nextLine();
+        System.out.println("1. Konkurrenceresultat");
+        System.out.println("2. Træningsresultat");
+        int recordTypeChoice = Integer.parseInt(input.next());
+        String dateType = (recordTypeChoice == 1)? "konkurrenceresultat"  : "træningsresultat";
 
-        LocalDate competitionDate = inputDate("konkurrenceresultat");
+            System.out.println("Tilføj eventnavn");
+            String eventName = input.nextLine();
 
-        System.out.println("Tilføj sted");
-        String place = input.next();
+            System.out.println("Tilføj disciplin");
+            String discipline = input.nextLine();
 
-        return new CompetitionRecord(eventName, discipline, result, competitionDate, place);
+            System.out.println("Tilføj resultat (fx. 5.08)");
+            double result = input.nextDouble();
+
+            LocalDate RecordDate = inputDate(dateType);
+
+
+            if(recordTypeChoice ==1 ){
+                System.out.println("Tilføj sted");
+                String place = input.nextLine();
+                CompetitionRecord recordToAdd = new CompetitionRecord(eventName, discipline, result, RecordDate, place);
+                controller.addCompetitionRecordToMember(competitionMember,recordToAdd);
+                return recordToAdd;
+            }
+
+
+        eventName = "Training";
+            TrainingRecord recordToAdd = new TrainingRecord(eventName, discipline, result, RecordDate);
+            controller.addTrainingRecordToMember(competitionMember,recordToAdd);
+
+        return recordToAdd;
+
     }
-
-    private TrainingRecord createTrainingRecord(CompetitionMember member) {
-        System.out.println("Tilføj titel");
-        String title = input.next();
-
-        System.out.println("Tilføj disciplin");
-        String discipline = input.next();
-
-        System.out.println("Tilføj resultat (fx. 5.08)");
-        double result = input.nextDouble();
-
-        LocalDate trainingDate = inputDate("træningsresultat");
-
-        return new TrainingRecord(title, discipline, result, trainingDate);
-    }
-
+    //Todo : check with search member  and findspecificmember in member collection to avoid duplication.
     private Member searchMembers() {
         input.nextLine();
         System.out.println("Søg efter medlem:");
