@@ -11,7 +11,7 @@ public class Team {
     private String teamDiscipline;
     private ArrayList<Member> teamMemberList = new ArrayList<>();
     private boolean isTeamSenior;
-    Coach coach;
+    private Coach coach;
 
     //***CONSTRUCTOR***-------------------------------------------------------------------------------------------------
     public Team(String teamDiscipline, Coach coach, boolean isTeamSenior) {

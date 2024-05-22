@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class TeamCollection {
 
-    ArrayList<Team> allTheTeams = new ArrayList<>();
-    MemberCollection memberCollection = new MemberCollection();
+    private ArrayList<Team> allTheTeams = new ArrayList<>();
+    private MemberCollection memberCollection = new MemberCollection();
     private ArrayList<Coach> coachList = new ArrayList<>();
 
     //************COACHES********--------

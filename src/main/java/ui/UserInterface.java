@@ -47,7 +47,7 @@ public class UserInterface {
     }
 
     //***MENU METHODS***------------------------------------------------------------------------------------------------
-    public static void startMenu() {
+    private static void startMenu() {
         System.out.println("________________________________________");
         System.out.println("|         DELFINEN SVØMMEKLUB          |");
         System.out.println("|______________________________________|");
@@ -58,7 +58,7 @@ public class UserInterface {
         System.out.println("|______________________________________|");
     }
 
-    public void adminMenu() {
+    private void adminMenu() {
 
         while (userChoice != 0) {
             System.out.println("**********************ADMINSTRATOR**********************");
@@ -110,7 +110,7 @@ public class UserInterface {
         }
     }
 
-    public void kassererMenu() {
+    private void kassererMenu() {
 
         while (userChoice != 0) {
             System.out.println("*********************KASSERER*********************");
@@ -144,7 +144,7 @@ public class UserInterface {
         }
     }
 
-    public void trænerMenu() {
+    private void trænerMenu() {
 
         while (userChoice != 0) {
             System.out.println("**********************TRÆNER**********************");
